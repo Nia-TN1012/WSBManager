@@ -4,4 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager">
 
+    <Application.Resources>
+        <ResourceDictionary Source="Views/CustomResource.xaml"/>
+    </Application.Resources>
 </Application>

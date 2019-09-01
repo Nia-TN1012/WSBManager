@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using System.Collections.ObjectModel;
 
 namespace WSBManager.Models {
 
@@ -22,7 +23,7 @@ namespace WSBManager.Models {
 		/// The list of Windows Sandbox configurations.
 		/// </summary>
 		[XmlArray( "Configurations" ), XmlArrayItem( "Configuration" )]
-		public List<WSBConfigManagerModel> WSBConfigCollection { get; private set; }
+		public ObservableCollection<WSBConfigManagerModel> WSBConfigCollection { get; private set; } = new ObservableCollection<WSBConfigManagerModel>();
 
 		public void Load( TextReader textReader ) {
 			WSBConfigCollection.Clear();

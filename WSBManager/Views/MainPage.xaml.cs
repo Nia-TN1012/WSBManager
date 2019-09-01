@@ -13,18 +13,26 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using WSBManager.Models;
 using WSBManager.ViewModels;
 
-namespace WSBManager.Views
-{
-    /// <summary>
-    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        public MainPage()
-        {
-            this.InitializeComponent();
-        }
-    }
+namespace WSBManager.Views {
+	/// <summary>
+	/// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
+	/// </summary>
+	public sealed partial class MainPage : Page {
+		public MainPage() {
+			this.InitializeComponent();
+		}
+
+		private void AddButton_Click( object sender, RoutedEventArgs e ) {
+			this.Frame.Navigate( typeof( SandboxConfigEditor ), -1 );
+		}
+
+		private void EditButton_Click( object sender, RoutedEventArgs e ) {
+			if( SandboxListView.SelectedIndex > -1 ) {
+				this.Frame.Navigate( typeof( SandboxConfigEditor ), SandboxListView.SelectedIndex );
+			}
+		}
+	}
 }

@@ -4,16 +4,142 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager"
     xmlns:localvm="using:WSBManager.ViewModels"
+    xmlns:localcom="using:WSBManager.Common"
+    xmlns:ctrl="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+
+        <localcom:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+        <localcom:VGpuToListIndexConverter x:Key="VGpuToListIndexConverter"/>
+        <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
+        <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
+        <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
+
+        <ItemsPanelTemplate x:Key="SandboxListItemPanelTemplate">
+            <ItemsStackPanel Orientation="Vertical"
+							 HorizontalAlignment="Stretch"/>
+        </ItemsPanelTemplate>
+
+        <Style x:Key="AppButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Background" Value="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource TextStyleLargeFontSize}"/>
+        </Style>
+
+        <Style x:Key="SandboxConfigIconPanel" TargetType="Grid">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="SandboxConfigFontIcon" TargetType="FontIcon">
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="MappedFolderFontIcon" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="SandboxListItemActionButton" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="SandboxListItemContainerStyle" TargetType="ListViewItem">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <DataTemplate x:Name="SandboxListDataTemplate">
+            <Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding Name}"
+                                   FontSize="24"/>
+
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal">
+                            <!-- vGPU -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"
+                                          Opacity="{Binding IsVGpuEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                          ToolTipService.ToolTip="vGPU: Default">
+                                </FontIcon>
+                            </Grid>
+                            <!-- Network -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xEC27;"
+                                          Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                          ToolTipService.ToolTip="Network"/>
+                            </Grid>
+                            <!-- Mapped folders -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}"
+                                  ToolTipService.ToolTip="MappedFolder: 2 folders mapped">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Opacity="{Binding IsMappedFolderEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                          Glyph="&#xE8F7;"/>
+                                <TextBlock Grid.Column="1"
+                                           Margin="2"
+                                           Opacity="{Binding IsMappedFolderEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                           Text="{Binding MappedFolders.Count}"/>
+                            </Grid>
+                            <!-- Command -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE756;"
+                                          Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                          ToolTipService.ToolTip="Command: cmd"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                    <Button Grid.Column="1"
+                            Style="{StaticResource SandboxListItemActionButton}"
+                            Content="&#xE102;"/>
+                    <Button Grid.Column="2"
+                            Style="{StaticResource SandboxListItemActionButton}"
+                            Content="&#xE712;"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        
+    </Page.Resources>
 
     <Page.DataContext>
         <localvm:WSBManagerViewModel x:Name="wsbManagerViewModel" />
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,16 +148,172 @@
 
         <Grid Grid.Row="0">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontSize="{ThemeResource HubSectionHeaderThemeFontSize}"
+                       FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                        Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
                        x:Uid="AppName"/>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*" MinWidth="360"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+
+            <!-- Sandbox list -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Style="{StaticResource AppButtonStyle}"
+                            Content="&#xE109;"
+                            Click="AddButton_Click"/>
+                    <Button Grid.Column="1"
+                            Style="{StaticResource AppButtonStyle}"
+                            Content="&#xE133;"/>
+                    <AutoSuggestBox Grid.Column="2"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    QueryIcon="Find"/>
+                </Grid>
+
+                <Pivot Grid.Row="1">
+                    <PivotItem Header="ALL" Margin="5">
+                        <ListView x:Name="SandboxListView"
+                                  ScrollViewer.IsHorizontalScrollChainingEnabled="False"
+                                  ItemsSource="{Binding Items}"
+                                  ItemsPanel="{StaticResource SandboxListItemPanelTemplate}"
+                                  ItemContainerStyle="{StaticResource SandboxListItemContainerStyle}"
+                                  ItemTemplate="{StaticResource SandboxListDataTemplate}">
+                            <ListView.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                    <ContentThemeTransition/>
+                                    <ReorderThemeTransition/>
+                                    <EntranceThemeTransition IsStaggeringEnabled="False"/>
+                                </TransitionCollection>
+                            </ListView.ItemContainerTransitions>
+                        </ListView>
+                    </PivotItem>
+                </Pivot>
+                
+            </Grid>
+
+            <!-- Sandbox Property -->
+            <Grid Grid.Column="1"
+                  Visibility="{Binding SelectedIndex, Converter={StaticResource SelectedIndexToVisibilityConverter}, ElementName=SandboxListView}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontSize="{ThemeResource TextStyleLargeFontSize}"
+                               Text="{Binding SelectedItem.Name, ElementName=SandboxListView}"/>
+                    <Button Grid.Column="1"
+                            Style="{StaticResource AppButtonStyle}"
+                            Content="&#xE104;"
+                            Click="EditButton_Click"/>
+                </Grid>
+
+                <ScrollViewer Grid.Row="1"
+                              Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- vGPU -->
+                        <FontIcon Grid.Row="0" Grid.Column="0"
+                                  Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE964;"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Margin="5"
+                                   VerticalAlignment="Center"
+                                   Text="vGPU"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2"
+                                   Margin="5"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding SelectedItem.VGpu, ElementName=SandboxListView}"/>
+
+                        <!-- Network -->
+                        <FontIcon Grid.Row="1" Grid.Column="0"
+                                  Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xEC27;"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Margin="5"
+                                   VerticalAlignment="Center"
+                                   Text="Network"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2"
+                                   Margin="5"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding SelectedItem.Network, ElementName=SandboxListView}"/>
+
+                        <!-- Mapped folders -->
+                        <FontIcon Grid.Row="2" Grid.Column="0"
+                                  Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE8F7;"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                   Margin="5"
+                                   Text="Mapped Folders"/>
+                        <ctrl:DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                       Margin="5"
+                                       AutoGenerateColumns="False"
+                                       ItemsSource="{Binding SelectedItem.MappedFolders, ElementName=SandboxListView}">
+                            <ctrl:DataGrid.Columns>
+                                <ctrl:DataGridTextColumn Header="Host Folder"
+                                                         IsReadOnly="True"
+                                                         Binding="{Binding HostFolder}"/>
+                                <ctrl:DataGridCheckBoxColumn Header="Read Only"
+                                                             IsReadOnly="True"
+                                                             Binding="{Binding ReadOnly}"/>
+                            </ctrl:DataGrid.Columns>
+                        </ctrl:DataGrid>
+
+                        <!-- Login Command -->
+                        <FontIcon Grid.Row="4" Grid.Column="0"
+                                  Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE756;"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                   Margin="5"
+                                   VerticalAlignment="Center"
+                                   Text="Login Command"/>
+                        <TextBox Grid.Row="4" Grid.Column="2"
+                                 Margin="5"
+                                 IsReadOnly="True"
+                                 HorizontalAlignment="Stretch"
+                                 Text="{Binding SelectedItem.LoginCommand.Command, ElementName=SandboxListView}"/>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+            
         </Grid>
 
     </Grid>

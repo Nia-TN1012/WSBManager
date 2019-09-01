@@ -32,6 +32,13 @@ namespace WSBManager.ViewModels {
 		/// </summary>
 		private SemaphoreSlim semaphore = new SemaphoreSlim( 1, 1 );
 
+		public IEnumerable<WSBConfigManagerModel> Items => model?.WSBConfigCollection;
+
+		public void Add() {
+			model.WSBConfigCollection.Add( new WSBConfigManagerModel() );
+			NotifyPropertyChanged( nameof( Items ) );
+		}
+
 		public WSBManagerViewModel() {
 			model = ( App.Current as App )?.Model;
 			if( model == null ) {
@@ -39,6 +46,12 @@ namespace WSBManager.ViewModels {
 			}
 
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
+
+			var z = new WSBConfigManagerModel();
+			z.MappedFolders.Add( new MappedFolder { HostFolder = @"C:\users\hoge" } );
+			z.MappedFolders.Add( new MappedFolder { HostFolder = @"C:\users\fuga", ReadOnly = true } );
+			z.LoginCommand.Command = "cmd echo";
+			model.WSBConfigCollection.Add( z );
 		}
 
 		public async Task LoadAsync() {
