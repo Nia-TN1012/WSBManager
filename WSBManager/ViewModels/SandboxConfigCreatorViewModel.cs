@@ -1,43 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using WSBManager.Models;
-using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using WSBManager.Models;
 
 namespace WSBManager.ViewModels {
-	class SandboxConfigEditorViewModel : INotifyPropertyChanged {
-
+	class SandboxConfigCreatorViewModel : INotifyPropertyChanged {
 		WSBManagerModel model;
-
-		private int selectedIndex;
 
 		public WSBConfigManagerModel EditingItem { get; private set; }
 
 		public ObservableCollection<MappedFolder> EditingMappedFolders { get; private set; } = new ObservableCollection<MappedFolder>();
 
-		public SandboxConfigEditorViewModel( int selectedIndex ) {
+		public SandboxConfigCreatorViewModel() {
 			model = ( App.Current as App )?.Model;
 			if( model == null ) {
 				throw new Exception( $"Failed to get reference of model instance on the {GetType()} class." );
 			}
-			this.selectedIndex = selectedIndex;
-			EditingItem = new WSBConfigManagerModel( model.WSBConfigCollection[selectedIndex] );
-			foreach( var mf in EditingItem.MappedFolders ) {
-				EditingMappedFolders.Add( mf );
-			}
 
+			EditingItem = new WSBConfigManagerModel();
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
 		}
 
 		public void Save() {
-			EditingItem.MappedFolders.Clear();
 			EditingItem.MappedFolders.AddRange( EditingMappedFolders );
-			model.WSBConfigCollection[selectedIndex] = EditingItem;
+			model.WSBConfigCollection.Add( EditingItem );
 		}
 
 		/// <summary>
@@ -61,11 +49,11 @@ namespace WSBManager.ViewModels {
 			removeMappedFolder ?? ( removeMappedFolder = new RemoveMappedFolderCommand( this ) );
 
 		private class AddMappedFolderCommand : ICommand {
-			
-			private SandboxConfigEditorViewModel viewModel;
 
-			
-			internal AddMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
+			private SandboxConfigCreatorViewModel viewModel;
+
+
+			internal AddMappedFolderCommand( SandboxConfigCreatorViewModel _viewModel ) {
 				viewModel = _viewModel;
 				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
 			}
@@ -81,10 +69,10 @@ namespace WSBManager.ViewModels {
 
 		private class RemoveMappedFolderCommand : ICommand {
 
-			private SandboxConfigEditorViewModel viewModel;
+			private SandboxConfigCreatorViewModel viewModel;
 
 
-			internal RemoveMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
+			internal RemoveMappedFolderCommand( SandboxConfigCreatorViewModel _viewModel ) {
 				viewModel = _viewModel;
 				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
 			}

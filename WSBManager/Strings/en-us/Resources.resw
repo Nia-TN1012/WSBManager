@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName.Text" xml:space="preserve">
-    <value>WSBマネージャー</value>
+    <value>WSB Manager</value>
+  </data>
+  <data name="SandboxConfigCreatorTitle.Text" xml:space="preserve">
+    <value>New Sandbox Configuration</value>
+  </data>
+  <data name="SandboxConfigEditorTitle.Text" xml:space="preserve">
+    <value>Edit Sandbox Configuration</value>
   </data>
 </root>

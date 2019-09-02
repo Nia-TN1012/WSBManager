@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WSBManager.Views.SandboxConfigEditor"
+    x:Class="WSBManager.Views.SandboxConfigCreator"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager.Views"
@@ -16,7 +16,7 @@
         <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
-        
+
         <Style x:Key="AppButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="48"/>
             <Setter Property="Height" Value="48"/>
@@ -99,7 +99,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                        Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                       x:Uid="SandboxConfigEditorTitle"/>
+                       x:Uid="SandboxConfigCreatorTitle"/>
 
             <Button Grid.Column="2"
                     Style="{StaticResource AppButtonStyle}"
@@ -117,7 +117,7 @@
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.Name, Mode=TwoWay}"/>
                 </StackPanel>
-                
+
                 <!-- vGPU -->
                 <StackPanel Margin="5">
                     <TextBlock Margin="5"
