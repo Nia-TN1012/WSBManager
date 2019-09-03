@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -52,11 +56,36 @@ namespace WSBManager.Views {
 			}
 		}
 
-		private void SaveButton_Click( object sender, RoutedEventArgs e ) {
+		private async void SaveButton_Click( object sender, RoutedEventArgs e ) {
+			var result = sandboxConfigEditorViewModel.Validate();
+			if( result.result != MappedFolderValidateResult.OK ) {
+				var loader = ResourceLoader.GetForCurrentView();
+				var message = loader.GetString( result.result.ToString() );
+				var dialog = new MessageDialog(
+					string.Format( $"{message}:\r\n\r\n{string.Join( "\r\n", result.validateFailedHostFolders )}" ),
+					loader.GetString( "MappedFolderValidationFailedTitle" )
+				);
+				await dialog.ShowAsync();
+
+				return;
+			}
+
 			sandboxConfigEditorViewModel.Save();
 			if( this.Frame.CanGoBack ) {
 				this.Frame.GoBack();
 			}
+		}
+
+		private async void ReferenceButton_Click( object sender, RoutedEventArgs e ) {
+			var folderPicker = new FolderPicker {
+				SuggestedStartLocation = PickerLocationId.Desktop
+			};
+			folderPicker.FileTypeFilter.Add( "*" );
+			if( ( await folderPicker.PickSingleFolderAsync() ) is StorageFolder folder ) {
+				var button = ( Button )sender;
+				button.Tag = folder.Path;
+			}
+
 		}
 	}
 }

@@ -16,6 +16,12 @@
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
+        <Style x:Key="SandboxConfigFontIcon" TargetType="FontIcon">
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
         <Style x:Key="AppButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="48"/>
             <Setter Property="Height" Value="48"/>
@@ -32,21 +38,10 @@
 
         <DataTemplate x:Key="MappedHostFolderDataTemplate">
             <Border>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <SymbolIcon Grid.Column="0"
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                Symbol="Folder"/>
-                    <TextBlock Grid.Column="1"
-                               Margin="5"
-                               VerticalAlignment="Center"
-                               Text="{Binding HostFolder}"/>
-                </Grid>
+                <TextBlock Margin="5"
+                           VerticalAlignment="Center"
+                           Text="{Binding HostFolder, TargetNullValue=-}"
+                           ToolTipService.ToolTip="{Binding HostFolder}"/>
             </Border>
         </DataTemplate>
 
@@ -54,22 +49,20 @@
             <Border>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <SymbolIcon Grid.Column="0"
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                Symbol="Folder"/>
-                    <TextBox Grid.Column="1"
+                    <TextBox Grid.Column="0"
                              Margin="5"
                              VerticalAlignment="Center"
-                             Text="{Binding HostFolder, Mode=TwoWay}"/>
-                    <Button Grid.Column="2"
+                             Text="{Binding Tag, Mode=TwoWay, ElementName=ReferenceButton}"/>
+                    <Button Grid.Column="1"
+                            x:Name="ReferenceButton"
                             Style="{StaticResource MappedFolderButton}"
-                            Content="&#xE712;"/>
+                            Content="&#xE712;"
+                            Click="ReferenceButton_Click"
+                            Tag="{Binding HostFolder, Mode=TwoWay}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -117,37 +110,63 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1"
-                      Margin="5">
+                      Margin="10">
             <StackPanel>
                 <!-- Name -->
                 <StackPanel Margin="5">
-                    <TextBlock Margin="5"
-                               Text="Name"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE977;"/>
+                        <TextBlock Margin="5"
+                                   Text="Name"/>
+                    </StackPanel>
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.Name, Mode=TwoWay}"/>
                 </StackPanel>
-                
-                <!-- vGPU -->
-                <StackPanel Margin="5">
-                    <TextBlock Margin="5"
-                               Text="vGPU"/>
-                    <ComboBox Margin="5"
+                <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" MinWidth="120"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- vGPU -->
+                    <FontIcon Grid.Row="0" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="vGPU"/>
+                    <ComboBox Grid.Row="0" Grid.Column="2"
+                              Margin="5"
                               SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource VGpuToListIndexConverter}, Mode=TwoWay}">
                         <ComboBoxItem Content="Disabled"/>
                         <ComboBoxItem Content="Default" />
                     </ComboBox>
-                </StackPanel>
 
-                <!-- Network -->
-                <StackPanel Margin="5">
-                    <TextBlock Margin="5"
-                                       Text="Network"/>
-                    <ComboBox Margin="5"
+                    <!-- Network -->
+                    <FontIcon Grid.Row="1" Grid.Column="0"
+                              Style="{StaticResource SandboxConfigFontIcon}"
+                              Glyph="&#xE968;"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               Text="Network"/>
+                    <ComboBox Grid.Row="1" Grid.Column="2"
+                              Margin="5"
                               SelectedIndex="{Binding EditingItem.Network, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
                         <ComboBoxItem Content="Disabled"/>
                         <ComboBoxItem Content="Default" />
                     </ComboBox>
-                </StackPanel>
+                </Grid>
+                <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
                 <!-- Mapped folders -->
                 <StackPanel Margin="5">
@@ -158,20 +177,24 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
-                                   Margin="5"
-                                   VerticalAlignment="Center"
-                                   Text="Mapped Folders"/>
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE8F7;"/>
+                            <TextBlock Margin="5"
+                                       VerticalAlignment="Center"
+                                       Text="Mapped Folders"/>
+                        </StackPanel>
 
                         <Button Grid.Column="1"
                                 Style="{StaticResource MappedFolderButton}"
-                                Content="&#xE109;"
+                                Content="&#xE710;"
                                 Command="{Binding AddMappedFolder}"
                                 ToolTipService.ToolTip="Add Mapped Folder"/>
 
                         <Button Grid.Column="2"
                                 Style="{StaticResource MappedFolderButton}"
-                                Content="&#xE108;"
+                                Content="&#xE738;"
                                 Command="{Binding RemoveMappedFolder}"
                                 CommandParameter="{Binding SelectedIndex, ElementName=MappedFolderView}"
                                 ToolTipService.ToolTip="Remove selected Mapped Folder"/>
@@ -183,19 +206,26 @@
                                    ItemsSource="{Binding EditingMappedFolders, Mode=TwoWay}">
                         <ctrl:DataGrid.Columns>
                             <ctrl:DataGridTemplateColumn Header="Host Folder"
+                                                         MinWidth="240" Width="*" CanUserResize="True"
                                                          CellTemplate="{StaticResource MappedHostFolderDataTemplate}"
-                                                         CellEditingTemplate="{StaticResource MappedHostFolderEditingDataTemplate}">
-                            </ctrl:DataGridTemplateColumn>
+                                                         CellEditingTemplate="{StaticResource MappedHostFolderEditingDataTemplate}"/>
                             <ctrl:DataGridCheckBoxColumn Header="Read Only"
+                                                         Width="Auto"
                                                          Binding="{Binding ReadOnly, Mode=TwoWay}"/>
+
                         </ctrl:DataGrid.Columns>
                     </ctrl:DataGrid>
                 </StackPanel>
+                <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
                 <!-- Login Command -->
                 <StackPanel Margin="5">
-                    <TextBlock Margin="5"
-                               Text="Login Command"/>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE756;"/>
+                        <TextBlock Margin="5"
+                                   Text="Login Command"/>
+                    </StackPanel>
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.LoginCommand.Command, Mode=TwoWay}"/>
                 </StackPanel>

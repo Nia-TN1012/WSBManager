@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,8 +9,15 @@ using System.Threading.Tasks;
 using WSBManager.Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Windows.Storage;
+using System.Text.RegularExpressions;
 
 namespace WSBManager.ViewModels {
+
+	public enum MappedFolderValidateResult {
+		OK, HostFolderPathInvalid, HostFolderNameDuplicated
+	}
+
 	class SandboxConfigEditorViewModel : INotifyPropertyChanged {
 
 		WSBManagerModel model;
@@ -44,6 +52,22 @@ namespace WSBManager.ViewModels {
 			}
 
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
+		}
+
+		private static readonly Regex hostFolderReg = new Regex( "^[A-Za-z]:" );
+
+		public ( MappedFolderValidateResult result, string[] validateFailedHostFolders ) Validate() {
+			
+			var invalidFolders = EditingMappedFolders.Where( item => item.HostFolder == null || !hostFolderReg.IsMatch( item.HostFolder ) );
+			if( invalidFolders.Any() ) {
+				return ( MappedFolderValidateResult.HostFolderPathInvalid, invalidFolders.Select( item => $"* {item.HostFolder}" ).ToArray() );
+			}
+			var duplicateFolders = EditingMappedFolders.GroupBy( item => Path.GetFileName( item.HostFolder ) ).Where( item => item.Count() >= 2 );
+			if( duplicateFolders.Any() ) {
+				return ( MappedFolderValidateResult.HostFolderNameDuplicated, duplicateFolders.SelectMany( item => item.AsEnumerable() ).Select( item => $"* {item.HostFolder}" ).ToArray() );
+			}
+
+			return ( MappedFolderValidateResult.OK, null );
 		}
 
 		public void Save() {

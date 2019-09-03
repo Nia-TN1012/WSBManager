@@ -94,7 +94,7 @@
                             <!-- Network -->
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xEC27;"
+                                          Glyph="&#xE968;"
                                           Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"
                                           ToolTipService.ToolTip="Network"/>
                             </Grid>
@@ -129,7 +129,18 @@
                             Content="&#xE102;"/>
                     <Button Grid.Column="2"
                             Style="{StaticResource SandboxListItemActionButton}"
-                            Content="&#xE712;"/>
+                            Content="&#xE712;">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Export" Command="{Binding}" CommandParameter="{Binding UUID}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xEDE1;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Delete" Icon="Delete"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -193,7 +204,6 @@
                     <PivotItem Header="ALL" Margin="5">
                         <ListView x:Name="SandboxListView"
                                   ScrollViewer.IsHorizontalScrollChainingEnabled="False"
-                                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                   ItemsSource="{Binding Items}"
                                   ItemsPanel="{StaticResource SandboxListItemPanelTemplate}"
                                   ItemContainerStyle="{StaticResource SandboxListItemContainerStyle}"
@@ -253,7 +263,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="120"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
@@ -273,7 +283,7 @@
                                 <!-- Network -->
                                 <FontIcon Grid.Row="1" Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xEC27;"/>
+                                          Glyph="&#xE968;"/>
                                 <TextBlock Grid.Row="1" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -283,7 +293,7 @@
                                            VerticalAlignment="Center"
                                            Text="{Binding SelectedItem.Network, ElementName=SandboxListView}"/>
                             </Grid>
-                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumHighColor}"/>
+                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
                             <!-- Mapped folders -->
                             <Grid>
@@ -300,17 +310,28 @@
                             </Grid>
                             <ctrl:DataGrid Margin="5"
                                            AutoGenerateColumns="False"
+                                           IsReadOnly="True"
                                            ItemsSource="{Binding SelectedItem.MappedFolders, ElementName=SandboxListView}">
                                 <ctrl:DataGrid.Columns>
-                                    <ctrl:DataGridTextColumn Header="Host Folder"
-                                                             IsReadOnly="True"
-                                                             Binding="{Binding HostFolder}"/>
+                                    <ctrl:DataGridTemplateColumn Header="Host Folder"
+                                                                 MinWidth="120" Width="*" CanUserResize="True">
+                                        <ctrl:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <TextBlock Margin="5"
+                                                               VerticalAlignment="Center"
+                                                               Text="{Binding HostFolder}"
+                                                               ToolTipService.ToolTip="{Binding HostFolder}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ctrl:DataGridTemplateColumn.CellTemplate>
+                                    </ctrl:DataGridTemplateColumn>
                                     <ctrl:DataGridCheckBoxColumn Header="Read Only"
-                                                                 IsReadOnly="True"
+                                                                 Width="Auto"
                                                                  Binding="{Binding ReadOnly}"/>
                                 </ctrl:DataGrid.Columns>
                             </ctrl:DataGrid>
-                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumHighColor}"/>
+                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
                             <!-- Login Command -->
                             <Grid>

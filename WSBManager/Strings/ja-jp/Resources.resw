@@ -123,6 +123,15 @@
   <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
     <value>戻る</value>
   </data>
+  <data name="HostFolderNameDuplicated" xml:space="preserve">
+    <value>以下のホストフォルダーは名前が重複しています。</value>
+  </data>
+  <data name="HostFolderPathInvalid" xml:space="preserve">
+    <value>以下のホストフォルダーはパスが無効です。</value>
+  </data>
+  <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
+    <value>ホストフォルダーのバリデーションエラー</value>
+  </data>
   <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>サンドボックス構成の編集</value>
   </data>
