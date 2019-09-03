@@ -120,10 +120,31 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSBマネージャー</value>
   </data>
+  <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
+    <value>戻る</value>
+  </data>
   <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>サンドボックス構成の編集</value>
   </data>
   <data name="SandboxConfigEditorTitleNew.Text" xml:space="preserve">
     <value>サンドボックス構成の新規作成</value>
+  </data>
+  <data name="SandboxConfigLoginCommand.Text" xml:space="preserve">
+    <value>ログインコマンド</value>
+  </data>
+  <data name="SandboxConfigMappedFolders.Text" xml:space="preserve">
+    <value>マップするフォルダー</value>
+  </data>
+  <data name="SandboxConfigName.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="SandboxConfigNetwork.Text" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="SandboxConfigVGpu.Text" xml:space="preserve">
+    <value>vGPU</value>
+  </data>
+  <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
+    <value>保存</value>
   </data>
 </root>

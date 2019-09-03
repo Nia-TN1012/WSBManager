@@ -91,7 +91,8 @@
             <Button Grid.Column="0"
                     Style="{StaticResource AppButtonStyle}"
                     Content="&#xE112;"
-                    Click="BackButton_Click"/>
+                    Click="BackButton_Click"
+                    x:Uid="BackToPage"/>
 
             <TextBlock Grid.Column="1"
                        Margin="5"
@@ -111,7 +112,8 @@
             <Button Grid.Column="2"
                     Style="{StaticResource AppButtonStyle}"
                     Content="&#xE105;"
-                    Click="SaveButton_Click"/>
+                    Click="SaveButton_Click"
+                    x:Uid="SaveSandboxConfig"/>
         </Grid>
 
         <ScrollViewer Grid.Row="1"
