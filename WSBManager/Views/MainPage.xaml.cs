@@ -30,8 +30,7 @@ namespace WSBManager.Views {
 
 		private async void ImportSandboxConfing( Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null ) {
 			var importPicker = new FileOpenPicker {
-				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-				CommitButtonText = "Import"
+				SuggestedStartLocation = PickerLocationId.DocumentsLibrary
 			};
 			importPicker.FileTypeFilter.Add( ".wsb" );
 
@@ -49,8 +48,7 @@ namespace WSBManager.Views {
 		private async void ExportSandboxConfing( string name, Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null ) {
 			var exportPicker = new FileSavePicker {
 				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-				SuggestedFileName = name,
-				CommitButtonText = "Export"
+				SuggestedFileName = name
 			};
 			exportPicker.FileTypeChoices.Add( "wsb config file", new List<string> { ".wsb" } );
 

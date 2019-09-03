@@ -136,7 +136,7 @@ namespace WSBManager.ViewModels {
 							using( var sr = new StreamReader( s ) ) {
 								var importModel = WSBConfigManagerModel.Import( sr );
 								if( string.IsNullOrEmpty( importModel.Name ) ) {
-									importModel.Name = file.Name;
+									importModel.Name = Path.GetFileNameWithoutExtension( file.Name );
 								}
 								viewModel.model.WSBConfigCollection.Add( importModel );
 							}

@@ -21,7 +21,7 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Name
 		/// </summary>
-		public string Name { get; set; } = "New Sandbox";
+		public string Name { get; set; } = null;
 
 		protected DateTime createdAt = DateTime.Now;
 		/// <summary>
@@ -44,9 +44,9 @@ namespace WSBManager.Models {
 		public WSBConfigManagerModel() : base() { }
 
 		public WSBConfigManagerModel( WSBConfigManagerModel wSBConfigManagerModel ) : base( wSBConfigManagerModel ) {
-			UUID = wSBConfigManagerModel.UUID;
+			uuid = wSBConfigManagerModel.UUID;
 			Name = wSBConfigManagerModel.Name;
-			CreateAt = wSBConfigManagerModel.CreateAt;
+			createdAt = wSBConfigManagerModel.CreateAt;
 		}
 
 		/// <summary>

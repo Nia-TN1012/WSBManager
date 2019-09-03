@@ -90,8 +90,8 @@ namespace WSBManager.Models {
 		public WSBConfigModel( WSBConfigModel wSBConfigModel ) {
 			VGpu = wSBConfigModel.VGpu;
 			Networking = wSBConfigModel.Networking;
-			MappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
-			LoginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
+			mappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
+			loginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
 		}
 
 		/// <summary>

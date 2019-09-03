@@ -42,7 +42,7 @@ namespace WSBManager.ViewModels {
 			this.selectedIndex = selectedIndex;
 			IsNew = selectedIndex <= -1;
 			if( IsNew ) {
-				EditingItem = new WSBConfigManagerModel();
+				EditingItem = new WSBConfigManagerModel { Name = "New Sandbox" };
 			}
 			else {
 				EditingItem = new WSBConfigManagerModel( model.WSBConfigCollection[selectedIndex] );
