@@ -33,11 +33,11 @@ namespace WSBManager.Views {
 
 			if( e.Parameter is int selected ) {
 				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel( selected );
-				this.DataContext = sandboxConfigEditorViewModel;
 			}
-			else if( this.Frame.CanGoBack ) {
-				this.Frame.GoBack();
+			else {
+				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel();
 			}
+			this.DataContext = sandboxConfigEditorViewModel;
 		}
 
 		protected override void OnNavigatedFrom( NavigationEventArgs e ) {

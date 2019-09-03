@@ -11,12 +11,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <localcom:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
         <localcom:VGpuToListIndexConverter x:Key="VGpuToListIndexConverter"/>
         <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
-        <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
-        
+        <localcom:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
         <Style x:Key="AppButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="48"/>
             <Setter Property="Height" Value="48"/>
@@ -99,7 +98,15 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                        Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                       x:Uid="SandboxConfigEditorTitle"/>
+                       Visibility="{Binding IsNewTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                       x:Uid="SandboxConfigEditorTitleNew"/>
+            <TextBlock Grid.Column="1"
+                       Margin="5"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
+                       Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                       Visibility="{Binding IsEditTitleVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                       x:Uid="SandboxConfigEditorTitleEdit"/>
 
             <Button Grid.Column="2"
                     Style="{StaticResource AppButtonStyle}"

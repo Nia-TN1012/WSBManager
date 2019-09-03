@@ -26,7 +26,7 @@ namespace WSBManager.Views {
 		}
 
 		private void AddButton_Click( object sender, RoutedEventArgs e ) {
-			this.Frame.Navigate( typeof( SandboxConfigCreator ) );
+			this.Frame.Navigate( typeof( SandboxConfigEditor ) );
 		}
 
 		private void EditButton_Click( object sender, RoutedEventArgs e ) {

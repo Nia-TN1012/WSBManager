@@ -121,13 +121,13 @@
     </Compile>
     <Compile Include="Common\AppCommon.cs" />
     <Compile Include="Common\BoolToOpacityConverter.cs" />
+    <Compile Include="Common\BoolToVisibilityConverter.cs" />
     <Compile Include="Common\configrations.cs" />
     <Compile Include="Common\EnumToListIndexConverter.cs" />
     <Compile Include="Common\SelectedIndexToVisibilityConverter.cs" />
     <Compile Include="Common\ValueToStringFormatConverter.cs" />
     <Compile Include="Models\WSBManagerModel.cs" />
     <Compile Include="Models\WSBConfigManagerModel.cs" />
-    <Compile Include="ViewModels\SandboxConfigCreatorViewModel.cs" />
     <Compile Include="ViewModels\SandboxConfigEditorViewModel.cs" />
     <Compile Include="ViewModels\WSBManagerViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
@@ -135,9 +135,6 @@
     </Compile>
     <Compile Include="Models\WSBConfigModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\SandboxConfigCreator.xaml.cs">
-      <DependentUpon>SandboxConfigCreator.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SandboxConfigEditor.xaml.cs">
       <DependentUpon>SandboxConfigEditor.xaml</DependentUpon>
     </Compile>
@@ -169,10 +166,6 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SandboxConfigCreator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SandboxConfigEditor.xaml">
       <SubType>Designer</SubType>

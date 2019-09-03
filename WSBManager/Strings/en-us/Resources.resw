@@ -120,10 +120,10 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSB Manager</value>
   </data>
-  <data name="SandboxConfigCreatorTitle.Text" xml:space="preserve">
-    <value>New Sandbox Configuration</value>
-  </data>
-  <data name="SandboxConfigEditorTitle.Text" xml:space="preserve">
+  <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>Edit Sandbox Configuration</value>
+  </data>
+  <data name="SandboxConfigEditorTitleNew.Text" xml:space="preserve">
+    <value>New Sandbox Configuration</value>
   </data>
 </root>

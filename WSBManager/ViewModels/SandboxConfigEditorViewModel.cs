@@ -20,15 +20,27 @@ namespace WSBManager.ViewModels {
 
 		public ObservableCollection<MappedFolder> EditingMappedFolders { get; private set; } = new ObservableCollection<MappedFolder>();
 
-		public SandboxConfigEditorViewModel( int selectedIndex ) {
+		public bool IsNew { get; private set; }
+
+		public bool IsNewTitleVisible => IsNew;
+
+		public bool IsEditTitleVisible => !IsNew;
+
+		public SandboxConfigEditorViewModel( int selectedIndex = -1 ) {
 			model = ( App.Current as App )?.Model;
 			if( model == null ) {
 				throw new Exception( $"Failed to get reference of model instance on the {GetType()} class." );
 			}
 			this.selectedIndex = selectedIndex;
-			EditingItem = new WSBConfigManagerModel( model.WSBConfigCollection[selectedIndex] );
-			foreach( var mf in EditingItem.MappedFolders ) {
-				EditingMappedFolders.Add( mf );
+			IsNew = selectedIndex <= -1;
+			if( IsNew ) {
+				EditingItem = new WSBConfigManagerModel();
+			}
+			else {
+				EditingItem = new WSBConfigManagerModel( model.WSBConfigCollection[selectedIndex] );
+				foreach( var mf in EditingItem.MappedFolders ) {
+					EditingMappedFolders.Add( mf );
+				}
 			}
 
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
@@ -37,7 +49,12 @@ namespace WSBManager.ViewModels {
 		public void Save() {
 			EditingItem.MappedFolders.Clear();
 			EditingItem.MappedFolders.AddRange( EditingMappedFolders );
-			model.WSBConfigCollection[selectedIndex] = EditingItem;
+			if( IsNew ) {
+				model.WSBConfigCollection.Add( EditingItem );
+			}
+			else {
+				model.WSBConfigCollection[selectedIndex] = EditingItem;
+			}
 		}
 
 		/// <summary>

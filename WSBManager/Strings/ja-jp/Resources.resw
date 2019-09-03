@@ -120,10 +120,10 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSBマネージャー</value>
   </data>
-  <data name="SandboxConfigCreatorTitle.Text" xml:space="preserve">
-    <value>サンドボックス構成の新規作成</value>
-  </data>
-  <data name="SandboxConfigEditorTitle.Text" xml:space="preserve">
+  <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>サンドボックス構成の編集</value>
+  </data>
+  <data name="SandboxConfigEditorTitleNew.Text" xml:space="preserve">
+    <value>サンドボックス構成の新規作成</value>
   </data>
 </root>
