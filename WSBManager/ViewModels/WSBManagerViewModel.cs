@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 
 using WSBManager.Models;
 using System.IO;
+using System.Windows.Input;
 
 namespace WSBManager.ViewModels {
 
@@ -101,5 +102,25 @@ namespace WSBManager.ViewModels {
 		/// <param name="propertyName">Property name</param>
 		private void NotifyPropertyChanged( [CallerMemberName]string propertyName = null ) =>
 			PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+
+		private class ExportSandboxConfigCommand : ICommand {
+
+			private WSBManagerViewModel viewModel;
+
+
+			internal ExportSandboxConfigCommand( WSBManagerViewModel _viewModel ) {
+				viewModel = _viewModel;
+				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
+			}
+
+
+			public bool CanExecute( object parameter ) => true;
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute( object parameter ) {
+
+			}
+		}
 	}
 }
