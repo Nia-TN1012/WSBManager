@@ -14,9 +14,9 @@ namespace WSBManager.Common {
 
 	public sealed class NetworkToListIndexConverter : IValueConverter {
 		public object Convert( object value, Type targetType, object parameter, string language ) =>
-			value is Network ? ( int )value : ( int )Network.Default;
+			value is Networking ? ( int )value : ( int )Networking.Default;
 
 		public object ConvertBack( object value, Type targetType, object parameter, string language ) =>
-			value is int ? ( Network )value : Network.Default;
+			value is int ? ( Networking )value : Networking.Default;
 	}
 }

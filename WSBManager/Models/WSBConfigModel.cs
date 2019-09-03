@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -14,19 +15,16 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// A folder on the host shared with the sandbox.
 	/// </summary>
-	[XmlRoot( "MappedFolder" )]
 	public class MappedFolder {
 
 		/// <summary>
 		/// The host folder path.
 		/// </summary>
-		[XmlElement( "HostFolder" )]
 		public string HostFolder { get; set; } = null;
 
 		/// <summary>
 		/// The flag of whether to make it read-only on the sandbox.
 		/// </summary>
-		[XmlElement( "ReadOnly" )]
 		public bool ReadOnly { get; set; } = false;
 
 	}
@@ -34,12 +32,10 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// A login command which will be invoked automatically after the container logs on.
 	/// </summary>
-	[XmlRoot( "LoginCommand" )]
 	public class LoginCommand {
 		/// <summary>
 		/// A command.
 		/// </summary>
-		[XmlElement( "Command" )]
 		public string Command { get; set; } = null;
 
 		public LoginCommand() {}
@@ -53,33 +49,33 @@ namespace WSBManager.Models {
 	/// Represents Windows Sandbox configuration model.
 	/// </summary>
 	[XmlRoot( "Configuration" )]
-	public class WSBConfigModel : INotifyPropertyChanged {
+	public class WSBConfigModel {
 
 		#region Properties
 
 		/// <summary>
 		/// Enables or disables GPU sharing.
 		/// </summary>
-		[XmlElement( "VGpu" )]
 		public VGpu VGpu { get; set; } = VGpu.Default;
 
 		/// <summary>
 		/// Enables or disables networking in the sandbox.
 		/// </summary>
-		[XmlElement( "Network" )]
-		public Network Network { get; set; } = Network.Default;
+		public Networking Networking { get; set; } = Networking.Default;
 
+		protected List<MappedFolder> mappedFolders = new List<MappedFolder>();
 		/// <summary>
 		/// Folders on the host shared with the sandbox.
 		/// </summary>
 		[XmlArray( "MappedFolders" ), XmlArrayItem( "MappedFolder" )]
-		public List<MappedFolder> MappedFolders { get; protected set; } = new List<MappedFolder>();
+		public List<MappedFolder> MappedFolders { get => mappedFolders; set { } }
 
+
+		protected LoginCommand loginCommand = new LoginCommand();
 		/// <summary>
 		/// A login command which will be invoked automatically after the container logs on.
 		/// </summary>
-		[XmlElement( "LoginCommand" )]
-		public LoginCommand LoginCommand { get; protected set; } = new LoginCommand();
+		public LoginCommand LoginCommand { get => loginCommand; set { } }
 
 		#endregion
 
@@ -93,7 +89,7 @@ namespace WSBManager.Models {
 
 		public WSBConfigModel( WSBConfigModel wSBConfigModel ) {
 			VGpu = wSBConfigModel.VGpu;
-			Network = wSBConfigModel.Network;
+			Networking = wSBConfigModel.Networking;
 			MappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
 			LoginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
 		}
@@ -117,7 +113,7 @@ namespace WSBManager.Models {
 		public TextWriter Export( TextWriter textWriter ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
 				var serializer = new XmlSerializer( GetType() );
-				serializer.Serialize( xw, GetType(), xmlSerializerNamespaces );
+				serializer.Serialize( xw, this, xmlSerializerNamespaces );
 				return textWriter;
 			}
 		}
@@ -131,17 +127,5 @@ namespace WSBManager.Models {
 				return Export( sw ).ToString();
 			}
 		}
-
-		/// <summary>
-		///	The event handler to be generated after the property changes.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		///	Notifies the property change that corresponds to the specified property name.
-		/// </summary>
-		/// <param name="propertyName">Property name</param>
-		protected void NotifyPropertyChanged( [CallerMemberName]string propertyName = null ) =>
-			PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 	}
 }

@@ -139,7 +139,7 @@
                     <!-- vGPU -->
                     <FontIcon Grid.Row="0" Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE964;"/>
+                                          Glyph="&#xE950;"/>
                     <TextBlock Grid.Row="0" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -154,14 +154,14 @@
                     <!-- Network -->
                     <FontIcon Grid.Row="1" Grid.Column="0"
                               Style="{StaticResource SandboxConfigFontIcon}"
-                              Glyph="&#xE968;"/>
+                              Glyph="&#xEDA3;"/>
                     <TextBlock Grid.Row="1" Grid.Column="1"
                                Margin="5"
                                VerticalAlignment="Center"
                                Text="Network"/>
                     <ComboBox Grid.Row="1" Grid.Column="2"
                               Margin="5"
-                              SelectedIndex="{Binding EditingItem.Network, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
+                              SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
                         <ComboBoxItem Content="Disabled"/>
                         <ComboBoxItem Content="Default" />
                     </ComboBox>

@@ -11,7 +11,7 @@
 	/// <summary>
 	/// Enables or disables networking in the sandbox.
 	/// </summary>
-	public enum Network {
+	public enum Networking {
 		Disable,
 		Default
 	}

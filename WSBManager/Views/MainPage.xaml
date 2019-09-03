@@ -1,5 +1,6 @@
 ﻿<Page
     x:Class="WSBManager.Views.MainPage"
+    x:Name="MainPage1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager"
@@ -86,7 +87,7 @@
                             <!-- vGPU -->
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE964;"
+                                          Glyph="&#xE950;"
                                           Opacity="{Binding IsVGpuEnabled, Converter={StaticResource BoolToOpacityConverter}}"
                                           ToolTipService.ToolTip="vGPU: Default">
                                 </FontIcon>
@@ -94,7 +95,7 @@
                             <!-- Network -->
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE968;"
+                                          Glyph="&#xEDA3;"
                                           Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"
                                           ToolTipService.ToolTip="Network"/>
                             </Grid>
@@ -132,12 +133,15 @@
                             Content="&#xE712;">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="Export" Command="{Binding}" CommandParameter="{Binding UUID}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xEDE1;"/>
-                                    </MenuFlyoutItem.Icon>
+                                <MenuFlyoutItem Text="Export to file"
+                                                Icon="Save"
+                                                Command="{Binding DataContext.ExportSandboxConfig, ElementName=MainPage1}"
+                                                CommandParameter="{Binding UUID}">
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Delete" Icon="Delete"/>
+                                <MenuFlyoutItem Text="Delete"
+                                                Icon="Delete"
+                                                Command="{Binding DataContext.DeleteSandboxConfig, ElementName=MainPage1}"
+                                                CommandParameter="{Binding UUID}"/>
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
@@ -184,17 +188,24 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
                             Style="{StaticResource AppButtonStyle}"
                             Content="&#xE109;"
-                            Click="AddButton_Click"/>
+                            Click="AddButton_Click"
+                            ToolTipService.ToolTip="Add Sandbox Configuration"/>
                     <Button Grid.Column="1"
                             Style="{StaticResource AppButtonStyle}"
+                            Content="&#xE8E5;"
+                            Command="{Binding ImportSandboxConfig}"
+                            ToolTipService.ToolTip="Import Sandbox Configuration file"/>
+                    <Button Grid.Column="2"
+                            Style="{StaticResource AppButtonStyle}"
                             Content="&#xE133;"/>
-                    <AutoSuggestBox Grid.Column="2"
+                    <AutoSuggestBox Grid.Column="3"
                                     Margin="5"
                                     VerticalAlignment="Center"
                                     QueryIcon="Find"/>
@@ -270,7 +281,7 @@
                                 <!-- vGPU -->
                                 <FontIcon Grid.Row="0" Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE964;"/>
+                                          Glyph="&#xE950;"/>
                                 <TextBlock Grid.Row="0" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -283,7 +294,7 @@
                                 <!-- Network -->
                                 <FontIcon Grid.Row="1" Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE968;"/>
+                                          Glyph="&#xEDA3;"/>
                                 <TextBlock Grid.Row="1" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -291,7 +302,7 @@
                                 <TextBlock Grid.Row="1" Grid.Column="2"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="{Binding SelectedItem.Network, ElementName=SandboxListView}"/>
+                                           Text="{Binding SelectedItem.Networking, ElementName=SandboxListView}"/>
                             </Grid>
                             <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 

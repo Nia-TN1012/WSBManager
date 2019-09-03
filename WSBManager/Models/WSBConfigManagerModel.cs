@@ -10,31 +10,30 @@ using WSBManager.Configurations;
 namespace WSBManager.Models {
 
 	[XmlRoot( "Configuration" )]
-	public class WSBConfigManagerModel : WSBConfigModel, INotifyPropertyChanged {
+	public class WSBConfigManagerModel : WSBConfigModel {
 
+		protected string uuid = Guid.NewGuid().ToString( "B" );
 		/// <summary>
 		/// UUID
 		/// </summary>
-		[XmlAttribute( "uuid" )]
-		public string UUID { get; private set; } = Guid.NewGuid().ToString( "B" );
+		public string UUID { get => uuid; set { } }
 
 		/// <summary>
 		/// Name
 		/// </summary>
-		[XmlAttribute( "name" )]
 		public string Name { get; set; } = "New Sandbox";
 
+		protected DateTime createdAt = DateTime.Now;
 		/// <summary>
 		/// Created datetime
 		/// </summary>
-		[XmlAttribute( "create-at" )]
-		public DateTime CreateAt { get; private set; } = DateTime.Now;
+		public DateTime CreateAt { get => createdAt; set { } }
 
 		[XmlIgnore]
 		public bool IsVGpuEnabled => VGpu == VGpu.Default;
 
 		[XmlIgnore]
-		public bool IsNetworkEnabled => Network == Network.Default;
+		public bool IsNetworkEnabled => Networking == Networking.Default;
 
 		[XmlIgnore]
 		public bool IsMappedFolderEnabled => MappedFolders.Count > 0;

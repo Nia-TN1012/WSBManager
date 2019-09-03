@@ -104,13 +104,11 @@ namespace WSBManager.ViewModels {
 		private class AddMappedFolderCommand : ICommand {
 			
 			private SandboxConfigEditorViewModel viewModel;
-
 			
 			internal AddMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
 				viewModel = _viewModel;
 				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
 			}
-
 
 			public bool CanExecute( object parameter ) => true;
 
@@ -123,7 +121,6 @@ namespace WSBManager.ViewModels {
 		private class RemoveMappedFolderCommand : ICommand {
 
 			private SandboxConfigEditorViewModel viewModel;
-
 
 			internal RemoveMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
 				viewModel = _viewModel;

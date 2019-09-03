@@ -11,8 +11,13 @@ using System.Runtime.CompilerServices;
 using WSBManager.Models;
 using System.IO;
 using System.Windows.Input;
+using Windows.Storage.Provider;
 
 namespace WSBManager.ViewModels {
+
+	public delegate void ImportFilePickerAction( Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null );
+	public delegate void ExportFilePickerAction( string name, Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null );
+	public delegate void DeleteConfirmAction( string name, Action confirmedCallback, Action canceledCallback = null );
 
 	class WSBManagerViewModel : INotifyPropertyChanged {
 
@@ -35,11 +40,6 @@ namespace WSBManager.ViewModels {
 
 		public IEnumerable<WSBConfigManagerModel> Items => model?.WSBConfigCollection;
 
-		public void Add() {
-			model.WSBConfigCollection.Add( new WSBConfigManagerModel() );
-			NotifyPropertyChanged( nameof( Items ) );
-		}
-
 		public WSBManagerViewModel() {
 			model = ( App.Current as App )?.Model;
 			if( model == null ) {
@@ -47,12 +47,6 @@ namespace WSBManager.ViewModels {
 			}
 
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
-
-			var z = new WSBConfigManagerModel();
-			z.MappedFolders.Add( new MappedFolder { HostFolder = @"C:\users\hoge" } );
-			z.MappedFolders.Add( new MappedFolder { HostFolder = @"C:\users\fuga", ReadOnly = true } );
-			z.LoginCommand.Command = "cmd echo";
-			model.WSBConfigCollection.Add( z );
 		}
 
 		public async Task LoadAsync() {
@@ -103,23 +97,120 @@ namespace WSBManager.ViewModels {
 		private void NotifyPropertyChanged( [CallerMemberName]string propertyName = null ) =>
 			PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 
-		private class ExportSandboxConfigCommand : ICommand {
+		public event ImportFilePickerAction ImportSandboxConfingAction;
+
+		public event ExportFilePickerAction ExportSandboxConfingAction;
+
+		public event DeleteConfirmAction DeleteSandboxConfigAction;
+
+		private ICommand importSandboxConfig;
+		public ICommand ImportSandboxConfig =>
+			importSandboxConfig ?? ( importSandboxConfig = new ImportSandboxConfigCommand( this ) );
+
+		private ICommand exportSandboxConfig;
+		public ICommand ExportSandboxConfig =>
+			exportSandboxConfig ?? ( exportSandboxConfig = new ExportSandboxConfigCommand( this ) );
+
+		private ICommand deleteSandboxConfig;
+		public ICommand DeleteSandboxConfig =>
+			deleteSandboxConfig ?? ( deleteSandboxConfig = new DeleteSandboxConfigCommand( this ) );
+
+		private class ImportSandboxConfigCommand : ICommand {
 
 			private WSBManagerViewModel viewModel;
 
-
-			internal ExportSandboxConfigCommand( WSBManagerViewModel _viewModel ) {
+			internal ImportSandboxConfigCommand( WSBManagerViewModel _viewModel ) {
 				viewModel = _viewModel;
 				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
 			}
-
 
 			public bool CanExecute( object parameter ) => true;
 
 			public event EventHandler CanExecuteChanged;
 
 			public void Execute( object parameter ) {
+				viewModel.ImportSandboxConfingAction?.Invoke(
+					async ( file, exportErrorCallback ) => {
+						try {
+							using( var s = await file.OpenStreamForReadAsync() )
+							using( var sr = new StreamReader( s ) ) {
+								var importModel = WSBConfigManagerModel.Import( sr );
+								if( string.IsNullOrEmpty( importModel.Name ) ) {
+									importModel.Name = file.Name;
+								}
+								viewModel.model.WSBConfigCollection.Add( importModel );
+							}
+						}
+						catch( Exception ) {
+							exportErrorCallback?.Invoke();
+						}
+					}
+				);
+			}
+		}
 
+		private class ExportSandboxConfigCommand : ICommand {
+
+			private WSBManagerViewModel viewModel;
+
+			internal ExportSandboxConfigCommand( WSBManagerViewModel _viewModel ) {
+				viewModel = _viewModel;
+				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
+			}
+
+			public bool CanExecute( object parameter ) => true;
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute( object parameter ) {
+				if( parameter is string uuid ) {
+					if( viewModel.model.WSBConfigCollection.FirstOrDefault( item => item.UUID == uuid ) is WSBConfigManagerModel exportModel ) {
+						viewModel.ExportSandboxConfingAction?.Invoke(
+							exportModel.Name,
+							async ( file, exportErrorCallback ) => {
+								try {
+									CachedFileManager.DeferUpdates( file );
+									using( var s = await file.OpenStreamForWriteAsync() )
+									using( var sw = new StreamWriter( s ) ) {
+										exportModel.Export( sw );
+									}
+									var status = await CachedFileManager.CompleteUpdatesAsync( file );
+									if( status != FileUpdateStatus.Complete ) {
+										exportErrorCallback?.Invoke();
+									}
+								}
+								catch( Exception ) {
+									exportErrorCallback?.Invoke();
+								}
+							}
+						);
+					}
+				}
+			}
+		}
+
+		private class DeleteSandboxConfigCommand : ICommand {
+
+			private WSBManagerViewModel viewModel;
+
+			internal DeleteSandboxConfigCommand( WSBManagerViewModel _viewModel ) {
+				viewModel = _viewModel;
+				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
+			}
+
+			public bool CanExecute( object parameter ) => true;
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute( object parameter ) {
+				if( parameter is string uuid ) {
+					if( viewModel.model.WSBConfigCollection.FirstOrDefault( item => item.UUID == uuid ) is WSBConfigManagerModel deleteModel ) {
+						viewModel.DeleteSandboxConfigAction?.Invoke(
+							deleteModel.Name,
+							() => viewModel.model.WSBConfigCollection.Remove( deleteModel )
+						);
+					}
+				}
 			}
 		}
 	}
