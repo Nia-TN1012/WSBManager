@@ -28,6 +28,17 @@ namespace WSBManager.Views {
 			wsbManagerViewModel.DeleteSandboxConfigAction += DeleteSandboxConfig;
 		}
 
+		protected override async void OnNavigatedTo( NavigationEventArgs e ) {
+			base.OnNavigatedTo( e );
+
+			if( e.NavigationMode == NavigationMode.New ) {
+				if( !await wsbManagerViewModel.LoadAsync() ) {
+					var errorMessageDialog = new MessageDialog( $"Failed to load", "Error" );
+					await errorMessageDialog.ShowAsync();
+				}
+			}
+		}
+
 		private async void ImportSandboxConfing( Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null ) {
 			var importPicker = new FileOpenPicker {
 				SuggestedStartLocation = PickerLocationId.DocumentsLibrary

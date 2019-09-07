@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Data;
 
 namespace WSBManager.Models {
 
@@ -24,6 +25,10 @@ namespace WSBManager.Models {
 		/// </summary>
 		[XmlArray( "Configurations" ), XmlArrayItem( "Configuration" )]
 		public ObservableCollection<WSBConfigManagerModel> WSBConfigCollection { get; private set; } = new ObservableCollection<WSBConfigManagerModel>();
+
+		public WSBManagerModel() {
+			
+		}
 
 		public void Load( TextReader textReader ) {
 			WSBConfigCollection.Clear();

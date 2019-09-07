@@ -114,8 +114,9 @@ namespace WSBManager.ViewModels {
 
 			public event EventHandler CanExecuteChanged;
 
-			public void Execute( object parameter ) =>
+			public void Execute( object parameter ) {
 				viewModel.EditingMappedFolders.Add( new MappedFolder() );
+			}
 		}
 
 		private class RemoveMappedFolderCommand : ICommand {

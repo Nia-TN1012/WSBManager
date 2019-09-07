@@ -126,6 +126,7 @@
     <Compile Include="Common\EnumToListIndexConverter.cs" />
     <Compile Include="Common\SelectedIndexToVisibilityConverter.cs" />
     <Compile Include="Common\ValueToStringFormatConverter.cs" />
+    <Compile Include="Common\WSBManagerModelIO.cs" />
     <Compile Include="Models\WSBManagerModel.cs" />
     <Compile Include="Models\WSBConfigManagerModel.cs" />
     <Compile Include="ViewModels\SandboxConfigEditorViewModel.cs" />

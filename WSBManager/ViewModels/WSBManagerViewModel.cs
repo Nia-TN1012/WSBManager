@@ -8,6 +8,7 @@ using System.ComponentModel;
 using Windows.Storage;
 using System.Runtime.CompilerServices;
 
+using WSBManager.Common;
 using WSBManager.Models;
 using System.IO;
 using System.Windows.Input;
@@ -49,41 +50,8 @@ namespace WSBManager.ViewModels {
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
 		}
 
-		public async Task LoadAsync() {
-			await Task.Run( async () => {
-				await semaphore.WaitAsync().ConfigureAwait( false );
-				try {
-					var localFile = await localFolder.TryGetItemAsync( wsbConfigListFileName );
-					if( localFile is IStorageFile storageFile ) {
-						using( var s = await storageFile.OpenStreamForReadAsync() )
-						using( var sr = new StreamReader( s ) ) {
-							model.Load( sr );
-						}
-					}
-				}
-				finally {
-					semaphore.Release();
-				}
-			} );
-		}
+		public async Task<bool> LoadAsync() => await WSBManagerModelIO.LoadAsync( model );
 
-		public async Task SaveAsync() {
-			await Task.Run( async () => {
-				await semaphore.WaitAsync().ConfigureAwait( false );
-				try {
-					var localFile = await localFolder.CreateFileAsync( wsbConfigListFileName, CreationCollisionOption.ReplaceExisting ); ;
-					if( localFile is IStorageFile storageFile ) {
-						using( var s = await storageFile.OpenStreamForWriteAsync() )
-						using( var sw = new StreamWriter( s ) ) {
-							model.Save( sw );
-						}
-					}
-				}
-				finally {
-					semaphore.Release();
-				}
-			} );
-		}
 
 		/// <summary>
 		///	The event handler to be generated after the property changes.
