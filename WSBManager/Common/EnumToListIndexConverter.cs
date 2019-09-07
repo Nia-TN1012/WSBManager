@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-using WSBManager.Configurations;
+using WSBManager.Models;
 
 namespace WSBManager.Common {
 	public sealed class VGpuToListIndexConverter : IValueConverter {

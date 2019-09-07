@@ -6,36 +6,34 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Windows.Storage;
 using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Data;
+using System.Xml.Linq;
 
 namespace WSBManager.Models {
 
 	/// <summary>
 	/// The list of Windows Sandbox configuration model.
 	/// </summary>
-	[XmlRoot( "WSBConfigList" )]
 	public class WSBManagerModel : INotifyPropertyChanged {
+
+		public const string RootNodeName = "WSBConfigList";
 
 		/// <summary>
 		/// The list of Windows Sandbox configurations.
 		/// </summary>
-		[XmlArray( "Configurations" ), XmlArrayItem( "Configuration" )]
 		public ObservableCollection<WSBConfigManagerModel> WSBConfigCollection { get; private set; } = new ObservableCollection<WSBConfigManagerModel>();
 
-		public WSBManagerModel() {
-			
-		}
+		public WSBManagerModel() { }
 
 		public void Load( TextReader textReader ) {
 			WSBConfigCollection.Clear();
 			using( var xr = XmlReader.Create( textReader ) ) {
-				var serializer = new XmlSerializer( typeof( WSBManagerModel ) );
-				foreach( var item in ( ( WSBManagerModel )serializer.Deserialize( xr ) ).WSBConfigCollection ) {
-					WSBConfigCollection.Add( item );
+				var xElement = XElement.Load( xr );
+				foreach( var configItem in xElement.Elements( WSBConfigModel.RootNodeName ) ) {
+					WSBConfigCollection.Add( WSBConfigManagerModel.FromXElement( configItem ) );
 				}
 
 				LoadCongiugurationListCompleted?.Invoke( this, null );
@@ -44,8 +42,10 @@ namespace WSBManager.Models {
 
 		public TextWriter Save( TextWriter textWriter ) {
 			using( var xw = XmlWriter.Create( textWriter ) ) {
-				var serializer = new XmlSerializer( typeof( WSBManagerModel ) );
-				serializer.Serialize( xw, this );
+				var xElement = new XElement( RootNodeName,
+					WSBConfigCollection.Select( configItem => configItem.ToXElement() )
+				);
+				xElement.Save( xw );
 				return textWriter;
 			}
 		}

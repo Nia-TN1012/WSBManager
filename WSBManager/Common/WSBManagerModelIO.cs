@@ -27,47 +27,45 @@ namespace WSBManager.Common {
 		/// </summary>
 		private static readonly SemaphoreSlim semaphore = new SemaphoreSlim( 1, 1 );
 
-		public static async Task<bool> LoadAsync( WSBManagerModel model ) => 
-			await Task.Run( async () => {
-				await semaphore.WaitAsync().ConfigureAwait( false );
-				try {
-					var localFile = await localFolder.TryGetItemAsync( wsbConfigListFileName );
-					if( localFile is IStorageFile storageFile ) {
-						using( var s = await storageFile.OpenStreamForReadAsync() )
-						using( var sr = new StreamReader( s ) ) {
-							model.Load( sr );
-						}
+		public static async Task<bool> LoadAsync( WSBManagerModel model ) {
+			await semaphore.WaitAsync().ConfigureAwait( false );
+			try {
+				var localFile = await localFolder.TryGetItemAsync( wsbConfigListFileName );
+				if( localFile is IStorageFile storageFile ) {
+					using( var s = await storageFile.OpenStreamForReadAsync() )
+					using( var sr = new StreamReader( s ) ) {
+						model.Load( sr );
 					}
-					return true;
 				}
-				catch( Exception e ) {
-					return false;
-				}
-				finally {
-					semaphore.Release();
-				}
-			} );
+				return true;
+			}
+			catch( Exception e ) {
+				return false;
+			}
+			finally {
+				semaphore.Release();
+			}
+		}
 
-		public static async Task<bool> SaveAsync( WSBManagerModel model ) =>
-			await Task.Run( async () => {
-				await semaphore.WaitAsync().ConfigureAwait( false );
-				try {
-					var localFile = await localFolder.CreateFileAsync( wsbConfigListFileName, CreationCollisionOption.ReplaceExisting ); ;
-					if( localFile is IStorageFile storageFile ) {
-						using( var s = await storageFile.OpenStreamForWriteAsync() )
-						using( var sw = new StreamWriter( s ) ) {
-							model.Save( sw );
-						}
+		public static async Task<bool> SaveAsync( WSBManagerModel model ) {
+			await semaphore.WaitAsync().ConfigureAwait( false );
+			try {
+				var localFile = await localFolder.CreateFileAsync( wsbConfigListFileName, CreationCollisionOption.ReplaceExisting ); ;
+				if( localFile is IStorageFile storageFile ) {
+					using( var s = await storageFile.OpenStreamForWriteAsync() )
+					using( var sw = new StreamWriter( s ) ) {
+						model.Save( sw );
 					}
-					return true;
 				}
-				catch( Exception ) {
-					return false;
-				}
-				finally {
-					semaphore.Release();
-				}
-			} );
+				return true;
+			}
+			catch( Exception e ) {
+				return false;
+			}
+			finally {
+				semaphore.Release();
+			}
+		}
 
 	}
 }

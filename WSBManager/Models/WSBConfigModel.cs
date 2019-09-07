@@ -2,15 +2,30 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using System.Xml;
-using System.Xml.Serialization;
-
-using WSBManager.Configurations;
+using System.Xml.Linq;
+using WSBManager.Common;
 
 namespace WSBManager.Models {
+
+	/// <summary>
+	/// Enables or disables GPU sharing.
+	/// </summary>
+	public enum VGpu {
+		Disable,
+		Default
+	}
+
+	/// <summary>
+	/// Enables or disables networking in the sandbox.
+	/// </summary>
+	public enum Networking {
+		Disable,
+		Default
+	}
 
 	/// <summary>
 	/// A folder on the host shared with the sandbox.
@@ -48,8 +63,9 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// Represents Windows Sandbox configuration model.
 	/// </summary>
-	[XmlRoot( "Configuration" )]
 	public class WSBConfigModel {
+
+		public const string RootNodeName = "Configuration";
 
 		#region Properties
 
@@ -67,7 +83,6 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Folders on the host shared with the sandbox.
 		/// </summary>
-		[XmlArray( "MappedFolders" ), XmlArrayItem( "MappedFolder" )]
 		public List<MappedFolder> MappedFolders { get => mappedFolders; set { } }
 
 
@@ -79,11 +94,7 @@ namespace WSBManager.Models {
 
 		#endregion
 
-		[XmlIgnore]
 		public static readonly XmlWriterSettings xmlWriterSettings = new XmlWriterSettings { OmitXmlDeclaration = true, Indent = true };
-
-		[XmlIgnore]
-		public static readonly XmlSerializerNamespaces xmlSerializerNamespaces = new XmlSerializerNamespaces( new XmlQualifiedName[] { new XmlQualifiedName( string.Empty, string.Empty ) } );
 
 		public WSBConfigModel() { }
 
@@ -101,22 +112,76 @@ namespace WSBManager.Models {
 		/// <returns></returns>
 		public static WSBConfigModel Import( TextReader webConfig ) {
 			using( var xr = XmlReader.Create( webConfig ) ) {
-				var serializer = new XmlSerializer( typeof( WSBConfigModel ) );
-				return ( WSBConfigModel )serializer.Deserialize( xr );
+				var xElement = XElement.Load( xr );
+				return FromXElement( XElement.Load( xr ) );
 			}
+		}
+
+		public static WSBConfigModel FromXElement( XElement xElement ) {
+			var wsbConfigModel = new WSBConfigModel();
+
+			// VGPU
+			if( xElement.Element( nameof( VGpu ) ) is XElement xVGpu
+				&& Utility.TryConvert( typeof( VGpu ), xVGpu.Value ) is VGpu vGpu ) {
+				wsbConfigModel.VGpu = vGpu;
+			}
+			// Networking
+			if( xElement.Element( nameof( Networking ) ) is XElement xNetworking
+				&& Utility.TryConvert( typeof( Networking ), xNetworking.Value ) is Networking networking ) {
+				wsbConfigModel.Networking = networking;
+			}
+			// Mapped Folders
+			if( xElement.Elements( nameof( MappedFolders ) ) is XElement xMappedFolders ) {
+				foreach( var xMappedFolder in xElement.Elements( nameof( MappedFolder ) ) ) {
+					var mf = new MappedFolder();
+					if( xMappedFolder.Element( nameof( mf.HostFolder ) ) is XElement xHostFolder
+						&& xMappedFolder.Element( nameof( mf.ReadOnly ) ) is XElement xReadOnly
+						&& Utility.TryConvert( xReadOnly.Value, TypeCode.Boolean ) is bool readOnly ) {
+						mf.HostFolder = xHostFolder.Value;
+						mf.ReadOnly = readOnly;
+					}
+					wsbConfigModel.MappedFolders.Add( mf );
+				}
+			}
+			// Login Command
+			if( xElement.Element( nameof( LoginCommand ) )?.Element( nameof( wsbConfigModel.LoginCommand.Command ) ) is XElement xCommand ) {
+				wsbConfigModel.LoginCommand.Command = xCommand.Value;
+			}
+
+			return wsbConfigModel;
 		}
 
 		/// <summary>
 		/// Exports to a xml text stream.
 		/// </summary>
 		/// <returns></returns>
-		public TextWriter Export( TextWriter textWriter ) {
+		public virtual TextWriter Export( TextWriter textWriter ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
-				var serializer = new XmlSerializer( GetType() );
-				serializer.Serialize( xw, this, xmlSerializerNamespaces );
+				ToXElement().Save( xw );
 				return textWriter;
 			}
 		}
+
+		public virtual XElement ToXElement() =>
+			new XElement( RootNodeName,
+				//VGPU
+				new XElement( nameof( VGpu ), VGpu.ToString() ),
+				// Networking
+				new XElement( nameof( Networking ), Networking.ToString() ),
+				// Mapped Folders
+				new XElement( nameof( MappedFolders ),
+					MappedFolders.Select( mf =>
+						new XElement( nameof( MappedFolder ),
+							new XElement( nameof( mf.HostFolder ), mf.HostFolder ),
+							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString() )
+						)
+					)
+				),
+				// Login Command
+				new XElement( nameof( LoginCommand ),
+					new XElement( nameof( LoginCommand.Command ), LoginCommand.Command )
+				)
+			);
 
 		/// <summary>
 		/// Converts to a xml string.

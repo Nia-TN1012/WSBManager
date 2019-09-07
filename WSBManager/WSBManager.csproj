@@ -122,9 +122,9 @@
     <Compile Include="Common\AppCommon.cs" />
     <Compile Include="Common\BoolToOpacityConverter.cs" />
     <Compile Include="Common\BoolToVisibilityConverter.cs" />
-    <Compile Include="Common\configrations.cs" />
     <Compile Include="Common\EnumToListIndexConverter.cs" />
     <Compile Include="Common\SelectedIndexToVisibilityConverter.cs" />
+    <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\ValueToStringFormatConverter.cs" />
     <Compile Include="Common\WSBManagerModelIO.cs" />
     <Compile Include="Models\WSBManagerModel.cs" />
