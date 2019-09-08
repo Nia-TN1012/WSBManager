@@ -7,6 +7,7 @@
         <Setter Property="Width" Value="48"/>
         <Setter Property="Height" Value="48"/>
         <Setter Property="Background" Value="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
+        <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
         <Setter Property="FontSize" Value="{ThemeResource TextStyleLargeFontSize}"/>
     </Style>
 
