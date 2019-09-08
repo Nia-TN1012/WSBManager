@@ -7,6 +7,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -99,6 +100,31 @@ namespace WSBManager.Views {
 			if( SandboxListView.SelectedIndex > -1 ) {
 				this.Frame.Navigate( typeof( SandboxConfigEditor ), SandboxListView.SelectedIndex );
 			}
+		}
+
+		private void AutoSuggestBox_TextChanged( AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args ) {
+			if( args.Reason == AutoSuggestionBoxTextChangeReason.UserInput ) {
+				sender.ItemsSource = wsbManagerViewModel.Items.Where( item => item.Name.ToLower().StartsWith( sender.Text.ToLower() ) ).Take( 10 );
+			}
+		}
+
+		private void AutoSuggestBox_SuggestionChosen( AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args ) {
+			if( args.SelectedItem is WSBConfigManagerModel selected ) {
+				sender.Text = selected.Name;
+			}
+		}
+
+		private void AutoSuggestBox_QuerySubmitted( AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args ) {
+			if( args.ChosenSuggestion is WSBConfigManagerModel selected ) {
+				SandboxListView.SelectedItem = selected;
+			}
+			else if( wsbManagerViewModel.Items.FirstOrDefault( item => item.Name == sender.Text ) is WSBConfigManagerModel hit ) {
+				SandboxListView.SelectedItem = hit;
+			}
+		}
+
+		private void ToAboutMenuItem_Click( object sender, RoutedEventArgs e ) {
+			this.Frame.Navigate( typeof( About ) );
 		}
 	}
 }

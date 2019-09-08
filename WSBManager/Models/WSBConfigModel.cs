@@ -15,16 +15,18 @@ namespace WSBManager.Models {
 	/// Enables or disables GPU sharing.
 	/// </summary>
 	public enum VGpu {
+		Default,
 		Disable,
-		Default
+		Enable
 	}
 
 	/// <summary>
 	/// Enables or disables networking in the sandbox.
 	/// </summary>
 	public enum Networking {
+		Default,
 		Disable,
-		Default
+		Enable
 	}
 
 	/// <summary>

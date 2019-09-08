@@ -163,7 +163,61 @@
             </Border>
         </DataTemplate>
 
-        
+        <DataTemplate x:Name="SandboxSuggestListTemplate">
+            <Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               Text="{Binding Name}"
+                               FontSize="{ThemeResource TextStyleLargeFontSize}"/>
+
+                    <StackPanel Grid.Row="1"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                        <!-- vGPU -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE950;"
+                                      Opacity="{Binding IsVGpuEnabled, Converter={StaticResource BoolToOpacityConverter}}">
+                            </FontIcon>
+                        </Grid>
+                        <!-- Network -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xEDA3;"
+                                      Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Mapped folders -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Grid.Column="0"
+                                      Style="{StaticResource SandboxConfigFontIcon}"
+                                      Opacity="{Binding IsMappedFolderEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                      Glyph="&#xE8F7;"/>
+                            <TextBlock Grid.Column="1"
+                                       Margin="2"
+                                       Opacity="{Binding IsMappedFolderEnabled, Converter={StaticResource BoolToOpacityConverter}}"
+                                       Text="{Binding MappedFolders.Count}"/>
+                        </Grid>
+                        <!-- Command -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE756;"
+                                      Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
     </Page.Resources>
 
     <Page.DataContext>
@@ -223,32 +277,45 @@
                     <AutoSuggestBox Grid.Column="3"
                                     Margin="5"
                                     VerticalAlignment="Center"
-                                    QueryIcon="Find"/>
+                                    QueryIcon="Find"
+                                    ItemTemplate="{StaticResource SandboxSuggestListTemplate}"
+                                    TextChanged="AutoSuggestBox_TextChanged"
+                                    SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted">
+                    </AutoSuggestBox>
                     <Button Grid.Column="4"
                             Style="{StaticResource AppButtonStyle}"
-                            Content="&#xE712;"/>
+                            Content="&#xE712;">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="About"
+                                                Click="ToAboutMenuItem_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE115;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
                 </Grid>
 
-                <Pivot Grid.Row="1">
-                    <PivotItem Header="ALL" Margin="5">
-                        <ListView x:Name="SandboxListView"
-                                  ScrollViewer.IsHorizontalScrollChainingEnabled="False"
-                                  ItemsSource="{Binding Items}"
-                                  ItemsPanel="{StaticResource SandboxListItemPanelTemplate}"
-                                  ItemContainerStyle="{StaticResource SandboxListItemContainerStyle}"
-                                  ItemTemplate="{StaticResource SandboxListDataTemplate}">
-                            <ListView.ItemContainerTransitions>
-                                <TransitionCollection>
-                                    <AddDeleteThemeTransition/>
-                                    <ContentThemeTransition/>
-                                    <ReorderThemeTransition/>
-                                    <EntranceThemeTransition IsStaggeringEnabled="False"/>
-                                </TransitionCollection>
-                            </ListView.ItemContainerTransitions>
-                        </ListView>
-                    </PivotItem>
-                </Pivot>
-                
+                <ListView Grid.Row="1" Margin="5"
+                            x:Name="SandboxListView"
+                            ScrollViewer.IsHorizontalScrollChainingEnabled="False"
+                            ItemsSource="{Binding Items}"
+                            ItemsPanel="{StaticResource SandboxListItemPanelTemplate}"
+                            ItemContainerStyle="{StaticResource SandboxListItemContainerStyle}"
+                            ItemTemplate="{StaticResource SandboxListDataTemplate}">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition/>
+                            <ContentThemeTransition/>
+                            <ReorderThemeTransition/>
+                            <EntranceThemeTransition IsStaggeringEnabled="False"/>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                </ListView>
+
             </Grid>
 
             <!-- Sandbox Property -->

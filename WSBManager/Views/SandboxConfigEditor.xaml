@@ -147,8 +147,9 @@
                     <ComboBox Grid.Row="0" Grid.Column="2"
                               Margin="5"
                               SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource VGpuToListIndexConverter}, Mode=TwoWay}">
-                        <ComboBoxItem Content="Disabled"/>
                         <ComboBoxItem Content="Default" />
+                        <ComboBoxItem Content="Disable"/>
+                        <ComboBoxItem Content="Enable"/>
                     </ComboBox>
 
                     <!-- Network -->
@@ -162,8 +163,9 @@
                     <ComboBox Grid.Row="1" Grid.Column="2"
                               Margin="5"
                               SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
-                        <ComboBoxItem Content="Disabled"/>
                         <ComboBoxItem Content="Default" />
+                        <ComboBoxItem Content="Disable"/>
+                        <ComboBoxItem Content="Enable"/>
                     </ComboBox>
                 </Grid>
                 <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>

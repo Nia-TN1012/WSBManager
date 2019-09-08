@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,12 +43,22 @@ namespace WSBManager.Views {
 				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel();
 			}
 			this.DataContext = sandboxConfigEditorViewModel;
+
+			SystemNavigationManager.GetForCurrentView().BackRequested += SandboxConfigEditor_BackRequested; ;
 		}
 
-		protected override void OnNavigatedFrom( NavigationEventArgs e ) {
-			base.OnNavigatedFrom( e );
+		private void SandboxConfigEditor_BackRequested( object sender, BackRequestedEventArgs e ) {
+			if( this.Frame.CanGoBack ) {
+				this.Frame.GoBack();
+				e.Handled = true;
+			}
+		}
+
+		protected override void OnNavigatingFrom( NavigatingCancelEventArgs e ) {
+			base.OnNavigatingFrom( e );
 
 			this.DataContext = null;
+			SystemNavigationManager.GetForCurrentView().BackRequested -= SandboxConfigEditor_BackRequested;
 		}
 
 		private void BackButton_Click( object sender, RoutedEventArgs e ) {
