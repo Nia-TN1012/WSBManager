@@ -8,16 +8,6 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <Style x:Key="AppButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="48"/>
-            <Setter Property="Height" Value="48"/>
-            <Setter Property="Background" Value="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
-            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource TextStyleLargeFontSize}"/>
-        </Style>
-    </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

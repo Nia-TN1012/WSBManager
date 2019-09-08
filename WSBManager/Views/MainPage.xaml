@@ -15,6 +15,7 @@
 
     <Page.Resources>
 
+        <!-- Converters -->
         <localcom:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
         <localcom:VGpuToListIndexConverter x:Key="VGpuToListIndexConverter"/>
         <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
@@ -26,30 +27,10 @@
 							 HorizontalAlignment="Stretch"/>
         </ItemsPanelTemplate>
 
-        <Style x:Key="AppButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="48"/>
-            <Setter Property="Height" Value="48"/>
-            <Setter Property="Background" Value="{ThemeResource AppBarItemBackgroundThemeBrush}"/>
-            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource TextStyleLargeFontSize}"/>
-        </Style>
-
         <Style x:Key="SandboxConfigIconPanel" TargetType="Grid">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-
-        <Style x:Key="SandboxConfigFontIcon" TargetType="FontIcon">
-            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="16"/>
-        </Style>
-
-        <Style x:Key="MappedFolderFontIcon" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
-            <Setter Property="Width" Value="Auto"/>
-            <Setter Property="Height" Value="Auto"/>
-            <Setter Property="Margin" Value="5"/>
         </Style>
 
         <Style x:Key="SandboxListItemActionButton" TargetType="Button" BasedOn="{StaticResource AppButtonStyle}">
@@ -256,7 +237,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
@@ -271,10 +251,7 @@
                             Content="&#xE8E5;"
                             Command="{Binding ImportSandboxConfig}"
                             x:Uid="ImportSandboxConfigurationFile"/>
-                    <!--<Button Grid.Column="2"
-                            Style="{StaticResource AppButtonStyle}"
-                            Content="&#xE133;"/>-->
-                    <AutoSuggestBox Grid.Column="3"
+                    <AutoSuggestBox Grid.Column="2"
                                     Margin="5"
                                     VerticalAlignment="Center"
                                     QueryIcon="Find"
@@ -283,7 +260,7 @@
                                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                     QuerySubmitted="AutoSuggestBox_QuerySubmitted">
                     </AutoSuggestBox>
-                    <Button Grid.Column="4"
+                    <Button Grid.Column="3"
                             Style="{StaticResource AppButtonStyle}"
                             Content="&#xE712;">
                         <Button.Flyout>
