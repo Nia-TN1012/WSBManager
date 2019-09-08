@@ -10,7 +10,11 @@ using WSBManager.Common;
 
 namespace WSBManager.Models {
 
+	/// <summary>
+	/// Windows Sandbox configuration model for WSB Manager.
+	/// </summary>
 	public class WSBConfigManagerModel : WSBConfigModel {
+
 		/// <summary>
 		/// UUID
 		/// </summary>
@@ -26,37 +30,67 @@ namespace WSBManager.Models {
 		/// </summary>
 		public DateTime CreatedAt { get; protected set; } = DateTime.Now;
 
+		/// <summary>
+		/// Datetime when the sandbox was last launched.
+		/// </summary>
 		public DateTime LastLaunchedAt { get; protected set; } = DateTime.MinValue;
 
+		/// <summary>
+		/// Enable or disable the vGPU.
+		/// </summary>
 		public bool IsVGpuEnabled => VGpu != VGpu.Disable;
 
+		/// <summary>
+		/// Enable or disable the Networking.
+		/// </summary>
 		public bool IsNetworkEnabled => Networking != Networking.Disable;
 
+		/// <summary>
+		/// Enable or disable the Mapped Folders.
+		/// </summary>
 		public bool IsMappedFolderEnabled => MappedFolders.Count > 0;
 
+		/// <summary>
+		/// Enable or disable the Login Command.
+		/// </summary>
 		public bool IsLoginCommandEnabled => !string.IsNullOrEmpty( LoginCommand?.Command );
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public WSBConfigManagerModel() : base() { }
 
+		/// <summary>
+		/// Creates a new instance of the <see cref="WSBConfigManagerModel"/> class from an existing instance.
+		/// </summary>
+		/// <param name="wSBConfigManagerModel">A existing instance of the <see cref="WSBConfigManagerModel"/> class</param>
 		public WSBConfigManagerModel( WSBConfigManagerModel wSBConfigManagerModel ) : base( wSBConfigManagerModel ) {
 			UUID = wSBConfigManagerModel.UUID;
 			Name = wSBConfigManagerModel.Name;
 			CreatedAt = wSBConfigManagerModel.CreatedAt;
 		}
 
+		/// <summary>
+		/// Updates the datetime when the sandbox was last launched.
+		/// </summary>
 		public void UpdateLastLaunchedAt() => LastLaunchedAt = DateTime.Now;
 
 		/// <summary>
 		/// Imports from a configuration xml text reader.
 		/// </summary>
 		/// <param name="webConfig">A configuration xml text reader</param>
-		/// <returns></returns>
+		/// <returns>A <see cref="WSBConfigManagerModel"/> instance</returns>
 		public new static WSBConfigManagerModel Import( TextReader webConfig ) {
 			using( var xr = XmlReader.Create( webConfig ) ) {
 				return FromXElement( XElement.Load( xr ) );
 			}
 		}
 
+		/// <summary>
+		/// Converts a <see cref="XElement"/> instance to a <see cref="WSBConfigManagerModel"/> instance.
+		/// </summary>
+		/// <param name="xElement">A <see cref="XElement"/> instance contains configuration</param>
+		/// <returns>A <see cref="WSBConfigManagerModel"/> instance</returns>
 		public new static WSBConfigManagerModel FromXElement( XElement xElement ) {
 			var wsbConfigManagerModel = new WSBConfigManagerModel();
 
@@ -108,9 +142,11 @@ namespace WSBManager.Models {
 		}
 
 		/// <summary>
-		/// Exports to a xml text stream.
+		/// Exports to a xml text writer.
 		/// </summary>
-		/// <returns></returns>
+		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
+		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
+		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
 		public override TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
 				ToXElement( includeExtraMetada ).Save( xw );
@@ -118,6 +154,11 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Converts to a <see cref="XElement"/> instance.
+		/// </summary>
+		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
+		/// <returns>A <see cref="XElement"/> instance.</returns>
 		public override XElement ToXElement( bool includeExtraMetada = false ) {
 			// Metadata
 			List<XAttribute> metadatas = new List<XAttribute> {

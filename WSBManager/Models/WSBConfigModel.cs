@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Linq;
+
 using WSBManager.Common;
 
 namespace WSBManager.Models {
@@ -55,18 +53,28 @@ namespace WSBManager.Models {
 		/// </summary>
 		public string Command { get; set; } = null;
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public LoginCommand() {}
 
+		/// <summary>
+		/// Creates a new instance of the <see cref="LoginCommand"/> class from an existing instance.
+		/// </summary>
+		/// <param name="loginCommand">A existing instance of the <see cref="LoginCommand"/> class</param>
 		public LoginCommand( LoginCommand loginCommand ) {
 			Command = loginCommand.Command;
 		}
 	}
 
 	/// <summary>
-	/// Represents Windows Sandbox configuration model.
+	/// Windows Sandbox configuration model.
 	/// </summary>
 	public class WSBConfigModel {
 
+		/// <summary>
+		/// Root node name
+		/// </summary>
 		public const string RootNodeName = "Configuration";
 
 		#region Properties
@@ -81,37 +89,44 @@ namespace WSBManager.Models {
 		/// </summary>
 		public Networking Networking { get; set; } = Networking.Default;
 
-		protected List<MappedFolder> mappedFolders = new List<MappedFolder>();
 		/// <summary>
 		/// Folders on the host shared with the sandbox.
 		/// </summary>
-		public List<MappedFolder> MappedFolders { get => mappedFolders; set { } }
+		public List<MappedFolder> MappedFolders { get; set; } = new List<MappedFolder>();
 
-
-		protected LoginCommand loginCommand = new LoginCommand();
 		/// <summary>
 		/// A login command which will be invoked automatically after the container logs on.
 		/// </summary>
-		public LoginCommand LoginCommand { get => loginCommand; set { } }
+		public LoginCommand LoginCommand { get; set; } = new LoginCommand();
 
 		#endregion
 
+		/// <summary>
+		/// A setting for <see cref="XmlWriter"/>.
+		/// </summary>
 		public static readonly XmlWriterSettings xmlWriterSettings = new XmlWriterSettings { OmitXmlDeclaration = true, Indent = true };
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public WSBConfigModel() { }
 
+		/// <summary>
+		/// Creates a new instance of the <see cref="WSBConfigModel"/> class from an existing instance.
+		/// </summary>
+		/// <param name="wSBConfigModel">A existing instance of the <see cref="WSBConfigModel"/> class</param>
 		public WSBConfigModel( WSBConfigModel wSBConfigModel ) {
 			VGpu = wSBConfigModel.VGpu;
 			Networking = wSBConfigModel.Networking;
-			mappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
-			loginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
+			MappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
+			LoginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
 		}
 
 		/// <summary>
 		/// Imports from a configuration xml text reader.
 		/// </summary>
 		/// <param name="webConfig">A configuration xml text reader</param>
-		/// <returns></returns>
+		/// <returns>A <see cref="WSBConfigModel"/> instance</returns>
 		public static WSBConfigModel Import( TextReader webConfig ) {
 			using( var xr = XmlReader.Create( webConfig ) ) {
 				var xElement = XElement.Load( xr );
@@ -119,6 +134,11 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Converts a <see cref="XElement"/> instance to a <see cref="WSBConfigModel"/> instance.
+		/// </summary>
+		/// <param name="xElement">A <see cref="XElement"/> instance contains configuration</param>
+		/// <returns>A <see cref="WSBConfigModel"/> instance</returns>
 		public static WSBConfigModel FromXElement( XElement xElement ) {
 			var wsbConfigModel = new WSBConfigModel();
 
@@ -154,9 +174,11 @@ namespace WSBManager.Models {
 		}
 
 		/// <summary>
-		/// Exports to a xml text stream.
+		/// Exports to a xml text writer.
 		/// </summary>
-		/// <returns></returns>
+		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
+		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
+		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
 		public virtual TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
 				ToXElement( includeExtraMetada ).Save( xw );
@@ -164,6 +186,11 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Converts to a <see cref="XElement"/> instance.
+		/// </summary>
+		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
+		/// <returns>A <see cref="XElement"/> instance.</returns>
 		public virtual XElement ToXElement( bool includeExtraMetada = false ) =>
 			new XElement( RootNodeName,
 				//VGPU
@@ -188,7 +215,6 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Converts to a xml string.
 		/// </summary>
-		/// <returns></returns>
 		public override string ToString() {
 			using( var sw = new StringWriter() ) {
 				return Export( sw ).ToString();
