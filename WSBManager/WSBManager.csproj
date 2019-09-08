@@ -119,7 +119,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\AppCommon.cs" />
     <Compile Include="Common\BoolToOpacityConverter.cs" />
     <Compile Include="Common\BoolToVisibilityConverter.cs" />
     <Compile Include="Common\EnumToListIndexConverter.cs" />

@@ -4,10 +4,13 @@ using Windows.UI.Xaml.Data;
 
 namespace WSBManager.Common {
 
+	/// <summary>
+	/// Provides the method whitch converts a value in accordance with the specified format and culture information.
+	/// </summary>
 	public sealed class ValueToStringFormatConverter : IValueConverter {
 
 		/// <summary>
-		///		Converts a value in accordance with the specified format and culture information.
+		///	Converts a value in accordance with the specified format and culture information.
 		/// </summary>
 		/// <param name="value">Source value</param>
 		/// <param name="targetType">Target type</param>
@@ -28,9 +31,8 @@ namespace WSBManager.Common {
 		}
 
 		/// <summary>
-		///	This method is not using. always throws <see cref="NotImplementedException"/>.
+		///	This method is not using. always returns null.
 		/// </summary>
-		public object ConvertBack( object value, Type targetType, object parameter, string language ) =>
-			throw new NotImplementedException();
+		public object ConvertBack( object value, Type targetType, object parameter, string language ) => null;
 	}
 }
