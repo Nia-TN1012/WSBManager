@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -22,6 +23,9 @@ using WSBManager.ViewModels;
 
 namespace WSBManager.Views {
 	public sealed partial class MainPage : Page {
+
+		private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
+
 		public MainPage() {
 			this.InitializeComponent();
 			wsbManagerViewModel.LaunchSandboxCompleted += OnLaunchSandboxCompleted;
@@ -35,7 +39,7 @@ namespace WSBManager.Views {
 
 			if( e.NavigationMode == NavigationMode.New ) {
 				if( !await wsbManagerViewModel.InitializeModelAsync() ) {
-					var errorMessageDialog = new MessageDialog( $"Failed to load", "Error" );
+					var errorMessageDialog = new MessageDialog( resourceLoader.GetString( "FailedToLoadWSBConfigListDialog" ), resourceLoader.GetString( "DialogTitleError" ) );
 					await errorMessageDialog.ShowAsync();
 				}
 			}
@@ -43,7 +47,7 @@ namespace WSBManager.Views {
 
 		private async void OnLaunchSandboxCompleted( object sender, ( bool success, string name ) e ) {
 			if( !e.success ) {
-				var errorMessageDialog = new MessageDialog( $"Failed to launch sandbox '{e.name}'.", "Error" );
+				var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedLaunchSandboxDialog" ), e.name ), resourceLoader.GetString( "DialogTitleError" ) );
 				await errorMessageDialog.ShowAsync();
 			}
 		}
@@ -58,7 +62,7 @@ namespace WSBManager.Views {
 				fileSelectedCallback?.Invoke(
 					importFile,
 					async () => {
-						var errorMessageDialog = new MessageDialog( $"Failed to import '{importFile.Path}'", "Error" );
+						var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedToImportDialog" ), importFile.Path ), resourceLoader.GetString( "DialogTitleError" ) );
 						await errorMessageDialog.ShowAsync();
 					}
 				);
@@ -70,13 +74,13 @@ namespace WSBManager.Views {
 				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 				SuggestedFileName = name
 			};
-			exportPicker.FileTypeChoices.Add( "wsb config file", new List<string> { ".wsb" } );
+			exportPicker.FileTypeChoices.Add( resourceLoader.GetString( "WSBFileExtention" ), new List<string> { ".wsb" } );
 
 			if( ( await exportPicker.PickSaveFileAsync() ) is StorageFile exportFile ) {
 				fileSelectedCallback?.Invoke(
 					exportFile,
 					async () => {
-						var errorMessageDialog = new MessageDialog( $"Failed to export '{exportFile.Path}'", "Error" );
+						var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedToExportDialog" ), exportFile.Path ), resourceLoader.GetString( "DialogTitleError" ) );
 						await errorMessageDialog.ShowAsync();
 					}
 				);
@@ -85,9 +89,9 @@ namespace WSBManager.Views {
 		}
 
 		private async void DeleteSandboxConfig(string name, Action confirmedCallback, Action canceledCallback = null ) {
-			var confirmMessageDialog = new MessageDialog( $"Are you sure you want to delete '{name}'", "Confirm" );
-			confirmMessageDialog.Commands.Add( new UICommand( "Yes", command => confirmedCallback?.Invoke() ) );
-			confirmMessageDialog.Commands.Add( new UICommand( "No" ) );
+			var confirmMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "DeleteSandboxConfigurationDialog" ), name ), resourceLoader.GetString( "DialogTitleConfirm" ) );
+			confirmMessageDialog.Commands.Add( new UICommand( resourceLoader.GetString( "DialogButtonYes" ), command => confirmedCallback?.Invoke() ) );
+			confirmMessageDialog.Commands.Add( new UICommand( resourceLoader.GetString( "DialogButtonNo" ) ) );
 			await confirmMessageDialog.ShowAsync();
 
 		}

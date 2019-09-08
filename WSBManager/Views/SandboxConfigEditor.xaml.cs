@@ -27,7 +27,9 @@ namespace WSBManager.Views {
 	/// </summary>
 	public sealed partial class SandboxConfigEditor : Page {
 
-		SandboxConfigEditorViewModel sandboxConfigEditorViewModel;
+		private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
+
+		private SandboxConfigEditorViewModel sandboxConfigEditorViewModel;
 
 		public SandboxConfigEditor() {
 			this.InitializeComponent();
@@ -70,11 +72,10 @@ namespace WSBManager.Views {
 		private async void SaveButton_Click( object sender, RoutedEventArgs e ) {
 			var result = sandboxConfigEditorViewModel.Validate();
 			if( result.result != MappedFolderValidateResult.OK ) {
-				var loader = ResourceLoader.GetForCurrentView();
-				var message = loader.GetString( result.result.ToString() );
+				var message = resourceLoader.GetString( result.result.ToString() );
 				var dialog = new MessageDialog(
 					string.Format( $"{message}:\r\n\r\n{string.Join( "\r\n", result.validateFailedHostFolders )}" ),
-					loader.GetString( "MappedFolderValidationFailedTitle" )
+					resourceLoader.GetString( "MappedFolderValidationFailedTitle" )
 				);
 				await dialog.ShowAsync();
 

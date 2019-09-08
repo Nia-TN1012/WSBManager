@@ -128,7 +128,7 @@ namespace WSBManager.ViewModels {
 			}
 
 
-			public bool CanExecute( object parameter ) => true;
+			public bool CanExecute( object parameter ) => viewModel.EditingMappedFolders.Any();
 
 			public event EventHandler CanExecuteChanged;
 

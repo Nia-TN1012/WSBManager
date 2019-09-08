@@ -126,20 +126,20 @@
                             Content="&#xE102;"
                             Command="{Binding DataContext.LaunchSandbox, ElementName=MainPage1}"
                             CommandParameter="{Binding UUID}"
-                            ToolTipService.ToolTip="Launch Sandbox"/>
+                            x:Uid="LaunchSandboxButton"/>
                     <Button Grid.Column="2"
                             Style="{StaticResource SandboxListItemActionButton}"
                             Content="&#xE712;">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="Move up"
+                                <MenuFlyoutItem x:Uid="MoveUpMenuItem"
                                                 Command="{Binding DataContext.MoveUpSandboxConfig, ElementName=MainPage1}"
                                                 CommandParameter="{Binding UUID}">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE74A;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Move down"
+                                <MenuFlyoutItem x:Uid="MoveDownMenuItem"
                                                 Command="{Binding DataContext.MoveDownSandboxConfig, ElementName=MainPage1}"
                                                 CommandParameter="{Binding UUID}">
                                     <MenuFlyoutItem.Icon>
@@ -147,12 +147,12 @@
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
                                 <MenuFlyoutSeparator/>
-                                <MenuFlyoutItem Text="Export to file"
+                                <MenuFlyoutItem x:Uid="ExportToFileMenuItem"
                                                 Icon="Save"
                                                 Command="{Binding DataContext.ExportSandboxConfig, ElementName=MainPage1}"
                                                 CommandParameter="{Binding UUID}">
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Delete"
+                                <MenuFlyoutItem x:Uid="DeleteSandboxConfigMenuItem"
                                                 Icon="Delete"
                                                 Command="{Binding DataContext.DeleteSandboxConfig, ElementName=MainPage1}"
                                                 CommandParameter="{Binding UUID}"/>
@@ -265,12 +265,12 @@
                             Style="{StaticResource AppButtonStyle}"
                             Content="&#xE109;"
                             Click="AddButton_Click"
-                            ToolTipService.ToolTip="Add Sandbox Configuration"/>
+                            x:Uid="AddSandboxConfiguration"/>
                     <Button Grid.Column="1"
                             Style="{StaticResource AppButtonStyle}"
                             Content="&#xE8E5;"
                             Command="{Binding ImportSandboxConfig}"
-                            ToolTipService.ToolTip="Import Sandbox Configuration file"/>
+                            x:Uid="ImportSandboxConfigurationFile"/>
                     <!--<Button Grid.Column="2"
                             Style="{StaticResource AppButtonStyle}"
                             Content="&#xE133;"/>-->
@@ -288,7 +288,7 @@
                             Content="&#xE712;">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="About"
+                                <MenuFlyoutItem x:Uid="AboutMenuItem"
                                                 Click="ToAboutMenuItem_Click">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE115;"/>
@@ -345,7 +345,7 @@
                                 Style="{StaticResource AppButtonStyle}"
                                 Content="&#xE104;"
                                 Click="EditButton_Click"
-                                ToolTipService.ToolTip="Edit Sandbox Configuration"/>
+                                x:Uid="EditSandboxConfiguration"/>
                     </Grid>
                     <Border Grid.Row="1" Margin="5" Height="1" Background="{ThemeResource SystemBaseMediumHighColor}"/>
 
@@ -369,7 +369,7 @@
                                 <TextBlock Grid.Row="0" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="Created at"/>
+                                           x:Uid="CreateAtLabel"/>
                                 <TextBlock Grid.Row="0" Grid.Column="2"
                                        Margin="5"
                                        VerticalAlignment="Center"
@@ -381,7 +381,7 @@
                                 <TextBlock Grid.Row="1" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="Last launched at"/>
+                                           x:Uid="LastLaunchedAtLabel"/>
                                 <TextBlock Grid.Row="1" Grid.Column="2"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -407,7 +407,7 @@
                                 <TextBlock Grid.Row="0" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="vGPU"/>
+                                           x:Uid="VGpuLabel"/>
                                 <TextBlock Grid.Row="0" Grid.Column="2"
                                        Margin="5"
                                        VerticalAlignment="Center"
@@ -420,7 +420,7 @@
                                 <TextBlock Grid.Row="1" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="Network"/>
+                                           x:Uid="NetworkingLabel"/>
                                 <TextBlock Grid.Row="1" Grid.Column="2"
                                            Margin="5"
                                            VerticalAlignment="Center"
@@ -439,14 +439,14 @@
                                           Glyph="&#xE8F7;"/>
                                 <TextBlock Grid.Column="1"
                                            Margin="5"
-                                           Text="Mapped Folders"/>
+                                           x:Uid="MappedFoldersLabel"/>
                             </Grid>
                             <ctrl:DataGrid Margin="5"
                                            AutoGenerateColumns="False"
                                            IsReadOnly="True"
                                            ItemsSource="{Binding SelectedItem.MappedFolders, ElementName=SandboxListView}">
                                 <ctrl:DataGrid.Columns>
-                                    <ctrl:DataGridTemplateColumn Header="Host Folder"
+                                    <ctrl:DataGridTemplateColumn x:Uid="HostFolderLabel"
                                                                  MinWidth="120" Width="*" CanUserResize="True">
                                         <ctrl:DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
@@ -459,7 +459,7 @@
                                             </DataTemplate>
                                         </ctrl:DataGridTemplateColumn.CellTemplate>
                                     </ctrl:DataGridTemplateColumn>
-                                    <ctrl:DataGridCheckBoxColumn Header="Read Only"
+                                    <ctrl:DataGridCheckBoxColumn x:Uid="ReadOnlyLabel"
                                                                  Width="Auto"
                                                                  Binding="{Binding ReadOnly}"/>
                                 </ctrl:DataGrid.Columns>
@@ -478,7 +478,7 @@
                                 <TextBlock Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="Login Command"/>
+                                           x:Uid="LoginCommandLabel"/>
                             </Grid>
                             <TextBox Margin="5"
                                      IsReadOnly="True"

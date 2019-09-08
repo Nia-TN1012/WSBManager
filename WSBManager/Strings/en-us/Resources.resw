@@ -117,13 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAppLabel.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutDeveloper.Text" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+  <data name="AboutMenuItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AboutWebSite.Text" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="AddMappedFolderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Add Mapped Folder</value>
+  </data>
+  <data name="AddSandboxConfiguration.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Add Sandbox Configuration</value>
+  </data>
+  <data name="AppDescription.Text" xml:space="preserve">
+    <value>WSB Manager can create and edit Windows Sandbox configuration files on the GUI.</value>
+  </data>
+  <data name="AppLicence.Text" xml:space="preserve">
+    <value>WSB Manager is released under open source (Apache License 2.0).</value>
+  </data>
   <data name="AppName.Text" xml:space="preserve">
     <value>WSB Manager</value>
+  </data>
+  <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="CreateAtLabel.Text" xml:space="preserve">
+    <value>Create at</value>
+  </data>
+  <data name="DeleteButtonLabel.Header" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteSandboxConfigMenuItem.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteSandboxConfigurationDialog" xml:space="preserve">
+    <value>Are you sure you want to delete sandbox configuration '{0}'?</value>
+  </data>
+  <data name="DialogButtonNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="DialogButtonYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DialogTitleConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="DialogTitleError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="EditSandboxConfiguration.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Edit Sandbox Configuration</value>
+  </data>
+  <data name="ExportToFileMenuItem.Text" xml:space="preserve">
+    <value>Export to file</value>
+  </data>
+  <data name="FailedLaunchSandboxDialog" xml:space="preserve">
+    <value>Failed to launch sandbox '{0}'.</value>
+  </data>
+  <data name="FailedToExportDialog" xml:space="preserve">
+    <value>Failed to export '{0}'.</value>
+  </data>
+  <data name="FailedToImportDialog" xml:space="preserve">
+    <value>Failed to import '{0}'.</value>
+  </data>
+  <data name="FailedToLoadWSBConfigListDialog" xml:space="preserve">
+    <value>Failed to load sandbox configration list.</value>
+  </data>
+  <data name="HostFolderLabel.Header" xml:space="preserve">
+    <value>Host Folder</value>
+  </data>
+  <data name="HostFolderNameDuplicated" xml:space="preserve">
+    <value>The following host folders have duplicate names.</value>
+  </data>
+  <data name="HostFolderPathInvalid" xml:space="preserve">
+    <value>The following host folders have invalid paths.</value>
+  </data>
+  <data name="ImportSandboxConfigurationFile.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Import Sandbox Configuration file</value>
+  </data>
+  <data name="LastLaunchedAtLabel.Text" xml:space="preserve">
+    <value>Last launched at</value>
+  </data>
+  <data name="LaunchSandboxButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Launch Sandbox</value>
+  </data>
+  <data name="LoginCommandLabel.Text" xml:space="preserve">
+    <value>Login Command</value>
+  </data>
+  <data name="MappedFoldersLabel.Text" xml:space="preserve">
+    <value>Mapped Folders</value>
+  </data>
+  <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
+    <value>Host Folders Validation Error</value>
+  </data>
+  <data name="MoveDownMenuItem.Text" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="MoveUpMenuItem.Text" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="NetworkingLabel.Text" xml:space="preserve">
+    <value>Networking</value>
+  </data>
+  <data name="ReadOnlyLabel.Header" xml:space="preserve">
+    <value>Read Only</value>
+  </data>
+  <data name="RemoveSelectedMappedFolder.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Remove selected Mapped Folder</value>
   </data>
   <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>Edit Sandbox Configuration</value>
   </data>
   <data name="SandboxConfigEditorTitleNew.Text" xml:space="preserve">
     <value>New Sandbox Configuration</value>
+  </data>
+  <data name="SandboxName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="VGpuLabel.Text" xml:space="preserve">
+    <value>vGPU</value>
+  </data>
+  <data name="WSBFileExtension" xml:space="preserve">
+    <value>wsb file</value>
   </data>
 </root>

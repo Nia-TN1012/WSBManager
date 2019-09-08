@@ -1,5 +1,6 @@
 ﻿<Page
     x:Class="WSBManager.Views.SandboxConfigEditor"
+    x:Name="SandboxConfigEditor1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager.Views"
@@ -118,7 +119,7 @@
                         <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                   Glyph="&#xE977;"/>
                         <TextBlock Margin="5"
-                                   Text="Name"/>
+                                   x:Uid="SandboxName"/>
                     </StackPanel>
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.Name, Mode=TwoWay}"/>
@@ -143,7 +144,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="vGPU"/>
+                                           x:Uid="VGpuLabel"/>
                     <ComboBox Grid.Row="0" Grid.Column="2"
                               Margin="5"
                               SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource VGpuToListIndexConverter}, Mode=TwoWay}">
@@ -159,7 +160,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="1"
                                Margin="5"
                                VerticalAlignment="Center"
-                               Text="Network"/>
+                               x:Uid="NetworkingLabel"/>
                     <ComboBox Grid.Row="1" Grid.Column="2"
                               Margin="5"
                               SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
@@ -185,21 +186,21 @@
                                       Glyph="&#xE8F7;"/>
                             <TextBlock Margin="5"
                                        VerticalAlignment="Center"
-                                       Text="Mapped Folders"/>
+                                       x:Uid="MappedFoldersLabel"/>
                         </StackPanel>
 
                         <Button Grid.Column="1"
                                 Style="{StaticResource MappedFolderButton}"
                                 Content="&#xE710;"
                                 Command="{Binding AddMappedFolder}"
-                                ToolTipService.ToolTip="Add Mapped Folder"/>
+                                x:Uid="AddMappedFolderButton"/>
 
                         <Button Grid.Column="2"
                                 Style="{StaticResource MappedFolderButton}"
                                 Content="&#xE738;"
                                 Command="{Binding RemoveMappedFolder}"
                                 CommandParameter="{Binding SelectedIndex, ElementName=MappedFolderView}"
-                                ToolTipService.ToolTip="Remove selected Mapped Folder"/>
+                                x:Uid="RemoveSelectedMappedFolder"/>
                     </Grid>
                     <ctrl:DataGrid x:Name="MappedFolderView"
                                    Margin="5"
@@ -207,14 +208,13 @@
                                    SelectionMode="Single"
                                    ItemsSource="{Binding EditingMappedFolders, Mode=TwoWay}">
                         <ctrl:DataGrid.Columns>
-                            <ctrl:DataGridTemplateColumn Header="Host Folder"
+                            <ctrl:DataGridTemplateColumn x:Uid="HostFolderLabel"
                                                          MinWidth="240" Width="*" CanUserResize="True"
                                                          CellTemplate="{StaticResource MappedHostFolderDataTemplate}"
                                                          CellEditingTemplate="{StaticResource MappedHostFolderEditingDataTemplate}"/>
-                            <ctrl:DataGridCheckBoxColumn Header="Read Only"
+                            <ctrl:DataGridCheckBoxColumn x:Uid="ReadOnlyLabel"
                                                          Width="Auto"
                                                          Binding="{Binding ReadOnly, Mode=TwoWay}"/>
-
                         </ctrl:DataGrid.Columns>
                     </ctrl:DataGrid>
                 </StackPanel>
@@ -226,7 +226,7 @@
                         <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                   Glyph="&#xE756;"/>
                         <TextBlock Margin="5"
-                                   Text="Login Command"/>
+                                   x:Uid="LoginCommandLabel"/>
                     </StackPanel>
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.LoginCommand.Command, Mode=TwoWay}"/>

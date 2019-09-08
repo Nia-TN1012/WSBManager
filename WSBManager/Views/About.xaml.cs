@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -16,6 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WSBManager.Views {
 	public sealed partial class About : Page {
+
+		private PackageId packageInfo = Package.Current.Id;
+
+		public string Version => $"{packageInfo.Version.Major}.{packageInfo.Version.Minor}.{packageInfo.Version.Build}";
+
 		public About() {
 			this.InitializeComponent();
 		}

@@ -42,12 +42,56 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                    Text="About App"/>
+                    x:Uid="AboutAppLabel"/>
         </Grid>
 
         <StackPanel Grid.Row="1"
                     Margin="10">
-            
+            <Grid Margin="5" MaxHeight="300"
+                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                  Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                <Image Source="ms-appx:///Assets/SplashScreen.png"/>
+            </Grid>
+            <TextBlock Padding="5,5,5,1"  
+                       FontSize="{ThemeResource ListViewHeaderItemThemeFontSize}"
+                       TextWrapping="Wrap" FontWeight="Bold"
+                       x:Uid="AppName"/>
+            <TextBlock Padding="5,5,5,3" 
+                       FontSize="{ThemeResource ContentControlFontSize}"
+                       TextWrapping="Wrap"
+                       x:Uid="AppDescription"/>
+            <TextBlock Padding="5,5,5,3"
+                       TextWrapping="Wrap">
+                <Run x:Uid="AboutVersion"/> :
+                <Run FontWeight="Bold"
+                     Text="{x:Bind Version}"/>
+            </TextBlock>
+            <TextBlock Padding="5,5,5,3" 
+                       FontSize="{ThemeResource ContentControlFontSize}"
+                       TextWrapping="Wrap">
+                <Run x:Uid="AboutDeveloper"/> : <Bold>Nia Tomonaka</Bold> ( 
+					<Hyperlink NavigateUri="https://twitter.com/nia_tn1012">
+						<Run Text="@nia_tn1012"/>
+					</Hyperlink>
+                    )
+            </TextBlock>
+            <Image Margin="5" MaxHeight="128"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Source="ms-appx:///Assets/Chronoir-logo.png"/>
+            <TextBlock Padding="5,1,5,5" 
+                       FontSize="{ThemeResource ContentControlFontSize}"
+                       TextWrapping="Wrap">
+                &#x00A9; 2019 Chronoir.net<LineBreak/>
+                <Run x:Uid="AboutWebSite"/> :  
+					<Hyperlink NavigateUri="https://chronoir.net/">
+						<Run Text="Chronoir.net"/>
+					</Hyperlink><LineBreak/><LineBreak/>
+					<Run x:Uid="AppLicence"/><LineBreak/>
+					GitHub : 
+					<Hyperlink NavigateUri="https://github.com/Nia-TN1012/WSBManager">
+						<Run Text="WSBManager"/>
+					</Hyperlink>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>
