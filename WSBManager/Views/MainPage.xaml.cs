@@ -53,7 +53,7 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e">
-		///		<para>A tuple of execution success flag and sandbox names.</para>
+		///		<para>A tuple of execution success flag and sandbox name.</para>
 		///		<para>success: A execution success flag ( true: Success / false: Failed )</para>
 		///		<para>name: A sandbox name</para>
 		/// </param>

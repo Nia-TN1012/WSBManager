@@ -20,6 +20,9 @@ namespace WSBManager.Models {
 	/// </summary>
 	public class WSBManagerModel : INotifyPropertyChanged {
 
+		/// <summary>
+		/// Root node name
+		/// </summary>
 		public const string RootNodeName = "WSBConfigList";
 
 		/// <summary>
@@ -42,8 +45,15 @@ namespace WSBManager.Models {
 		/// </summary>
 		public ObservableCollection<WSBConfigManagerModel> WSBConfigCollection { get; private set; } = new ObservableCollection<WSBConfigManagerModel>();
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public WSBManagerModel() { }
 
+		/// <summary>
+		/// Loads a sandbox configuration list.
+		/// </summary>
+		/// <returns>true: Success / false : Failed</returns>
 		public async Task<bool> LoadAsync() {
 			await semaphore.WaitAsync().ConfigureAwait( false );
 			try {
@@ -72,6 +82,10 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Saves a sandbox configuration list.
+		/// </summary>
+		/// <returns>true: Success / false : Failed</returns>
 		public async Task<bool> SaveAsync() {
 			await semaphore.WaitAsync().ConfigureAwait( false );
 			try {
@@ -97,6 +111,15 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Finds the element by specified a condition.
+		/// </summary>
+		/// <param name="predicate">A condition</param>
+		/// <returns>
+		///		<para>A tuple of the element and the index.</para>
+		///		<para>item: <see cref="WSBConfigManagerModel"/> element which found. or null if not found.</para>
+		///		<para>index: The index of item. or -1 if not found.</para>
+		/// </returns>
 		public ( WSBConfigManagerModel item, int index ) FindItem( Func<WSBConfigManagerModel, bool> predicate ) {
 			foreach( ( WSBConfigManagerModel item, int index ) in WSBConfigCollection.Select( ( item, i ) => ( item, i ) ) ) {
 				if( predicate( item ) ) {
@@ -106,6 +129,10 @@ namespace WSBManager.Models {
 			return ( null, -1 );
 		}
 
+		/// <summary>
+		/// Moves up the item.
+		/// </summary>
+		/// <param name="uuid">UUID</param>
 		public void MoveUp( string uuid ) {
 			( WSBConfigManagerModel modeModel, int index ) = FindItem( item => item.UUID == uuid );
 			if( modeModel != null ) {
@@ -114,6 +141,10 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// Moves down the item.
+		/// </summary>
+		/// <param name="uuid">UUID</param>
 		public void MoveDown( string uuid ) {
 			(WSBConfigManagerModel modeModel, int index) = FindItem( item => item.UUID == uuid );
 			if( modeModel != null ) {
@@ -122,10 +153,13 @@ namespace WSBManager.Models {
 			}
 		}
 
+		/// <summary>
+		/// A event handler which fire when Load configuration list completed.
+		/// </summary>
 		public event EventHandler LoadCongiugurationListCompleted;
 
 		/// <summary>
-		///	The event handler to be generated after the property changes.
+		///	A event handler which fire when the property changed.
 		/// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
