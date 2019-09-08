@@ -91,7 +91,7 @@ namespace WSBManager {
 			var deferral = e.SuspendingOperation.GetDeferral();
 			//TODO: アプリケーションの状態を保存してバックグラウンドの動作があれば停止します
 
-			await WSBManagerModelIO.SaveAsync( Model );
+			await Model.SaveAsync();
 
 			deferral.Complete();
 		}

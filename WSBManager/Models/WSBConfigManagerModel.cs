@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -25,9 +26,11 @@ namespace WSBManager.Models {
 		/// </summary>
 		public DateTime CreatedAt { get; protected set; } = DateTime.Now;
 
-		public bool IsVGpuEnabled => VGpu == VGpu.Default;
+		public DateTime LastLaunchedAt { get; protected set; } = DateTime.MinValue;
 
-		public bool IsNetworkEnabled => Networking == Networking.Default;
+		public bool IsVGpuEnabled => VGpu != VGpu.Disable;
+
+		public bool IsNetworkEnabled => Networking != Networking.Disable;
 
 		public bool IsMappedFolderEnabled => MappedFolders.Count > 0;
 
@@ -40,6 +43,8 @@ namespace WSBManager.Models {
 			Name = wSBConfigManagerModel.Name;
 			CreatedAt = wSBConfigManagerModel.CreatedAt;
 		}
+
+		public void UpdateLastLaunchedAt() => LastLaunchedAt = DateTime.Now;
 
 		/// <summary>
 		/// Imports from a configuration xml text reader.
@@ -62,6 +67,13 @@ namespace WSBManager.Models {
 			if( xElement.Attribute( nameof( CreatedAt ) ) is XAttribute xCreatedAt
 				&& Utility.TryConvert( xCreatedAt.Value, TypeCode.DateTime ) is DateTime createdAt ) {
 				wsbConfigManagerModel.CreatedAt = createdAt;
+			}
+			if( xElement.Attribute( nameof( UUID ) ) is XAttribute xUUID ) {
+				wsbConfigManagerModel.UUID = xUUID.Value;
+			}
+			if( xElement.Attribute( nameof( LastLaunchedAt ) ) is XAttribute xLastLaunchedAt
+				&& Utility.TryConvert( xLastLaunchedAt.Value, TypeCode.DateTime ) is DateTime lastLaunchedAt ) {
+				wsbConfigManagerModel.LastLaunchedAt = lastLaunchedAt;
 			}
 
 			// VGPU
@@ -99,19 +111,27 @@ namespace WSBManager.Models {
 		/// Exports to a xml text stream.
 		/// </summary>
 		/// <returns></returns>
-		public override TextWriter Export( TextWriter textWriter ) {
+		public override TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
-				ToXElement().Save( xw );
+				ToXElement( includeExtraMetada ).Save( xw );
 				return textWriter;
 			}
 		}
 
-		public override XElement ToXElement() =>
-			new XElement( RootNodeName,
-				// Metadata
+		public override XElement ToXElement( bool includeExtraMetada = false ) {
+			// Metadata
+			List<XAttribute> metadatas = new List<XAttribute> {
 				new XAttribute( nameof( Name ), Name ),
-				new XAttribute( nameof( UUID ), UUID ),
-				new XAttribute( nameof( CreatedAt ), CreatedAt.ToString( "yyyy-MM-dd HH:mm:ss zzz" ) ),
+				new XAttribute( nameof( CreatedAt ), CreatedAt.ToString( "yyyy-MM-dd HH:mm:ss zzz" ) )
+			};
+			if( includeExtraMetada ) {
+				metadatas.Add( new XAttribute( nameof( UUID ), UUID ) );
+				metadatas.Add( new XAttribute( nameof( LastLaunchedAt ), LastLaunchedAt.ToString( "yyyy-MM-dd HH:mm:ss zzz" ) ) );
+			}
+
+			return new XElement( RootNodeName,
+				// Metadata
+				metadatas.ToArray(),
 				//VGPU
 				new XElement( nameof( VGpu ), VGpu.ToString() ),
 				// Networking
@@ -121,7 +141,7 @@ namespace WSBManager.Models {
 					MappedFolders.Select( mf =>
 						new XElement( nameof( MappedFolder ),
 							new XElement( nameof( mf.HostFolder ), mf.HostFolder ),
-							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString() )
+							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString().ToLower() )
 						)
 					)
 				),
@@ -130,5 +150,6 @@ namespace WSBManager.Models {
 					new XElement( nameof( LoginCommand.Command ), LoginCommand.Command )
 				)
 			);
+		}
 	}
 }

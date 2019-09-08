@@ -88,20 +88,17 @@
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                           Glyph="&#xE950;"
-                                          Opacity="{Binding IsVGpuEnabled, Converter={StaticResource BoolToOpacityConverter}}"
-                                          ToolTipService.ToolTip="vGPU: Default">
+                                          Opacity="{Binding IsVGpuEnabled, Converter={StaticResource BoolToOpacityConverter}}">
                                 </FontIcon>
                             </Grid>
                             <!-- Network -->
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                           Glyph="&#xEDA3;"
-                                          Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"
-                                          ToolTipService.ToolTip="Network"/>
+                                          Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
                             <!-- Mapped folders -->
-                            <Grid Style="{StaticResource SandboxConfigIconPanel}"
-                                  ToolTipService.ToolTip="MappedFolder: 2 folders mapped">
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -119,20 +116,37 @@
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                           Glyph="&#xE756;"
-                                          Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"
-                                          ToolTipService.ToolTip="Command: cmd"/>
+                                          Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
                         </StackPanel>
                     </Grid>
 
                     <Button Grid.Column="1"
                             Style="{StaticResource SandboxListItemActionButton}"
-                            Content="&#xE102;"/>
+                            Content="&#xE102;"
+                            Command="{Binding DataContext.LaunchSandbox, ElementName=MainPage1}"
+                            CommandParameter="{Binding UUID}"
+                            ToolTipService.ToolTip="Launch Sandbox"/>
                     <Button Grid.Column="2"
                             Style="{StaticResource SandboxListItemActionButton}"
                             Content="&#xE712;">
                         <Button.Flyout>
                             <MenuFlyout>
+                                <MenuFlyoutItem Text="Move up"
+                                                Command="{Binding DataContext.MoveUpSandboxConfig, ElementName=MainPage1}"
+                                                CommandParameter="{Binding UUID}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE74A;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Move down"
+                                                Command="{Binding DataContext.MoveDownSandboxConfig, ElementName=MainPage1}"
+                                                CommandParameter="{Binding UUID}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE74B;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutSeparator/>
                                 <MenuFlyoutItem Text="Export to file"
                                                 Icon="Save"
                                                 Command="{Binding DataContext.ExportSandboxConfig, ElementName=MainPage1}"
@@ -190,6 +204,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
@@ -202,13 +217,16 @@
                             Content="&#xE8E5;"
                             Command="{Binding ImportSandboxConfig}"
                             ToolTipService.ToolTip="Import Sandbox Configuration file"/>
-                    <Button Grid.Column="2"
+                    <!--<Button Grid.Column="2"
                             Style="{StaticResource AppButtonStyle}"
-                            Content="&#xE133;"/>
+                            Content="&#xE133;"/>-->
                     <AutoSuggestBox Grid.Column="3"
                                     Margin="5"
                                     VerticalAlignment="Center"
                                     QueryIcon="Find"/>
+                    <Button Grid.Column="4"
+                            Style="{StaticResource AppButtonStyle}"
+                            Content="&#xE712;"/>
                 </Grid>
 
                 <Pivot Grid.Row="1">
@@ -267,6 +285,43 @@
                     <ScrollViewer Grid.Row="2"
                                   Margin="10">
                         <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Created at -->
+                                <FontIcon Grid.Row="0" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xEC92;"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="Created at"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2"
+                                       Margin="5"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding SelectedItem.CreatedAt, ElementName=SandboxListView}"/>
+                                <!-- Last launched at -->
+                                <FontIcon Grid.Row="1" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xEC92;"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="Last launched at"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.LastLaunchedAt, ElementName=SandboxListView}"/>
+                            </Grid>
+                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+                            
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>

@@ -155,14 +155,14 @@ namespace WSBManager.Models {
 		/// Exports to a xml text stream.
 		/// </summary>
 		/// <returns></returns>
-		public virtual TextWriter Export( TextWriter textWriter ) {
+		public virtual TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
 			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
-				ToXElement().Save( xw );
+				ToXElement( includeExtraMetada ).Save( xw );
 				return textWriter;
 			}
 		}
 
-		public virtual XElement ToXElement() =>
+		public virtual XElement ToXElement( bool includeExtraMetada = false ) =>
 			new XElement( RootNodeName,
 				//VGPU
 				new XElement( nameof( VGpu ), VGpu.ToString() ),
@@ -173,7 +173,7 @@ namespace WSBManager.Models {
 					MappedFolders.Select( mf =>
 						new XElement( nameof( MappedFolder ),
 							new XElement( nameof( mf.HostFolder ), mf.HostFolder ),
-							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString() )
+							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString().ToLower() )
 						)
 					)
 				),

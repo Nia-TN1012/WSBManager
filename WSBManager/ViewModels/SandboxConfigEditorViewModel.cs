@@ -19,10 +19,9 @@ namespace WSBManager.ViewModels {
 	}
 
 	class SandboxConfigEditorViewModel : INotifyPropertyChanged {
+		private readonly WSBManagerModel model;
 
-		WSBManagerModel model;
-
-		private int selectedIndex;
+		private readonly int selectedIndex;
 
 		public WSBConfigManagerModel EditingItem { get; private set; }
 
@@ -103,7 +102,7 @@ namespace WSBManager.ViewModels {
 
 		private class AddMappedFolderCommand : ICommand {
 			
-			private SandboxConfigEditorViewModel viewModel;
+			private readonly SandboxConfigEditorViewModel viewModel;
 			
 			internal AddMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
 				viewModel = _viewModel;
@@ -121,7 +120,7 @@ namespace WSBManager.ViewModels {
 
 		private class RemoveMappedFolderCommand : ICommand {
 
-			private SandboxConfigEditorViewModel viewModel;
+			private readonly SandboxConfigEditorViewModel viewModel;
 
 			internal RemoveMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
 				viewModel = _viewModel;

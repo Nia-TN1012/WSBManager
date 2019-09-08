@@ -23,6 +23,7 @@ namespace WSBManager.Views {
 	public sealed partial class MainPage : Page {
 		public MainPage() {
 			this.InitializeComponent();
+			wsbManagerViewModel.LaunchSandboxCompleted += OnLaunchSandboxCompleted;
 			wsbManagerViewModel.ImportSandboxConfingAction += ImportSandboxConfing;
 			wsbManagerViewModel.ExportSandboxConfingAction += ExportSandboxConfing;
 			wsbManagerViewModel.DeleteSandboxConfigAction += DeleteSandboxConfig;
@@ -32,10 +33,17 @@ namespace WSBManager.Views {
 			base.OnNavigatedTo( e );
 
 			if( e.NavigationMode == NavigationMode.New ) {
-				if( !await wsbManagerViewModel.LoadAsync() ) {
+				if( !await wsbManagerViewModel.InitializeModelAsync() ) {
 					var errorMessageDialog = new MessageDialog( $"Failed to load", "Error" );
 					await errorMessageDialog.ShowAsync();
 				}
+			}
+		}
+
+		private async void OnLaunchSandboxCompleted( object sender, ( bool success, string name ) e ) {
+			if( !e.success ) {
+				var errorMessageDialog = new MessageDialog( $"Failed to launch sandbox '{e.name}'.", "Error" );
+				await errorMessageDialog.ShowAsync();
 			}
 		}
 
