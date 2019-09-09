@@ -243,6 +243,9 @@
   <data name="SandboxName.Text" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="SandboxNameAutoSuggestionBox.PlaceholderText" xml:space="preserve">
+    <value>Enter sandbox name...</value>
+  </data>
   <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
     <value>Save</value>
   </data>

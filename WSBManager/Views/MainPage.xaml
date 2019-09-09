@@ -254,6 +254,7 @@
                     <AutoSuggestBox Grid.Column="2"
                                     Margin="5"
                                     VerticalAlignment="Center"
+                                    x:Uid="SandboxNameAutoSuggestionBox"
                                     QueryIcon="Find"
                                     ItemTemplate="{StaticResource SandboxSuggestListTemplate}"
                                     TextChanged="AutoSuggestBox_TextChanged"

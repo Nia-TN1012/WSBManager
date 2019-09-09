@@ -39,7 +39,7 @@
                     Margin="10">
             <Grid Margin="5" MaxHeight="300"
                   HorizontalAlignment="Left" VerticalAlignment="Center"
-                  Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                  Background="#00FF80">
                 <Image Source="ms-appx:///Assets/SplashScreen.png"/>
             </Grid>
             <TextBlock Padding="5,5,5,1"  
