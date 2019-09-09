@@ -153,9 +153,6 @@
   <data name="CreateAtLabel.Text" xml:space="preserve">
     <value>作成日</value>
   </data>
-  <data name="DeleteButtonLabel.Header" xml:space="preserve">
-    <value>削除</value>
-  </data>
   <data name="DeleteSandboxConfigMenuItem.Text" xml:space="preserve">
     <value>削除</value>
   </data>
@@ -244,13 +241,226 @@
     <value>名前</value>
   </data>
   <data name="SandboxNameAutoSuggestionBox.PlaceholderText" xml:space="preserve">
-    <value>サンドボックスの名前を入力...</value>
+    <value>サンドボックス構成アイテムの名前を入力...</value>
   </data>
   <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="UserGuideAddSandboxConfiguration.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムを新規作成</value>
+  </data>
+  <data name="UserGuideAddSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの新規作成ページ遷移します。</value>
+  </data>
+  <data name="UserGuideBackToPageButton.Text" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="UserGuideBackToPageButtonDesc.Text" xml:space="preserve">
+    <value>変更を破棄して、メインページに戻ります。</value>
+  </data>
+  <data name="UserGuideContextMenuAbout.Text" xml:space="preserve">
+    <value>バージョン情報</value>
+  </data>
+  <data name="UserGuideContextMenuAboutDesc.Text" xml:space="preserve">
+    <value>バージョン情報のページに遷移します。</value>
+  </data>
+  <data name="UserGuideContextMenuButton.Text" xml:space="preserve">
+    <value>メインページのコンテキストメニュー</value>
+  </data>
+  <data name="UserGuideContextMenuDelete.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="UserGuideContextMenuDeleteDesc.Text" xml:space="preserve">
+    <value>指定したサンドボックス構成アイテムをリストから削除します。</value>
+  </data>
+  <data name="UserGuideContextMenuDeleteNote.Text" xml:space="preserve">
+    <value>削除したアイテムは復元できませんので、ご注意ください。</value>
+  </data>
+  <data name="UserGuideContextMenuExport.Text" xml:space="preserve">
+    <value>ファイルへエクスポート</value>
+  </data>
+  <data name="UserGuideContextMenuExportDesc.Text" xml:space="preserve">
+    <value>指定したサンドボックス構成アイテムをファイルにエクスポートします。</value>
+  </data>
+  <data name="UserGuideContextMenuMoveDown.Text" xml:space="preserve">
+    <value>1つ下へ</value>
+  </data>
+  <data name="UserGuideContextMenuMoveDownDesc.Text" xml:space="preserve">
+    <value>指定したサンドボックス構成アイテムを1つ下に移動します。リストの末尾の場合、リストの先頭に移動します。</value>
+  </data>
+  <data name="UserGuideContextMenuMoveUp.Text" xml:space="preserve">
+    <value>1つ上へ</value>
+  </data>
+  <data name="UserGuideContextMenuMoveUpDesc.Text" xml:space="preserve">
+    <value>指定したサンドボックス構成アイテムを1つ上に移動します。リストの先頭の場合、リストの末尾に移動します。</value>
+  </data>
+  <data name="UserGuideContextMenuUserGuide.Text" xml:space="preserve">
+    <value>使い方ガイド</value>
+  </data>
+  <data name="UserGuideContextMenuUserGuideDesc.Text" xml:space="preserve">
+    <value>使い方ガイド（このページ）に遷移します。</value>
+  </data>
+  <data name="UserGuideEditLoginCommand.Text" xml:space="preserve">
+    <value>ログインコマンド</value>
+  </data>
+  <data name="UserGuideEditLoginCommandDesc.Text" xml:space="preserve">
+    <value>サンドボックスの起動時に実行するコマンドを入力します。</value>
+  </data>
+  <data name="UserGuideEditMappedFolder.Text" xml:space="preserve">
+    <value>マッピングフォルダー</value>
+  </data>
+  <data name="UserGuideEditMappedFolderAdd.Text" xml:space="preserve">
+    <value>マッピングフォルダーを追加</value>
+  </data>
+  <data name="UserGuideEditMappedFolderAddDesc.Text" xml:space="preserve">
+    <value>マッピングフォルダーを追加します。</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDelete.Text" xml:space="preserve">
+    <value>選択したマッピングフォルダーを削除</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDeleteDesc.Text" xml:space="preserve">
+    <value>選択したマッピングフォルダーを削除します。</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDesc.Text" xml:space="preserve">
+    <value>サンドボックスと共有するホスト上のフォルダーを指定します。指定したフォルダーはサンドボックス上のデスクトップにマップされます。</value>
+  </data>
+  <data name="UserGuideEditMappedFolderHost.Text" xml:space="preserve">
+    <value>ホストフォルダー</value>
+  </data>
+  <data name="UserGuideEditMappedFolderHostDesc.Text" xml:space="preserve">
+    <value>ホスト上のフォルダーの絶対パスを入力します。また、右隣の参照ボタンを押すと、フォルダー選択ダイアログが現れます。</value>
+  </data>
+  <data name="UserGuideEditMappedFolderNote.Text" xml:space="preserve">
+    <value>フォルダー名を重複させることはできません。（バリデーションチェックにて、重複フォルダー名がある場合、エラーとなります。）</value>
+  </data>
+  <data name="UserGuideEditMappedFolderReadOnly.Text" xml:space="preserve">
+    <value>読み取り専用</value>
+  </data>
+  <data name="UserGuideEditMappedFolderReadOnlyDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でそのマッピングフォルダーを読み取り専用にする場合、チェックボックスをオンにします。</value>
+  </data>
+  <data name="UserGuideEditNetworking.Text" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="UserGuideEditNetworkingDefaultDesc.Text" xml:space="preserve">
+    <value>ネットワークを有効にし、仮想NICを介してサンドボックスをネットワークに接続します。</value>
+  </data>
+  <data name="UserGuideEditNetworkingDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのネットワークの有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditNetworkingDisableDesc.Text" xml:space="preserve">
+    <value>ネットワークを無効にします。</value>
+  </data>
+  <data name="UserGuideEditPageSummary.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの新規作成や編集を行います。</value>
+  </data>
+  <data name="UserGuideEditPageTitle.Header" xml:space="preserve">
+    <value>構成アイテムの新規作成・編集ページ</value>
+  </data>
+  <data name="UserGuideEditSandboxConfiguration.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの編集</value>
+  </data>
+  <data name="UserGuideEditSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの編集ページに遷移します。</value>
+  </data>
+  <data name="UserGuideEditSandboxName.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="UserGuideEditSandboxNameDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの名前を入力します。この値は本アプリのみで使用します。</value>
+  </data>
+  <data name="UserGuideEditVGpu.Text" xml:space="preserve">
+    <value>仮想GPU</value>
+  </data>
+  <data name="UserGuideEditVGpuDefaultDesc.Text" xml:space="preserve">
+    <value>仮想GPUを有効にします。</value>
+  </data>
+  <data name="UserGuideEditVGpuDesc.Text" xml:space="preserve">
+    <value>サンドボックス上での仮想GPUの有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditVGpuDisableDesc.Text" xml:space="preserve">
+    <value>仮想GPUを無効にし、Windowsサンドボックスのソフトウェアレンダリングを使用します。</value>
+  </data>
+  <data name="UserGuideHowToLookIndicator.Text" xml:space="preserve">
+    <value>インジケーターの見方</value>
+  </data>
+  <data name="UserGuideImportSandboxConfiguration.Text" xml:space="preserve">
+    <value>サンドボックス構成ファイルをインポート</value>
+  </data>
+  <data name="UserGuideImportSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>ダイアログからサンドボックス構成ファイルを選択し、インポートします。</value>
+  </data>
+  <data name="UserGuideItemContextMenuButton.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムのコンテキストメニュー</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButton.Text" xml:space="preserve">
+    <value>サンドボックスを起動</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonDesc.Text" xml:space="preserve">
+    <value>指定したサンドボックス構成アイテムからWindowsサンドボックスを起動します。</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
+    <value>Windowsサンドボックスを起動するには、Windows 10 ProまたはEnterpriseのバージョン1903以降かつ、ハードウェアが対応している必要があります。また、あらかじめ「Windowsの機能の有効化または無効化」より、Windowsサンドボックスを有効にしておきます。</value>
+  </data>
+  <data name="UserGuideLoginCommandDisable.Text" xml:space="preserve">
+    <value>ログインコマンドは 無効 です</value>
+  </data>
+  <data name="UserGuideLoginCommandEnable.Text" xml:space="preserve">
+    <value>ログインコマンドは 有効 です</value>
+  </data>
+  <data name="UserGuideMainPageSummary.Text" xml:space="preserve">
+    <value>アプリを起動すると、メインページが表示されます。ページ左半分には、作成・インポート済みのサンドボックス構成アイテムのリストが、ページ右半分には、リストで選択したアイテムのプロパティを表示します。</value>
+  </data>
+  <data name="UserGuideMainPageTitle.Header" xml:space="preserve">
+    <value>メインページ</value>
+  </data>
+  <data name="UserGuideMappingFolderDisable.Text" xml:space="preserve">
+    <value>マッピングされているフォルダーはありません</value>
+  </data>
+  <data name="UserGuideMappingFolderEnable.Text" xml:space="preserve">
+    <value>1つ以上のフォルダーがマッピングされています</value>
+  </data>
+  <data name="UserGuideNetworkingDisable.Text" xml:space="preserve">
+    <value>ネットワークは 無効 です</value>
+  </data>
+  <data name="UserGuideNetworkingEnable.Text" xml:space="preserve">
+    <value>ネットワークは 有効 です</value>
+  </data>
+  <data name="UserGuideSandboxConfigrationListItem.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテム</value>
+  </data>
+  <data name="UserGuideSandboxConfigrationListItemDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの名前と構成情報のインジケーターを表示します。</value>
+  </data>
+  <data name="UserGuideSandboxConfigurationProperty.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムのプロパティ</value>
+  </data>
+  <data name="UserGuideSandboxConfigurationPropertyDesc.Text" xml:space="preserve">
+    <value>リストから選択しているサンドボックス構成アイテムのプロパティを表示します。</value>
+  </data>
+  <data name="UserGuideSandboxNameAutoSuggestionBox.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの名前検索ボックス</value>
+  </data>
+  <data name="UserGuideSandboxNameAutoSuggestionBoxDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成アイテムの名前でリストから検索します（前方一致）。サジェストリストより選択すると、対応するサンドボックス構成アイテムが選択されます。</value>
+  </data>
+  <data name="UserGuideSaveEditButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="UserGuideSaveEditButtonDesc.Text" xml:space="preserve">
+    <value>変更を保存して、メインページに戻ります。</value>
+  </data>
+  <data name="UserGuideSaveEditButtonNote.Text" xml:space="preserve">
+    <value>保存前にマッピングフォルダーのバリデーションチェックが実行されます。バリデーションエラーの場合、ダイアログが表示され、保存を中止します。</value>
+  </data>
   <data name="UserGuideTitle.Text" xml:space="preserve">
     <value>使い方ガイド</value>
+  </data>
+  <data name="UserGuideVGpuDisable.Text" xml:space="preserve">
+    <value>仮想GPUは 無効 です</value>
+  </data>
+  <data name="UserGuideVGpuEnable.Text" xml:space="preserve">
+    <value>仮想GPUは 有効 です</value>
   </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>仮想GPU</value>

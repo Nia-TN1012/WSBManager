@@ -14,8 +14,7 @@ namespace WSBManager.Models {
 	/// </summary>
 	public enum VGpu {
 		Default,
-		Disable,
-		Enable
+		Disable
 	}
 
 	/// <summary>
@@ -23,8 +22,7 @@ namespace WSBManager.Models {
 	/// </summary>
 	public enum Networking {
 		Default,
-		Disable,
-		Enable
+		Disable
 	}
 
 	/// <summary>

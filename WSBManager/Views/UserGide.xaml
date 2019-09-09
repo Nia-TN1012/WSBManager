@@ -1,12 +1,70 @@
 ﻿<Page
     x:Class="WSBManager.Views.UserGide"
+    x:Name="UserGuide1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WSBManager.Views"
+    xmlns:localcom="using:WSBManager.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <localcom:ThemeToImageSourceConverter x:Key="ThemeToImageSourceConverter"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="TableCellLikeGridStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Background" Value="{ThemeResource SystemBaseLowColor}"/>
+        </Style>
+
+        <Style x:Key="TableCellLikeBorderGridStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}"/>
+        </Style>
+
+        <Style x:Key="TableHeaderCellLikeGridStyle" TargetType="Grid" BasedOn="{StaticResource TableCellLikeGridStyle}">
+            <Setter Property="Background" Value="{ThemeResource SystemBaseMediumLowColor}"/>
+        </Style>
+
+        <Style x:Key="TableCellLikeTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="TableHeaderCellLikeTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TableCellLikeTextBlockStyle}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TableHeaderCellLikeNumTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TableHeaderCellLikeTextBlockStyle}">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style x:Key="TableHeaderNumCellLikeGridStyle" TargetType="Grid" BasedOn="{StaticResource TableCellLikeGridStyle}">
+            <Setter Property="Background" Value="LimeGreen"/>
+            <Setter Property="MinWidth" Value="30"/>
+        </Style>
+
+        <Style x:Key="TableHeaderCellLikeIconTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TableCellLikeTextBlockStyle}">
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style x:Key="NoteBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#64FFFF00"/>
+            <Setter Property="Background" Value="#48FFFF00"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +92,845 @@
                     Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
                     x:Uid="UserGuideTitle"/>
         </Grid>
-        
-        
+
+        <Pivot Grid.Row="1"
+               Margin="5">
+            <PivotItem Margin="5"
+                       x:Uid="UserGuideMainPageTitle">
+                <ScrollViewer>
+                    <StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Margin="5"
+                                       x:Uid="UserGuideMainPageSummary"/>
+                            <Image Margin="10"
+                                   Source="{Binding RequestedTheme, Converter={StaticResource ThemeToImageSourceConverter}, ConverterParameter=ms-appx:///Assets/UserGuide/MainPageGuide, ElementName=UserGuide1}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="5">
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="1"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE109;"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideAddSandboxConfiguration"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideAddSandboxConfigurationDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="2"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE8E5;"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideImportSandboxConfiguration"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideImportSandboxConfigurationDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="2" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="3"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE094;"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSandboxNameAutoSuggestionBox"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSandboxNameAutoSuggestionBoxDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="3" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="4"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE712;"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideContextMenuButton"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="3" Padding="1"
+									  Style="{StaticResource TableCellLikeBorderGridStyle}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE897;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuUserGuide"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuUserGuideDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE946;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuAbout"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuAboutDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid Grid.Row="4" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="5"/>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSandboxConfigrationListItem"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideSandboxConfigrationListItemDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseLowColor}"/>
+                                        <TextBlock x:Uid="UserGuideHowToLookIndicator"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Row="0" Grid.Column="0"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xE950;"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideVGpuEnable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="2"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xE950;"
+                                                           Opacity="0.3"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="3"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideVGpuDisable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            
+                                            <Grid Grid.Row="1" Grid.Column="0"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xEDA3;"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideNetworkingEnable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="2"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xEDA3;"
+                                                           Opacity="0.3"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="3"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideNetworkingDisable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="2" Grid.Column="0"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												               Text="&#xE8F7;"/>
+                                                    <TextBlock Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"
+												               Text="1~"/>
+                                                </StackPanel>
+                                                
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideMappingFolderEnable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="2"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <StackPanel Orientation="Horizontal" Opacity="0.3">
+                                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												               Text="&#xE8F7;"/>
+                                                    <TextBlock Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"
+												               Text="0"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid Grid.Row="2" Grid.Column="3"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideMappingFolderDisable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="3" Grid.Column="0"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xE756;"/>
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideLoginCommandEnable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="2"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												           Text="&#xE756;"
+                                                           Opacity="0.3"/>
+                                            </Grid>
+                                            <Grid Grid.Row="3" Grid.Column="3"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideLoginCommandDisable"
+                                                           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="5" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="6"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE102;"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideLaunchSandboxButton"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideLaunchSandboxButtonDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Border Margin="5" Padding="5"
+                                                Style="{StaticResource NoteBorderStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <FontIcon Grid.Column="0" Margin="5" 
+                                                          Glyph="&#xE7BA;"/>
+                                                <TextBlock Grid.Column="1" Margin="5"
+                                                           x:Uid="UserGuideLaunchSandboxButtonNote"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="6" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="7"/>
+                                </Grid>
+                                <Grid Grid.Row="6" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE712;"/>
+                                </Grid>
+                                <Grid Grid.Row="6" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideItemContextMenuButton"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="6" Grid.Column="3" Padding="1"
+									  Style="{StaticResource TableCellLikeBorderGridStyle}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE74A;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuMoveUp"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuMoveUpDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE74B;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuMoveDown"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuMoveDownDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE105;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuExport"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuExportDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE107;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuDelete"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <StackPanel>
+                                            <TextBlock x:Uid="UserGuideContextMenuDeleteDesc"
+												       Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            <Border Margin="5" Padding="5"
+                                                    Style="{StaticResource NoteBorderStyle}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <FontIcon Grid.Column="0" Margin="5" 
+                                                              Glyph="&#xE7BA;"/>
+                                                    <TextBlock Grid.Column="1" Margin="5"
+                                                               x:Uid="UserGuideContextMenuDeleteNote"/>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid Grid.Row="7" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="8"/>
+                                </Grid>
+                                <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSandboxConfigurationProperty"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="7" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSandboxConfigurationPropertyDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="8" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="9"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE104;"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditSandboxConfiguration"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditSandboxConfigurationDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <PivotItem Margin="5"
+                       x:Uid="UserGuideEditPageTitle">
+                <ScrollViewer>
+                    <StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Margin="5"
+                                       x:Uid="UserGuideEditPageSummary"/>
+                            <Image Margin="10"
+                                   Source="{Binding RequestedTheme, Converter={StaticResource ThemeToImageSourceConverter}, ConverterParameter=ms-appx:///Assets/UserGuide/EditPageGuide, ElementName=UserGuide1}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="5">
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="1"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE112;"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideBackToPageButton"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideBackToPageButtonDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="2"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE105;"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideSaveEditButton"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideSaveEditButtonDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Border Margin="5" Padding="5"
+                                                Style="{StaticResource NoteBorderStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <FontIcon Grid.Column="0" Margin="5" 
+                                                          Glyph="&#xE7BA;"/>
+                                                <TextBlock Grid.Column="1" Margin="5"
+                                                           x:Uid="UserGuideSaveEditButtonNote"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="2" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="3"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE977;"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditSandboxName"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditSandboxNameDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="3" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="4"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE950;"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditVGpu"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="3" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideEditVGpuDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <Grid Grid.Row="0" Grid.Column="0"
+										          Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Text="Default"
+												           Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditVGpuDefaultDesc"
+												           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1" Grid.Column="0"
+										          Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Text="Disable"
+												           Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditVGpuDisableDesc"
+												           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="4" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="5"/>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xEDA3;"/>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditNetworking"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="4" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideEditNetworkingDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Row="0" Grid.Column="0"
+										          Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Text="Default"
+											        	   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditNetworkingDefaultDesc"
+												           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1" Grid.Column="0"
+										          Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Text="Disable"
+											        	   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="1"
+										          Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditNetworkingDisableDesc"
+												           Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="5" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="6"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE8F7;"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditMappedFolder"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="5" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideEditMappedFolderDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Row="0" Grid.Column="0"
+									        	  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+									        			   Text="&#xE710;"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="1"
+									        	  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditMappedFolderAdd"
+									        			   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="0" Grid.Column="2"
+									        	  Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditMappedFolderAddDesc"
+										        		   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1" Grid.Column="0"
+									        	  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+									        			   Text="&#xE738;"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="1"
+									        	  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditMappedFolderDelete"
+									        			   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Grid.Column="2"
+									        	  Style="{StaticResource TableCellLikeGridStyle}">
+                                                <TextBlock x:Uid="UserGuideEditMappedFolderDeleteDesc"
+										        		   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="6" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="7"/>
+                                </Grid>
+                                <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditMappedFolderHost"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="6" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <StackPanel>
+                                        <TextBlock x:Uid="UserGuideEditMappedFolderHostDesc"
+                                                   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                        <Border Margin="5" Padding="5"
+                                                Style="{StaticResource NoteBorderStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <FontIcon Grid.Column="0" Margin="5" 
+                                                          Glyph="&#xE7BA;"/>
+                                                <TextBlock Grid.Column="1" Margin="5"
+                                                           x:Uid="UserGuideEditMappedFolderNote"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="7" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="8"/>
+                                </Grid>
+                                <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditMappedFolderReadOnly"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="7" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditMappedFolderReadOnlyDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+
+                                <Grid Grid.Row="8" Grid.Column="0" 
+                                      Style="{StaticResource TableHeaderNumCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeNumTextBlockStyle}"
+											   Text="9"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="1" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+											   Text="&#xE756;"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="2" 
+                                      Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditLoginCommand"
+                                               Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                </Grid>
+                                <Grid Grid.Row="8" Grid.Column="3"
+									  Style="{StaticResource TableCellLikeGridStyle}">
+                                    <TextBlock x:Uid="UserGuideEditLoginCommandDesc"
+                                               Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

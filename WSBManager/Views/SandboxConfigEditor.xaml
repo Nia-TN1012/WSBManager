@@ -130,7 +130,6 @@
                               SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource VGpuToListIndexConverter}, Mode=TwoWay}">
                         <ComboBoxItem Content="Default" />
                         <ComboBoxItem Content="Disable"/>
-                        <ComboBoxItem Content="Enable"/>
                     </ComboBox>
 
                     <!-- Network -->
@@ -146,7 +145,6 @@
                               SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
                         <ComboBoxItem Content="Default" />
                         <ComboBoxItem Content="Disable"/>
-                        <ComboBoxItem Content="Enable"/>
                     </ComboBox>
                 </Grid>
                 <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>

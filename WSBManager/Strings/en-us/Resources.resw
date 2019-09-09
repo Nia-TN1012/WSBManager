@@ -153,9 +153,6 @@
   <data name="CreateAtLabel.Text" xml:space="preserve">
     <value>Create at</value>
   </data>
-  <data name="DeleteButtonLabel.Header" xml:space="preserve">
-    <value>Delete</value>
-  </data>
   <data name="DeleteSandboxConfigMenuItem.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -232,7 +229,7 @@
     <value>Read Only</value>
   </data>
   <data name="RemoveSelectedMappedFolder.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Remove selected Mapped Folder</value>
+    <value>Delete selected Mapped Folder</value>
   </data>
   <data name="SandboxConfigEditorTitleEdit.Text" xml:space="preserve">
     <value>Edit Sandbox Configuration</value>
@@ -249,8 +246,221 @@
   <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="UserGuideAddSandboxConfiguration.Text" xml:space="preserve">
+    <value>Add Sandbox Configuration</value>
+  </data>
+  <data name="UserGuideAddSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>Navigates to the new creation page of the sandbox configuration item.</value>
+  </data>
+  <data name="UserGuideBackToPageButton.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="UserGuideBackToPageButtonDesc.Text" xml:space="preserve">
+    <value>Discards the changes and back to the main page.</value>
+  </data>
+  <data name="UserGuideContextMenuAbout.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="UserGuideContextMenuAboutDesc.Text" xml:space="preserve">
+    <value>Navigates to the About page.</value>
+  </data>
+  <data name="UserGuideContextMenuButton.Text" xml:space="preserve">
+    <value>Main page context menu</value>
+  </data>
+  <data name="UserGuideContextMenuDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="UserGuideContextMenuDeleteDesc.Text" xml:space="preserve">
+    <value>Deletes the specified sandbox configuration item from the list.</value>
+  </data>
+  <data name="UserGuideContextMenuDeleteNote.Text" xml:space="preserve">
+    <value>Please note that deleted items cannot be restored.</value>
+  </data>
+  <data name="UserGuideContextMenuExport.Text" xml:space="preserve">
+    <value>Export to file</value>
+  </data>
+  <data name="UserGuideContextMenuExportDesc.Text" xml:space="preserve">
+    <value>Exports the specified sandbox configuration item to a file.</value>
+  </data>
+  <data name="UserGuideContextMenuMoveDown.Text" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="UserGuideContextMenuMoveDownDesc.Text" xml:space="preserve">
+    <value>Moves the specified sandbox configuration item down by one. If at the end of the list, move to the top of the list.</value>
+  </data>
+  <data name="UserGuideContextMenuMoveUp.Text" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="UserGuideContextMenuMoveUpDesc.Text" xml:space="preserve">
+    <value>Moves the specified sandbox configuration item up one level. If at the top of the list, go to the end of the list.</value>
+  </data>
+  <data name="UserGuideContextMenuUserGuide.Text" xml:space="preserve">
+    <value>User Guide</value>
+  </data>
+  <data name="UserGuideContextMenuUserGuideDesc.Text" xml:space="preserve">
+    <value>Navigates to the User Guide page (this page).</value>
+  </data>
+  <data name="UserGuideEditLoginCommand.Text" xml:space="preserve">
+    <value>Login Command</value>
+  </data>
+  <data name="UserGuideEditLoginCommandDesc.Text" xml:space="preserve">
+    <value>Enter the command to be executed when the sandbox starts.</value>
+  </data>
+  <data name="UserGuideEditMappedFolder.Text" xml:space="preserve">
+    <value>Mapped Folders</value>
+  </data>
+  <data name="UserGuideEditMappedFolderAdd.Text" xml:space="preserve">
+    <value>Add Mapped Folder</value>
+  </data>
+  <data name="UserGuideEditMappedFolderAddDesc.Text" xml:space="preserve">
+    <value>Adds Mapped Folder.</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDelete.Text" xml:space="preserve">
+    <value>Delete selected Mapped Folder</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDeleteDesc.Text" xml:space="preserve">
+    <value>Deletes selected Mapped Folder.</value>
+  </data>
+  <data name="UserGuideEditMappedFolderDesc.Text" xml:space="preserve">
+    <value>Specify a folder on the host to share with the sandbox. The specified folder is mapped to the desktop on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditMappedFolderHost.Text" xml:space="preserve">
+    <value>Host Folder</value>
+  </data>
+  <data name="UserGuideEditMappedFolderHostDesc.Text" xml:space="preserve">
+    <value>Enter the absolute path of the folder on the host. If you press the browse button on the right, the folder selection dialog will appear.</value>
+  </data>
+  <data name="UserGuideEditMappedFolderNote.Text" xml:space="preserve">
+    <value>Folder names cannot be duplicated. (If there is a duplicate folder name in the validation check, an error will occur.)</value>
+  </data>
+  <data name="UserGuideEditMappedFolderReadOnly.Text" xml:space="preserve">
+    <value>Read Only</value>
+  </data>
+  <data name="UserGuideEditMappedFolderReadOnlyDesc.Text" xml:space="preserve">
+    <value>To be read-only the mapped folder on the sandbox select the check box.</value>
+  </data>
+  <data name="UserGuideEditNetworking.Text" xml:space="preserve">
+    <value>Networking</value>
+  </data>
+  <data name="UserGuideEditNetworkingDefaultDesc.Text" xml:space="preserve">
+    <value>Enables the networking and connects the sandbox to the network through a virtual NIC.</value>
+  </data>
+  <data name="UserGuideEditNetworkingDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the networking on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditNetworkingDisableDesc.Text" xml:space="preserve">
+    <value>Disables the networking.</value>
+  </data>
+  <data name="UserGuideEditPageSummary.Text" xml:space="preserve">
+    <value>Creates new or edits sandbox configuration items.</value>
+  </data>
+  <data name="UserGuideEditPageTitle.Header" xml:space="preserve">
+    <value>New creation / edit page for configuration items</value>
+  </data>
+  <data name="UserGuideEditSandboxConfiguration.Text" xml:space="preserve">
+    <value>Edit Sandbox Configuration</value>
+  </data>
+  <data name="UserGuideEditSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>Navigates to the edit page of the sandbox configuration item.</value>
+  </data>
+  <data name="UserGuideEditSandboxName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UserGuideEditSandboxNameDesc.Text" xml:space="preserve">
+    <value>Enter the name of the sandbox configuration item. This value is used only by this application.</value>
+  </data>
+  <data name="UserGuideEditVGpu.Text" xml:space="preserve">
+    <value>vGPU</value>
+  </data>
+  <data name="UserGuideEditVGpuDefaultDesc.Text" xml:space="preserve">
+    <value>Enables the vGPU.</value>
+  </data>
+  <data name="UserGuideEditVGpuDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the vGPU on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditVGpuDisableDesc.Text" xml:space="preserve">
+    <value>Disables the vGPU and uses Windows sandbox software rendering.</value>
+  </data>
+  <data name="UserGuideHowToLookIndicator.Text" xml:space="preserve">
+    <value>How to read the indicator</value>
+  </data>
+  <data name="UserGuideImportSandboxConfiguration.Text" xml:space="preserve">
+    <value>Import Sandbox Configuration file</value>
+  </data>
+  <data name="UserGuideImportSandboxConfigurationDesc.Text" xml:space="preserve">
+    <value>Selects the sandbox configuration file from the dialog and imports it.</value>
+  </data>
+  <data name="UserGuideItemContextMenuButton.Text" xml:space="preserve">
+    <value>Sandbox configuration item context menu</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButton.Text" xml:space="preserve">
+    <value>Launch Sandbox</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonDesc.Text" xml:space="preserve">
+    <value>Launches the Windows sandbox from the specified sandbox configuration item.</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
+    <value>To launch the Windows sandbox, it requires Windows 10 Pro or Enterprise version 1903 or later and hardware support. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.</value>
+  </data>
+  <data name="UserGuideLoginCommandDisable.Text" xml:space="preserve">
+    <value>Login Command is disabled</value>
+  </data>
+  <data name="UserGuideLoginCommandEnable.Text" xml:space="preserve">
+    <value>Login Command is enabled</value>
+  </data>
+  <data name="UserGuideMainPageSummary.Text" xml:space="preserve">
+    <value>When you start the app, the main page is displayed. The left half of the page displays a list of created and imported sandbox configuration items, and the right half of the page displays the properties of the item selected in the list.</value>
+  </data>
+  <data name="UserGuideMainPageTitle.Header" xml:space="preserve">
+    <value>Main page</value>
+  </data>
+  <data name="UserGuideMappingFolderDisable.Text" xml:space="preserve">
+    <value>There are no mapped folders</value>
+  </data>
+  <data name="UserGuideMappingFolderEnable.Text" xml:space="preserve">
+    <value>One or more folders are mapped</value>
+  </data>
+  <data name="UserGuideNetworkingDisable.Text" xml:space="preserve">
+    <value>Networking is disabled</value>
+  </data>
+  <data name="UserGuideNetworkingEnable.Text" xml:space="preserve">
+    <value>Networking is enabled</value>
+  </data>
+  <data name="UserGuideSandboxConfigrationListItem.Text" xml:space="preserve">
+    <value>Sandbox configuration item</value>
+  </data>
+  <data name="UserGuideSandboxConfigrationListItemDesc.Text" xml:space="preserve">
+    <value>Displays sandbox configuration item names and configuration information indicators.</value>
+  </data>
+  <data name="UserGuideSandboxConfigurationProperty.Text" xml:space="preserve">
+    <value>Sandbox configuration item properties</value>
+  </data>
+  <data name="UserGuideSandboxConfigurationPropertyDesc.Text" xml:space="preserve">
+    <value>Displays the properties of the sandbox configuration item selected from the list.</value>
+  </data>
+  <data name="UserGuideSandboxNameAutoSuggestionBox.Text" xml:space="preserve">
+    <value>Sandbox configuration item name search box</value>
+  </data>
+  <data name="UserGuideSandboxNameAutoSuggestionBoxDesc.Text" xml:space="preserve">
+    <value>Searches from the list by the name of the sandbox configuration item (forward match). Selecting from the suggestion list selects the corresponding sandbox configuration item.</value>
+  </data>
+  <data name="UserGuideSaveEditButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="UserGuideSaveEditButtonDesc.Text" xml:space="preserve">
+    <value>Saves the changes and back to the main page.</value>
+  </data>
+  <data name="UserGuideSaveEditButtonNote.Text" xml:space="preserve">
+    <value>The mapping folders is validated before saving. If there is a validation error, a dialog is displayed and saving is stopped.</value>
+  </data>
   <data name="UserGuideTitle.Text" xml:space="preserve">
     <value>User Guide</value>
+  </data>
+  <data name="UserGuideVGpuDisable.Text" xml:space="preserve">
+    <value>vGPU is disabled</value>
+  </data>
+  <data name="UserGuideVGpuEnable.Text" xml:space="preserve">
+    <value>vGPU is enabled</value>
   </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>vGPU</value>

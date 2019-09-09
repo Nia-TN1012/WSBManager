@@ -123,6 +123,7 @@
     <Compile Include="Common\BoolToVisibilityConverter.cs" />
     <Compile Include="Common\EnumToListIndexConverter.cs" />
     <Compile Include="Common\SelectedIndexToVisibilityConverter.cs" />
+    <Compile Include="Common\ThemeToImageSourceConverter.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\ValueToStringFormatConverter.cs" />
     <Compile Include="Models\WSBManagerModel.cs" />
@@ -192,6 +193,9 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\UserGuide\ja-jp\EditPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\ja-jp\MainPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\ja-jp\MainPageGuide_Light.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
@@ -244,6 +248,7 @@
   <ItemGroup>
     <PRIResource Include="Strings\ja-jp\Resources.resw" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
