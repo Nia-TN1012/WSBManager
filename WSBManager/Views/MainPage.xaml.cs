@@ -190,5 +190,14 @@ namespace WSBManager.Views {
 		private void ToAboutMenuItem_Click( object sender, RoutedEventArgs e ) {
 			this.Frame.Navigate( typeof( About ) );
 		}
+
+		/// <summary>
+		/// Invoked when pressed the User Guide button.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MenuFlyoutItem_Click( object sender, RoutedEventArgs e ) {
+			this.Frame.Navigate( typeof( UserGide ) );
+		}
 	}
 }

@@ -249,6 +249,9 @@
   <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="UserGuideTitle.Text" xml:space="preserve">
+    <value>User Guide</value>
+  </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>vGPU</value>
   </data>

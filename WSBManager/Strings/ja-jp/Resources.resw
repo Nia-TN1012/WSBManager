@@ -249,6 +249,9 @@
   <data name="SaveSandboxConfig.ToolTipService.ToolTip" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="UserGuideTitle.Text" xml:space="preserve">
+    <value>使い方ガイド</value>
+  </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>仮想GPU</value>
   </data>
