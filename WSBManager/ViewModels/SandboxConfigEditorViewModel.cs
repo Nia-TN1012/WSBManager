@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using WSBManager.Models;
-using System.Windows.Input;
-using System.Collections.ObjectModel;
-using Windows.Storage;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
+using Windows.ApplicationModel.Resources;
+
+using WSBManager.Models;
 
 namespace WSBManager.ViewModels {
 
@@ -19,6 +17,11 @@ namespace WSBManager.ViewModels {
 	}
 
 	class SandboxConfigEditorViewModel : INotifyPropertyChanged {
+		/// <summary>
+		/// Resource loader
+		/// </summary>
+		private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
+
 		private readonly WSBManagerModel model;
 
 		private readonly int selectedIndex;
@@ -41,7 +44,7 @@ namespace WSBManager.ViewModels {
 			this.selectedIndex = selectedIndex;
 			IsNew = selectedIndex <= -1;
 			if( IsNew ) {
-				EditingItem = new WSBConfigManagerModel { Name = "New Sandbox" };
+				EditingItem = new WSBConfigManagerModel { Name = resourceLoader.GetString( "NewSandboxName" ) };
 			}
 			else {
 				EditingItem = new WSBConfigManagerModel( model.WSBConfigCollection[selectedIndex] );

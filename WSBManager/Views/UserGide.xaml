@@ -363,7 +363,7 @@
                                             </Grid>
                                             <Grid Grid.Row="3" Grid.Column="1"
 										          Style="{StaticResource TableCellLikeGridStyle}">
-                                                <TextBlock x:Uid="UserGuideLoginCommandEnable"
+                                                <TextBlock x:Uid="UserGuideLogonCommandEnable"
                                                            Style="{StaticResource TableCellLikeTextBlockStyle}"/>
                                             </Grid>
                                             <Grid Grid.Row="3" Grid.Column="2"
@@ -374,7 +374,7 @@
                                             </Grid>
                                             <Grid Grid.Row="3" Grid.Column="3"
 										          Style="{StaticResource TableCellLikeGridStyle}">
-                                                <TextBlock x:Uid="UserGuideLoginCommandDisable"
+                                                <TextBlock x:Uid="UserGuideLogonCommandDisable"
                                                            Style="{StaticResource TableCellLikeTextBlockStyle}"/>
                                             </Grid>
                                         </Grid>
@@ -918,12 +918,12 @@
                                 </Grid>
                                 <Grid Grid.Row="8" Grid.Column="2" 
                                       Style="{StaticResource TableHeaderCellLikeGridStyle}">
-                                    <TextBlock x:Uid="UserGuideEditLoginCommand"
+                                    <TextBlock x:Uid="UserGuideEditLogonCommand"
                                                Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
                                 </Grid>
                                 <Grid Grid.Row="8" Grid.Column="3"
 									  Style="{StaticResource TableCellLikeGridStyle}">
-                                    <TextBlock x:Uid="UserGuideEditLoginCommandDesc"
+                                    <TextBlock x:Uid="UserGuideEditLogonCommandDesc"
                                                Style="{StaticResource TableCellLikeTextBlockStyle}"/>
                                 </Grid>
                             </Grid>

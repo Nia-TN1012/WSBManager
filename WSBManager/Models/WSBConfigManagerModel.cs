@@ -51,9 +51,9 @@ namespace WSBManager.Models {
 		public bool IsMappedFolderEnabled => MappedFolders.Count > 0;
 
 		/// <summary>
-		/// Enable or disable the Login Command.
+		/// Enable or disable the Logon Command.
 		/// </summary>
-		public bool IsLoginCommandEnabled => !string.IsNullOrEmpty( LoginCommand?.Command );
+		public bool IsLogonCommandEnabled => !string.IsNullOrEmpty( LogonCommand?.Command );
 
 		/// <summary>
 		/// Constructor
@@ -133,9 +133,9 @@ namespace WSBManager.Models {
 					wsbConfigManagerModel.MappedFolders.Add( mf );
 				}
 			}
-			// Login Command
-			if( xElement.Element( nameof( LoginCommand ) )?.Element( nameof( wsbConfigManagerModel.LoginCommand.Command ) ) is XElement xCommand ) {
-				wsbConfigManagerModel.LoginCommand.Command = xCommand.Value;
+			// Logon Command
+			if( xElement.Element( nameof( LogonCommand ) )?.Element( nameof( wsbConfigManagerModel.LogonCommand.Command ) ) is XElement xCommand ) {
+				wsbConfigManagerModel.LogonCommand.Command = xCommand.Value;
 			}
 
 			return wsbConfigManagerModel;
@@ -186,9 +186,9 @@ namespace WSBManager.Models {
 						)
 					)
 				),
-				// Login Command
-				new XElement( nameof( LoginCommand ),
-					new XElement( nameof( LoginCommand.Command ), LoginCommand.Command )
+				// Logon Command
+				new XElement( nameof( LogonCommand ),
+					new XElement( nameof( LogonCommand.Command ), LogonCommand.Command )
 				)
 			);
 		}

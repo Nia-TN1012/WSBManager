@@ -97,7 +97,7 @@
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                           Glyph="&#xE756;"
-                                          Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                                          Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -193,7 +193,7 @@
                         <Grid Style="{StaticResource SandboxConfigIconPanel}">
                             <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                       Glyph="&#xE756;"
-                                      Opacity="{Binding IsLoginCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                                      Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -450,7 +450,7 @@
                             </ctrl:DataGrid>
                             <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
-                            <!-- Login Command -->
+                            <!-- Logon Command -->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -462,12 +462,12 @@
                                 <TextBlock Grid.Column="1"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           x:Uid="LoginCommandLabel"/>
+                                           x:Uid="LogonCommandLabel"/>
                             </Grid>
                             <TextBox Margin="5"
                                      IsReadOnly="True"
                                      HorizontalAlignment="Stretch"
-                                     Text="{Binding SelectedItem.LoginCommand.Command, ElementName=SandboxListView}"/>
+                                     Text="{Binding SelectedItem.LogonCommand.Command, ElementName=SandboxListView}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

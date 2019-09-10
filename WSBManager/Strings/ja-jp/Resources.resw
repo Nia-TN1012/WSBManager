@@ -207,8 +207,8 @@
   <data name="LaunchSandboxButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>サンドボックスを起動</value>
   </data>
-  <data name="LoginCommandLabel.Text" xml:space="preserve">
-    <value>ログインコマンド</value>
+  <data name="LogonCommandLabel.Text" xml:space="preserve">
+    <value>ログオンコマンド</value>
   </data>
   <data name="MappedFoldersLabel.Text" xml:space="preserve">
     <value>マッピングフォルダー</value>
@@ -224,6 +224,9 @@
   </data>
   <data name="NetworkingLabel.Text" xml:space="preserve">
     <value>ネットワーク</value>
+  </data>
+  <data name="NewSandboxName" xml:space="preserve">
+    <value>新しいサンドボックス</value>
   </data>
   <data name="ReadOnlyLabel.Header" xml:space="preserve">
     <value>読み取り専用</value>
@@ -300,10 +303,10 @@
   <data name="UserGuideContextMenuUserGuideDesc.Text" xml:space="preserve">
     <value>使い方ガイド（このページ）に遷移します。</value>
   </data>
-  <data name="UserGuideEditLoginCommand.Text" xml:space="preserve">
-    <value>ログインコマンド</value>
+  <data name="UserGuideEditLogonCommand.Text" xml:space="preserve">
+    <value>ログオンコマンド</value>
   </data>
-  <data name="UserGuideEditLoginCommandDesc.Text" xml:space="preserve">
+  <data name="UserGuideEditLogonCommandDesc.Text" xml:space="preserve">
     <value>サンドボックスの起動時に実行するコマンドを入力します。</value>
   </data>
   <data name="UserGuideEditMappedFolder.Text" xml:space="preserve">
@@ -402,11 +405,11 @@
   <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
     <value>Windowsサンドボックスを起動するには、Windows 10 ProまたはEnterpriseのバージョン1903以降かつ、ハードウェアが対応している必要があります。また、あらかじめ「Windowsの機能の有効化または無効化」より、Windowsサンドボックスを有効にしておきます。</value>
   </data>
-  <data name="UserGuideLoginCommandDisable.Text" xml:space="preserve">
-    <value>ログインコマンドは 無効 です</value>
+  <data name="UserGuideLogonCommandDisable.Text" xml:space="preserve">
+    <value>ログオンコマンドは 無効 です</value>
   </data>
-  <data name="UserGuideLoginCommandEnable.Text" xml:space="preserve">
-    <value>ログインコマンドは 有効 です</value>
+  <data name="UserGuideLogonCommandEnable.Text" xml:space="preserve">
+    <value>ログオンコマンドは 有効 です</value>
   </data>
   <data name="UserGuideMainPageSummary.Text" xml:space="preserve">
     <value>アプリを起動すると、メインページが表示されます。ページ左半分には、作成・インポート済みのサンドボックス構成アイテムのリストが、ページ右半分には、リストで選択したアイテムのプロパティを表示します。</value>

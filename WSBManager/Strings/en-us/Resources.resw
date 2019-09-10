@@ -207,8 +207,8 @@
   <data name="LaunchSandboxButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Launch Sandbox</value>
   </data>
-  <data name="LoginCommandLabel.Text" xml:space="preserve">
-    <value>Login Command</value>
+  <data name="LogonCommandLabel.Text" xml:space="preserve">
+    <value>Logon Command</value>
   </data>
   <data name="MappedFoldersLabel.Text" xml:space="preserve">
     <value>Mapped Folders</value>
@@ -224,6 +224,9 @@
   </data>
   <data name="NetworkingLabel.Text" xml:space="preserve">
     <value>Networking</value>
+  </data>
+  <data name="NewSandboxName" xml:space="preserve">
+    <value>New Sandbox</value>
   </data>
   <data name="ReadOnlyLabel.Header" xml:space="preserve">
     <value>Read Only</value>
@@ -300,10 +303,10 @@
   <data name="UserGuideContextMenuUserGuideDesc.Text" xml:space="preserve">
     <value>Navigates to the User Guide page (this page).</value>
   </data>
-  <data name="UserGuideEditLoginCommand.Text" xml:space="preserve">
-    <value>Login Command</value>
+  <data name="UserGuideEditLogonCommand.Text" xml:space="preserve">
+    <value>Logon Command</value>
   </data>
-  <data name="UserGuideEditLoginCommandDesc.Text" xml:space="preserve">
+  <data name="UserGuideEditLogonCommandDesc.Text" xml:space="preserve">
     <value>Enter the command to be executed when the sandbox starts.</value>
   </data>
   <data name="UserGuideEditMappedFolder.Text" xml:space="preserve">
@@ -402,11 +405,11 @@
   <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
     <value>To launch the Windows sandbox, it requires Windows 10 Pro or Enterprise version 1903 or later and hardware support. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.</value>
   </data>
-  <data name="UserGuideLoginCommandDisable.Text" xml:space="preserve">
-    <value>Login Command is disabled</value>
+  <data name="UserGuideLogonCommandDisable.Text" xml:space="preserve">
+    <value>Logon Command is disabled</value>
   </data>
-  <data name="UserGuideLoginCommandEnable.Text" xml:space="preserve">
-    <value>Login Command is enabled</value>
+  <data name="UserGuideLogonCommandEnable.Text" xml:space="preserve">
+    <value>Logon Command is enabled</value>
   </data>
   <data name="UserGuideMainPageSummary.Text" xml:space="preserve">
     <value>When you start the app, the main page is displayed. The left half of the page displays a list of created and imported sandbox configuration items, and the right half of the page displays the properties of the item selected in the list.</value>

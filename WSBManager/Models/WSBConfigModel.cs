@@ -43,9 +43,9 @@ namespace WSBManager.Models {
 	}
 
 	/// <summary>
-	/// A login command which will be invoked automatically after the container logs on.
+	/// A logon command which will be invoked automatically after the container logs on.
 	/// </summary>
-	public class LoginCommand {
+	public class LogonCommand {
 		/// <summary>
 		/// A command.
 		/// </summary>
@@ -54,14 +54,14 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LoginCommand() {}
+		public LogonCommand() {}
 
 		/// <summary>
-		/// Creates a new instance of the <see cref="LoginCommand"/> class from an existing instance.
+		/// Creates a new instance of the <see cref="LogonCommand"/> class from an existing instance.
 		/// </summary>
-		/// <param name="loginCommand">A existing instance of the <see cref="LoginCommand"/> class</param>
-		public LoginCommand( LoginCommand loginCommand ) {
-			Command = loginCommand.Command;
+		/// <param name="logonCommand">A existing instance of the <see cref="LogonCommand"/> class</param>
+		public LogonCommand( LogonCommand logonCommand ) {
+			Command = logonCommand.Command;
 		}
 	}
 
@@ -93,9 +93,9 @@ namespace WSBManager.Models {
 		public List<MappedFolder> MappedFolders { get; set; } = new List<MappedFolder>();
 
 		/// <summary>
-		/// A login command which will be invoked automatically after the container logs on.
+		/// A logon command which will be invoked automatically after the container logs on.
 		/// </summary>
-		public LoginCommand LoginCommand { get; set; } = new LoginCommand();
+		public LogonCommand LogonCommand { get; set; } = new LogonCommand();
 
 		#endregion
 
@@ -117,7 +117,7 @@ namespace WSBManager.Models {
 			VGpu = wSBConfigModel.VGpu;
 			Networking = wSBConfigModel.Networking;
 			MappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
-			LoginCommand = new LoginCommand( wSBConfigModel.LoginCommand );
+			LogonCommand = new LogonCommand( wSBConfigModel.LogonCommand );
 		}
 
 		/// <summary>
@@ -163,9 +163,9 @@ namespace WSBManager.Models {
 					wsbConfigModel.MappedFolders.Add( mf );
 				}
 			}
-			// Login Command
-			if( xElement.Element( nameof( LoginCommand ) )?.Element( nameof( wsbConfigModel.LoginCommand.Command ) ) is XElement xCommand ) {
-				wsbConfigModel.LoginCommand.Command = xCommand.Value;
+			// Logon Command
+			if( xElement.Element( nameof( LogonCommand ) )?.Element( nameof( wsbConfigModel.LogonCommand.Command ) ) is XElement xCommand ) {
+				wsbConfigModel.LogonCommand.Command = xCommand.Value;
 			}
 
 			return wsbConfigModel;
@@ -204,9 +204,9 @@ namespace WSBManager.Models {
 						)
 					)
 				),
-				// Login Command
-				new XElement( nameof( LoginCommand ),
-					new XElement( nameof( LoginCommand.Command ), LoginCommand.Command )
+				// Logon Command
+				new XElement( nameof( LogonCommand ),
+					new XElement( nameof( LogonCommand.Command ), LogonCommand.Command )
 				)
 			);
 

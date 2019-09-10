@@ -198,16 +198,16 @@
                 </StackPanel>
                 <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
-                <!-- Login Command -->
+                <!-- Logon Command -->
                 <StackPanel Margin="5">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                   Glyph="&#xE756;"/>
                         <TextBlock Margin="5"
-                                   x:Uid="LoginCommandLabel"/>
+                                   x:Uid="LogonCommandLabel"/>
                     </StackPanel>
                     <TextBox Margin="5"
-                             Text="{Binding EditingItem.LoginCommand.Command, Mode=TwoWay}"/>
+                             Text="{Binding EditingItem.LogonCommand.Command, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
