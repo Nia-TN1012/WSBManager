@@ -19,17 +19,17 @@
 
         <Style x:Key="TableCellLikeGridStyle" TargetType="Grid">
             <Setter Property="Margin" Value="1"/>
-            <Setter Property="Background" Value="{ThemeResource SystemBaseLowColor}"/>
+            <Setter Property="Background" Value="{ThemeResource SystemListLowColor}"/>
         </Style>
 
         <Style x:Key="TableCellLikeBorderGridStyle" TargetType="Grid">
             <Setter Property="Margin" Value="1"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource SystemBaseLowColor}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemListLowColor}"/>
         </Style>
 
         <Style x:Key="TableHeaderCellLikeGridStyle" TargetType="Grid" BasedOn="{StaticResource TableCellLikeGridStyle}">
-            <Setter Property="Background" Value="{ThemeResource SystemBaseMediumLowColor}"/>
+            <Setter Property="Background" Value="{ThemeResource SystemListMediumColor}"/>
         </Style>
 
         <Style x:Key="TableCellLikeTextBlockStyle" TargetType="TextBlock">
@@ -45,6 +45,7 @@
 
         <Style x:Key="TableHeaderCellLikeNumTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TableHeaderCellLikeTextBlockStyle}">
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style x:Key="TableHeaderNumCellLikeGridStyle" TargetType="Grid" BasedOn="{StaticResource TableCellLikeGridStyle}">

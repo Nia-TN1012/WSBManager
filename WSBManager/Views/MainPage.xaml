@@ -22,6 +22,8 @@
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
 
+        <x:String x:Key="DateFormat">{0:yyyy/MM/dd HH:mm:ss zzz}</x:String>
+
         <ItemsPanelTemplate x:Key="SandboxListItemPanelTemplate">
             <ItemsStackPanel Orientation="Vertical"
 							 HorizontalAlignment="Stretch"/>
@@ -357,7 +359,7 @@
                                 <TextBlock Grid.Row="0" Grid.Column="2"
                                        Margin="5"
                                        VerticalAlignment="Center"
-                                       Text="{Binding SelectedItem.CreatedAt, ElementName=SandboxListView}"/>
+                                       Text="{Binding SelectedItem.CreatedAt, Converter={StaticResource ValueToStringFormatConverter}, ConverterParameter={StaticResource DateFormat}, ElementName=SandboxListView}"/>
                                 <!-- Last launched at -->
                                 <FontIcon Grid.Row="1" Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
@@ -369,7 +371,7 @@
                                 <TextBlock Grid.Row="1" Grid.Column="2"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="{Binding SelectedItem.LastLaunchedAt, ElementName=SandboxListView}"/>
+                                           Text="{Binding SelectedItem.LastLaunchedAt, Converter={StaticResource ValueToStringFormatConverter}, ConverterParameter={StaticResource DateFormat}, ElementName=SandboxListView}"/>
                             </Grid>
                             <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
                             

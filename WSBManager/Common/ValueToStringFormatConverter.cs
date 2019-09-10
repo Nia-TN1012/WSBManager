@@ -19,7 +19,7 @@ namespace WSBManager.Common {
 		/// <returns>String that has been converted by the format and culture information</returns>
 		public object Convert( object value, Type targetType, object parameter, string language ) {
 			// Using Format and Culture infomation
-			if( parameter is string && language != null ) {
+			if( parameter is string && !string.IsNullOrEmpty( language ) ) {
 				return string.Format( new CultureInfo( language ), ( string )parameter, value );
 			}
 			// Using Format only
