@@ -12,30 +12,61 @@ using WSBManager.Models;
 
 namespace WSBManager.ViewModels {
 
+	/// <summary>
+	/// A validation result
+	/// </summary>
 	public enum MappedFolderValidateResult {
 		OK, HostFolderPathInvalid, HostFolderNameDuplicated
 	}
 
+	/// <summary>
+	/// Sandbox configuration editor view model
+	/// </summary>
 	class SandboxConfigEditorViewModel : INotifyPropertyChanged {
 		/// <summary>
 		/// Resource loader
 		/// </summary>
 		private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
 
+		/// <summary>
+		/// Model
+		/// </summary>
 		private readonly WSBManagerModel model;
 
+		/// <summary>
+		/// Selected item in the Main page's list.
+		/// </summary>
 		private readonly int selectedIndex;
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public WSBConfigManagerModel EditingItem { get; private set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public ObservableCollection<MappedFolder> EditingMappedFolders { get; private set; } = new ObservableCollection<MappedFolder>();
 
+		/// <summary>
+		/// Whether the configuration item being edited is newly created
+		/// </summary>
 		public bool IsNew { get; private set; }
 
+		/// <summary>
+		/// Whether to display the title 'new creation'
+		/// </summary>
 		public bool IsNewTitleVisible => IsNew;
 
+		/// <summary>
+		/// Whether to display the title 'editing'
+		/// </summary>
 		public bool IsEditTitleVisible => !IsNew;
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="selectedIndex">Index of the configuration item to edit (if -1, new creattion)</param>
 		public SandboxConfigEditorViewModel( int selectedIndex = -1 ) {
 			model = ( App.Current as App )?.Model;
 			if( model == null ) {
@@ -56,6 +87,9 @@ namespace WSBManager.ViewModels {
 			model.PropertyChanged += ( sender, e ) => PropertyChanged?.Invoke( sender, e );
 		}
 
+		/// <summary>
+		/// Regular expression for host folder validation check
+		/// </summary>
 		private static readonly Regex hostFolderReg = new Regex( "^[A-Za-z]:" );
 
 		public ( MappedFolderValidateResult result, string[] validateFailedHostFolders ) Validate() {
@@ -72,6 +106,9 @@ namespace WSBManager.ViewModels {
 			return ( MappedFolderValidateResult.OK, null );
 		}
 
+		/// <summary>
+		/// Reflects the edited contents in the list.
+		/// </summary>
 		public void Save() {
 			EditingItem.MappedFolders.Clear();
 			EditingItem.MappedFolders.AddRange( EditingMappedFolders );
@@ -96,17 +133,33 @@ namespace WSBManager.ViewModels {
 			PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 
 		private ICommand addMappedFolder;
+		/// <summary>
+		/// Add mapped folder <see cref="ICommand"/> object.
+		/// </summary>
 		public ICommand AddMappedFolder =>
 			addMappedFolder ?? ( addMappedFolder = new AddMappedFolderCommand( this ) );
 
 		private ICommand removeMappedFolder;
+		/// <summary>
+		/// Remove mapped folder <see cref="ICommand"/> object.
+		/// </summary>
 		public ICommand RemoveMappedFolder =>
 			removeMappedFolder ?? ( removeMappedFolder = new RemoveMappedFolderCommand( this ) );
 
+		/// <summary>
+		/// Add mapped folder command
+		/// </summary>
 		private class AddMappedFolderCommand : ICommand {
 			
+			/// <summary>
+			/// View model referenece
+			/// </summary>
 			private readonly SandboxConfigEditorViewModel viewModel;
 			
+			/// <summary>
+			/// Constructor
+			/// </summary>
+			/// <param name="_viewModel">View model</param>
 			internal AddMappedFolderCommand( SandboxConfigEditorViewModel _viewModel ) {
 				viewModel = _viewModel;
 				viewModel.PropertyChanged += ( sender, e ) => CanExecuteChanged?.Invoke( sender, e );
@@ -121,6 +174,9 @@ namespace WSBManager.ViewModels {
 			}
 		}
 
+		/// <summary>
+		/// Remove mapped folder command
+		/// </summary>
 		private class RemoveMappedFolderCommand : ICommand {
 
 			private readonly SandboxConfigEditorViewModel viewModel;
