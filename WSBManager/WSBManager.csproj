@@ -193,9 +193,22 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\UserGuide\en-us\EditPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\en-us\EditPageGuide_Light.png" />
+    <Content Include="Assets\UserGuide\en-us\MainPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\en-us\MainPageGuide_Light.png" />
+    <Content Include="Assets\UserGuide\en\EditPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\en\EditPageGuide_Light.png" />
+    <Content Include="Assets\UserGuide\en\MainPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\en\MainPageGuide_Light.png" />
     <Content Include="Assets\UserGuide\ja-jp\EditPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\ja-jp\EditPageGuide_Light.png" />
     <Content Include="Assets\UserGuide\ja-jp\MainPageGuide_Dark.png" />
     <Content Include="Assets\UserGuide\ja-jp\MainPageGuide_Light.png" />
+    <Content Include="Assets\UserGuide\ja\EditPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\ja\EditPageGuide_Light.png" />
+    <Content Include="Assets\UserGuide\ja\MainPageGuide_Dark.png" />
+    <Content Include="Assets\UserGuide\ja\MainPageGuide_Light.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
@@ -248,7 +261,12 @@
   <ItemGroup>
     <PRIResource Include="Strings\ja-jp\Resources.resw" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PRIResource Include="Strings\ja\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en\Resources.resw" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
