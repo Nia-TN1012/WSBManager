@@ -210,6 +210,9 @@
   <data name="LogonCommandLabel.Text" xml:space="preserve">
     <value>ログオンコマンド</value>
   </data>
+  <data name="ManifestAppName" xml:space="preserve">
+    <value>WSBマネージャー</value>
+  </data>
   <data name="MappedFoldersLabel.Text" xml:space="preserve">
     <value>マッピングフォルダー</value>
   </data>
