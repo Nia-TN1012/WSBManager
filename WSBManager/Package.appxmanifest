@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="2fa75a77-f58c-489b-abee-eb29e34bb125"
-    Publisher="CN=Nia-TN1012"
-    Version="1.0.0.0" />
+    Name="30069NiaTomonaka.WSBManager"
+    Publisher="CN=A5B1B624-0B64-44B9-9815-39BE22557436"
+    Version="0.9.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="2fa75a77-f58c-489b-abee-eb29e34bb125" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="4b475e97-6e9f-4401-9fa8-b54fad5dc11b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>WSBManager</DisplayName>
-    <PublisherDisplayName>Nia-TN1012</PublisherDisplayName>
+    <DisplayName>WSB Manager</DisplayName>
+    <PublisherDisplayName>Nia Tomonaka</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
