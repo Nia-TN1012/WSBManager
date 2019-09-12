@@ -3,16 +3,19 @@ WSBマネージャー　プライバシーポリシー
 WSB Manager Privacy policy
 ************************************
 
-WSBマネージャーは、サンドボックスの構成ファイル（wsbファイル）のインポート及び
-サンドボックスの構成アイテムをファイルにエクスポートする際に、
-デバイスのストレージ内のファイルにアクセスします。
+WSBマネージャーは、以下の目的でデバイスのフォルダーとファイルにアクセスします。
+1. サンドボックスの構成ファイル（wsbファイル）のインポートする
+2. サンドボックスの構成アイテムをファイルにエクスポートする
+3. サンドボックスの構成アイテム編集ページにて、フォルダー選択ダイアログを使ってマッピングフォルダーのホストフォルダーを参照する
 
-ユーザーの個人情報およびプライバシーに関する情報を収集することはございません。
+なお、ユーザーの個人情報およびプライバシーに関する情報を収集することはございません。
 
 
-WSB Manager accesses files in the device storage
-when importing sandbox configuration files (wsb files) 
-and exporting sandbox configuration items to files.
+WSB Manager accesses device folders and files for the following purposes:
+1. Importing sandbox configuration files (wsb file) 
+2. Exporting sandbox configuration items to files
+3. Referring to the host folder of the mapping folder using the folder picker 
+   on the sandbox configuration item edit page.
 
 WSB Manager does not collect your personal information and privacy information.
 
