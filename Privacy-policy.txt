@@ -1,0 +1,23 @@
+************************************
+WSBマネージャー　プライバシーポリシー
+WSB Manager Privacy policy
+************************************
+
+WSBマネージャーは、サンドボックスの構成ファイル（wsbファイル）のインポート及び
+サンドボックスの構成アイテムをファイルにエクスポートする際に、
+デバイスのストレージ内のファイルにアクセスします。
+
+ユーザーの個人情報およびプライバシーに関する情報を収集することはございません。
+
+
+WSB Manager accesses files in the device storage
+when importing sandbox configuration files (wsb files) 
+and exporting sandbox configuration items to files.
+
+WSB Manager does not collect your personal information and privacy information.
+
+
+---------------------------------
+制定日 Enactment date : 2019/09/12
+Chronoir.net
+---------------------------------
