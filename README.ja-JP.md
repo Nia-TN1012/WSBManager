@@ -36,6 +36,11 @@ WSBマネージャーは、Windowsサンドボックスの構成ファイルの�
 > * このアプリは**x86またはx64アーキテクチャのWindows 10デスクトップに対応しています**。ARMアーキテクチャやWindows 10 Mobileなどには対応していません。
 > * このアプリからWindowsサンドボックスを起動させる場合、**Windows 10 ProまたはEnterprise バージョン1903以降かつ、ハードウェアがサポートされている**必要があります。また、あらかじめ「Windowsの機能の有効化または無効化」よりWindowsサンドボックスを有効にしておきます。
 
+アプリは、Windowsストアよりダウンロードすることができます。
+
+* [ストアページ](https://www.microsoft.com/store/apps/9P09B9DSPB95)
+* [Microsoft Storeアプリ](ms-windows-store://pdp/?productid=9P09B9DSPB95)
+
 # 使い方
 
 ## メインページ

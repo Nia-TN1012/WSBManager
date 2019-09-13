@@ -36,6 +36,11 @@ WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 > * This application is compatible with **Windows 10 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
 > * To launch the Windows sandbox, it requires **Windows 10 Pro or Enterprise version 1903 or later and  hardware support**. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.
 
+The application can be downloaded from the Windows store.
+
+* [Store page](https://www.microsoft.com/store/apps/9P09B9DSPB95)
+* [Microsoft Store App](ms-windows-store://pdp/?productid=9P09B9DSPB95)
+
 # How to use
 
 ## Main page
