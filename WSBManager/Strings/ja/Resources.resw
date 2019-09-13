@@ -415,7 +415,7 @@
     <value>ログオンコマンドは 有効 です</value>
   </data>
   <data name="UserGuideMainPageSummary.Text" xml:space="preserve">
-    <value>アプリを起動すると、メインページが表示されます。ページ左半分には、作成・インポート済みのサンドボックス構成アイテムのリストが、ページ右半分には、リストで選択したアイテムのプロパティを表示します。</value>
+    <value>アプリを起動すると、メインページが表示されます。ページ左半分には、作成・インポート済みのサンドボックス構成アイテムのリストが、ページ右半分には、リストで選択したアイテムのプロパティが表示されます。</value>
   </data>
   <data name="UserGuideMainPageTitle.Header" xml:space="preserve">
     <value>メインページ</value>

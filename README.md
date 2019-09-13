@@ -2,11 +2,13 @@
 
 ![Logo](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/AppLogo.png)
 
+**To easier customization of Windows Sandbox!**
+
 WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 
 ![Top](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/MainPage_Light.en-us.PNG)
 
-> This application supports Windows 10 dark mode. The upper image is in **Light** mode and the lower image is in **Dark** mode.
+> This application supports Windows 10 dark mode. The above image is in **Light** mode and the below image is in **Dark** mode.
 >
 > ![Top-dark](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/MainPage_Dark.en-us.PNG)
 
@@ -17,28 +19,28 @@ WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 |Application name|WSB Manager|
 |Version|1.0.0|
 |Developer|Nia Tomonaka (@nia_tn1012)|
-|Released day|Coming soon|
+|Released day|September 13, 2019|
 |Last updated day|-|
 |Available on|Windows 10 (Version 1803 or later)(*)|
-|Using capabilities|Nothing|
+|Using capabilities|Folder and file access|
 |Language supported|Japanese (ja, ja-JP), English (en, en-US)|
 |Licence|Apache-2.0 Licence|
 |Blog article|Coming soon|
 |GitHub|[https://github.com/Nia-TN1012/WSBManager](https://github.com/Nia-TN1012/WSBManager)|
 |Programing languages / Frameworks|C# 7.3 / XAML / .NET Core / Windows 10 SDK|
-|Libraries|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit)|
+|Using libraries|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit)|
 |Development environment|Visual Studio 2019|
 
 > ### **Note**
 >
-> * This app is compatible with **Windows 10 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
+> * This application is compatible with **Windows 10 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
 > * To launch the Windows sandbox, it requires **Windows 10 Pro or Enterprise version 1903 or later and  hardware support**. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.
 
 # How to use
 
 ## Main page
 
-When you start the app, the main page is displayed. The left half of the page displays a list of created and imported sandbox configuration items, and the right half of the page displays the properties of the item selected in the list.
+When you start the application, the main page is displayed. The left half of the page is displayed a list of created and imported sandbox configuration items, and the right half of the page is displayed the properties of the item selected in the list.
 
 ![Mainpage](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/WSBManager/Assets/UserGuide/en-us/MainPageGuide_Light.png)
 
@@ -51,7 +53,7 @@ When you start the app, the main page is displayed. The left half of the page di
 |->|User Guide|Navigates to the User Guide page.|
 |->|About|Navigates to the About page.|
 |**5**|Sandbox configuration item|Displays sandbox configuration item names and configuration information indicators.|
-|**6**|Launch Sandbox|Launches the Windows sandbox from the specified sandbox configuration item.|
+|**6**|Launch Sandbox|Launches Windows Sandbox from the specified sandbox configuration item.|
 |**7**|(Context menu)||
 |->|Move up|Moves the specified sandbox configuration item up one level. If at the top of the list, go to the end of the list.|
 |->|Move down|Moves the specified sandbox configuration item down by one. If at the end of the list, move to the top of the list.|
@@ -97,4 +99,4 @@ The author and Chronoir.net accept no any responsibility for any obstacles or da
 
 # Release note
 
-* 2019/09/?? (Ver. 1.0.0): First release
+* 2019/09/13 (Ver. 1.0.0): First release
