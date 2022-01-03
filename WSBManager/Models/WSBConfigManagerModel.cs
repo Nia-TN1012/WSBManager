@@ -58,6 +58,36 @@ namespace WSBManager.Models
 		public bool IsLogonCommandEnabled => !string.IsNullOrEmpty(LogonCommand?.Command);
 
 		/// <summary>
+		/// Enables or disables audio input in the sandbox.
+		/// </summary>
+		public bool IsAudioInputEnabled => AudioInput != AudioVideoInput.Disable;
+
+		/// <summary>
+		/// Enables or disables video input in the sandbox.
+		/// </summary>
+		public bool IsVideoInputEnabled => VideoInput != AudioVideoInput.Disable;
+
+		/// <summary>
+		/// Enables or disables additional security in the sandbox.
+		/// </summary>
+		public bool IsProtectedClientEnabled => ProtectedClient != ProtectedClient.Disable;
+
+		/// <summary>
+		/// Enables or disables printer sharing in the sandbox.
+		/// </summary>
+		public bool IsPrinterRedirectionEnabled => PrinterRedirection != PrinterRedirection.Disable;
+
+		/// <summary>
+		/// Enables or disables clipboard sharing in the sandbox.
+		/// </summary>
+		public bool IsClipboardRedirectionEnabled => ClipboardRedirection != ClipboardRedirection.Disable;
+
+		/// <summary>
+		/// Enables or disables specification the amount of memory
+		/// </summary>
+		public bool IsMemoryInMBEnabled => MemoryInMB.Enabled;
+
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		public WSBConfigManagerModel() : base() { }
@@ -154,6 +184,54 @@ namespace WSBManager.Models
 				wsbConfigManagerModel.LogonCommand.Command = xCommand.Value;
 			}
 
+			// Audio Input
+			if (xElement.Element(nameof(AudioInput)) is XElement xAudioInput
+				&& Utility.TryConvert(typeof(AudioVideoInput), xAudioInput.Value) is AudioVideoInput audioInput)
+			{
+				wsbConfigManagerModel.AudioInput = audioInput;
+			}
+
+			// Video Input
+			if (xElement.Element(nameof(AudioInput)) is XElement xVideoInput
+				&& Utility.TryConvert(typeof(AudioVideoInput), xVideoInput.Value) is AudioVideoInput videoInput)
+			{
+				wsbConfigManagerModel.VideoInput = videoInput;
+			}
+
+			// Protected Client
+			if (xElement.Element(nameof(ProtectedClient)) is XElement xProtectedClient
+				&& Utility.TryConvert(typeof(ProtectedClient), xProtectedClient.Value) is ProtectedClient protectedClient)
+			{
+				wsbConfigManagerModel.ProtectedClient = protectedClient;
+			}
+
+			// Printer Redirection
+			if (xElement.Element(nameof(PrinterRedirection)) is XElement xPrinterRedirection
+				&& Utility.TryConvert(typeof(PrinterRedirection), xPrinterRedirection.Value) is PrinterRedirection printerRedirection)
+			{
+				wsbConfigManagerModel.PrinterRedirection = printerRedirection;
+			}
+
+			// Clipboard Redirection
+			if (xElement.Element(nameof(ClipboardRedirection)) is XElement xClipboardRedirection
+				&& Utility.TryConvert(typeof(ClipboardRedirection), xClipboardRedirection.Value) is ClipboardRedirection clipboardRedirection)
+			{
+				wsbConfigManagerModel.ClipboardRedirection = clipboardRedirection;
+			}
+
+			// Memory in MB
+			if (xElement.Element(nameof(MemoryInMB))?.Element(nameof(MemoryInMB)) is XElement xMemoryInMB)
+			{
+				if (xMemoryInMB.Element(nameof(wsbConfigManagerModel.MemoryInMB.AmountInMB)) is XElement xAmountInMB
+					&& xMemoryInMB.Element(nameof(wsbConfigManagerModel.MemoryInMB.Enabled)) is XElement xEnabled
+					&& Utility.TryConvert(xAmountInMB, TypeCode.Int32) is int amountInMB
+					&& Utility.TryConvert(xEnabled, TypeCode.Boolean) is bool enabled)
+				{
+					wsbConfigManagerModel.MemoryInMB.AmountInMB = amountInMB;
+					wsbConfigManagerModel.MemoryInMB.Enabled = enabled;
+				}
+			}
+
 			return wsbConfigManagerModel;
 		}
 
@@ -209,6 +287,21 @@ namespace WSBManager.Models
 				// Logon Command
 				new XElement(nameof(LogonCommand),
 					new XElement(nameof(LogonCommand.Command), LogonCommand.Command)
+				),
+				// Audio Input
+				new XElement(nameof(AudioInput), AudioInput.ToString()),
+				// Video Input
+				new XElement(nameof(VideoInput), VideoInput.ToString()),
+				// Protected Client
+				new XElement(nameof(ProtectedClient), ProtectedClient.ToString()),
+				// Printer Redirection
+				new XElement(nameof(PrinterRedirection), PrinterRedirection.ToString()),
+				// Clipboard Redirection
+				new XElement(nameof(ClipboardRedirection), ClipboardRedirection.ToString()),
+				// Memory in MB
+				new XElement(nameof(MemoryInMB),
+					new XElement(nameof(MemoryInMB.AmountInMB), MemoryInMB.AmountInMB.ToString()),
+					new XElement(nameof(MemoryInMB.Enabled), MemoryInMB.Enabled.ToString())
 				)
 			);
 		}

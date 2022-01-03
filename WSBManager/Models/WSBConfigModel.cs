@@ -9,7 +9,6 @@ using WSBManager.Common;
 
 namespace WSBManager.Models
 {
-
 	/// <summary>
 	/// Enables or disables GPU sharing.
 	/// </summary>
@@ -72,6 +71,61 @@ namespace WSBManager.Models
 	}
 
 	/// <summary>
+	/// Enables or disables audio / video input in the sandbox.
+	/// </summary>
+	public enum AudioVideoInput
+	{
+		Default,
+		Enable,
+		Disable
+	}
+
+	/// <summary>
+	/// Enables or disables additional security in the sandbox.
+	/// </summary>
+	public enum ProtectedClient
+	{
+		Default,
+		Enable,
+		Disable
+	}
+
+	/// <summary>
+	/// Enables or disables printer sharing in the sandbox.
+	/// </summary>
+	public enum PrinterRedirection
+	{
+		Default,
+		Enable,
+		Disable
+	}
+
+	/// <summary>
+	/// Enables or disables clipboard sharing in the sandbox.
+	/// </summary>
+	public enum ClipboardRedirection
+	{
+		Default,
+		Disable
+	}
+
+	/// <summary>
+	/// Amount of memory that the sandbox can use in megabytes (MB).
+	/// </summary>
+	public class MemoryInMB
+	{
+		/// <summary>
+		/// Gets or sets the amount of memory in megabytes (MB).
+		/// </summary>
+		public int AmountInMB { get; set; } = 0;
+
+		/// <summary>
+		/// Enables or disables specification the amount of memory
+		/// </summary>
+		public bool Enabled { get; set; } = false;
+	}
+
+	/// <summary>
 	/// Windows Sandbox configuration model.
 	/// </summary>
 	public class WSBConfigModel
@@ -103,6 +157,36 @@ namespace WSBManager.Models
 		/// A logon command which will be invoked automatically after the container logs on.
 		/// </summary>
 		public LogonCommand LogonCommand { get; set; } = new LogonCommand();
+
+		/// <summary>
+		/// Enables or disables audio input in the sandbox.
+		/// </summary>
+		public AudioVideoInput AudioInput { get; set; } = AudioVideoInput.Default;
+
+		/// <summary>
+		/// Enables or disables video input in the sandbox.
+		/// </summary>
+		public AudioVideoInput VideoInput { get; set; } = AudioVideoInput.Default;
+
+		/// <summary>
+		/// Enables or disables additional security in the sandbox.
+		/// </summary>
+		public ProtectedClient ProtectedClient { get; set; } = ProtectedClient.Default;
+
+		/// <summary>
+		/// Enables or disables printer sharing in the sandbox.
+		/// </summary>
+		public PrinterRedirection PrinterRedirection { get; set; } = PrinterRedirection.Default;
+
+		/// <summary>
+		/// Enables or disables clipboard sharing in the sandbox.
+		/// </summary>
+		public ClipboardRedirection ClipboardRedirection { get; set; } = ClipboardRedirection.Default;
+
+		/// <summary>
+		/// Specifies the amount of memory that the sandbox can use in megabytes (MB).
+		/// </summary>
+		public MemoryInMB MemoryInMB { get; set; } = new MemoryInMB();
 
 		#endregion
 
@@ -185,6 +269,50 @@ namespace WSBManager.Models
 				wsbConfigModel.LogonCommand.Command = xCommand.Value;
 			}
 
+			// Audio Input
+			if (xElement.Element(nameof(AudioInput)) is XElement xAudioInput
+				&& Utility.TryConvert(typeof(AudioVideoInput), xAudioInput.Value) is AudioVideoInput audioInput)
+			{
+				wsbConfigModel.AudioInput = audioInput;
+			}
+
+			// Video Input
+			if (xElement.Element(nameof(AudioInput)) is XElement xVideoInput
+				&& Utility.TryConvert(typeof(AudioVideoInput), xVideoInput.Value) is AudioVideoInput videoInput)
+			{
+				wsbConfigModel.VideoInput = videoInput;
+			}
+
+			// Protected Client
+			if (xElement.Element(nameof(ProtectedClient)) is XElement xProtectedClient
+				&& Utility.TryConvert(typeof(ProtectedClient), xProtectedClient.Value) is ProtectedClient protectedClient)
+			{
+				wsbConfigModel.ProtectedClient = protectedClient;
+			}
+
+			// Printer Redirection
+			if (xElement.Element(nameof(PrinterRedirection)) is XElement xPrinterRedirection
+				&& Utility.TryConvert(typeof(PrinterRedirection), xPrinterRedirection.Value) is PrinterRedirection printerRedirection)
+			{
+				wsbConfigModel.PrinterRedirection = printerRedirection;
+			}
+
+			// Clipboard Redirection
+			if (xElement.Element(nameof(ClipboardRedirection)) is XElement xClipboardRedirection
+				&& Utility.TryConvert(typeof(ClipboardRedirection), xClipboardRedirection.Value) is ClipboardRedirection clipboardRedirection)
+			{
+				wsbConfigModel.ClipboardRedirection = clipboardRedirection;
+			}
+
+			// Memory in MB
+			if (xElement.Element(nameof(MemoryInMB)) is XElement xMemoryInMB
+				&& Utility.TryConvert(typeof(int), xMemoryInMB.Value) is int memoryInMB
+				&& memoryInMB > 0)
+			{
+				wsbConfigModel.MemoryInMB.AmountInMB = memoryInMB;
+				wsbConfigModel.MemoryInMB.Enabled = true;
+			}
+
 			return wsbConfigModel;
 		}
 
@@ -208,8 +336,10 @@ namespace WSBManager.Models
 		/// </summary>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>A <see cref="XElement"/> instance.</returns>
-		public virtual XElement ToXElement(bool includeExtraMetada = false) =>
-			new XElement(RootNodeName,
+		public virtual XElement ToXElement(bool includeExtraMetada = false)
+		{
+			List<XElement> nodes = new List<XElement>
+			{
 				//VGPU
 				new XElement(nameof(VGpu), VGpu.ToString()),
 				// Networking
@@ -226,8 +356,27 @@ namespace WSBManager.Models
 				// Logon Command
 				new XElement(nameof(LogonCommand),
 					new XElement(nameof(LogonCommand.Command), LogonCommand.Command)
-				)
-			);
+				),
+				// Audio Input
+				new XElement(nameof(AudioInput), AudioInput.ToString()),
+				// Video Input
+				new XElement(nameof(VideoInput), VideoInput.ToString()),
+				// Protected Client
+				new XElement(nameof(ProtectedClient), ProtectedClient.ToString()),
+				// Printer Redirection
+				new XElement(nameof(PrinterRedirection), PrinterRedirection.ToString()),
+				// Clipboard Redirection
+				new XElement(nameof(ClipboardRedirection), ClipboardRedirection.ToString()),
+			};
+			
+			if (MemoryInMB.Enabled && MemoryInMB.AmountInMB > 0)
+			{
+				// Memory in MB
+				nodes.Add(new XElement(nameof(MemoryInMB), MemoryInMB.AmountInMB.ToString()));
+			}
+
+			return new XElement(RootNodeName, nodes);
+		}
 
 		/// <summary>
 		/// Converts to a xml string.
