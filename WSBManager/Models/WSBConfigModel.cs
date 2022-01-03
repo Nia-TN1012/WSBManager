@@ -7,12 +7,14 @@ using System.Xml.Linq;
 
 using WSBManager.Common;
 
-namespace WSBManager.Models {
+namespace WSBManager.Models
+{
 
 	/// <summary>
 	/// Enables or disables GPU sharing.
 	/// </summary>
-	public enum VGpu {
+	public enum VGpu
+	{
 		Default,
 		Disable
 	}
@@ -20,7 +22,8 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// Enables or disables networking in the sandbox.
 	/// </summary>
-	public enum Networking {
+	public enum Networking
+	{
 		Default,
 		Disable
 	}
@@ -28,7 +31,8 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// A folder on the host shared with the sandbox.
 	/// </summary>
-	public class MappedFolder {
+	public class MappedFolder
+	{
 
 		/// <summary>
 		/// The host folder path.
@@ -45,7 +49,8 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// A logon command which will be invoked automatically after the container logs on.
 	/// </summary>
-	public class LogonCommand {
+	public class LogonCommand
+	{
 		/// <summary>
 		/// A command.
 		/// </summary>
@@ -54,13 +59,14 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LogonCommand() {}
+		public LogonCommand() { }
 
 		/// <summary>
 		/// Creates a new instance of the <see cref="LogonCommand"/> class from an existing instance.
 		/// </summary>
 		/// <param name="logonCommand">A existing instance of the <see cref="LogonCommand"/> class</param>
-		public LogonCommand( LogonCommand logonCommand ) {
+		public LogonCommand(LogonCommand logonCommand)
+		{
 			Command = logonCommand.Command;
 		}
 	}
@@ -68,7 +74,8 @@ namespace WSBManager.Models {
 	/// <summary>
 	/// Windows Sandbox configuration model.
 	/// </summary>
-	public class WSBConfigModel {
+	public class WSBConfigModel
+	{
 
 		/// <summary>
 		/// Root node name
@@ -113,11 +120,12 @@ namespace WSBManager.Models {
 		/// Creates a new instance of the <see cref="WSBConfigModel"/> class from an existing instance.
 		/// </summary>
 		/// <param name="wSBConfigModel">A existing instance of the <see cref="WSBConfigModel"/> class</param>
-		public WSBConfigModel( WSBConfigModel wSBConfigModel ) {
+		public WSBConfigModel(WSBConfigModel wSBConfigModel)
+		{
 			VGpu = wSBConfigModel.VGpu;
 			Networking = wSBConfigModel.Networking;
-			MappedFolders = new List<MappedFolder>( wSBConfigModel.MappedFolders );
-			LogonCommand = new LogonCommand( wSBConfigModel.LogonCommand );
+			MappedFolders = new List<MappedFolder>(wSBConfigModel.MappedFolders);
+			LogonCommand = new LogonCommand(wSBConfigModel.LogonCommand);
 		}
 
 		/// <summary>
@@ -125,10 +133,12 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="webConfig">A configuration xml text reader</param>
 		/// <returns>A <see cref="WSBConfigModel"/> instance</returns>
-		public static WSBConfigModel Import( TextReader webConfig ) {
-			using( var xr = XmlReader.Create( webConfig ) ) {
-				var xElement = XElement.Load( xr );
-				return FromXElement( XElement.Load( xr ) );
+		public static WSBConfigModel Import(TextReader webConfig)
+		{
+			using (var xr = XmlReader.Create(webConfig))
+			{
+				var xElement = XElement.Load(xr);
+				return FromXElement(XElement.Load(xr));
 			}
 		}
 
@@ -137,34 +147,41 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="xElement">A <see cref="XElement"/> instance contains configuration</param>
 		/// <returns>A <see cref="WSBConfigModel"/> instance</returns>
-		public static WSBConfigModel FromXElement( XElement xElement ) {
+		public static WSBConfigModel FromXElement(XElement xElement)
+		{
 			var wsbConfigModel = new WSBConfigModel();
 
 			// VGPU
-			if( xElement.Element( nameof( VGpu ) ) is XElement xVGpu
-				&& Utility.TryConvert( typeof( VGpu ), xVGpu.Value ) is VGpu vGpu ) {
+			if (xElement.Element(nameof(VGpu)) is XElement xVGpu
+				&& Utility.TryConvert(typeof(VGpu), xVGpu.Value) is VGpu vGpu)
+			{
 				wsbConfigModel.VGpu = vGpu;
 			}
 			// Networking
-			if( xElement.Element( nameof( Networking ) ) is XElement xNetworking
-				&& Utility.TryConvert( typeof( Networking ), xNetworking.Value ) is Networking networking ) {
+			if (xElement.Element(nameof(Networking)) is XElement xNetworking
+				&& Utility.TryConvert(typeof(Networking), xNetworking.Value) is Networking networking)
+			{
 				wsbConfigModel.Networking = networking;
 			}
 			// Mapped Folders
-			if( xElement.Elements( nameof( MappedFolders ) ) is XElement xMappedFolders ) {
-				foreach( var xMappedFolder in xElement.Elements( nameof( MappedFolder ) ) ) {
+			if (xElement.Elements(nameof(MappedFolders)) is XElement xMappedFolders)
+			{
+				foreach (var xMappedFolder in xElement.Elements(nameof(MappedFolder)))
+				{
 					var mf = new MappedFolder();
-					if( xMappedFolder.Element( nameof( mf.HostFolder ) ) is XElement xHostFolder
-						&& xMappedFolder.Element( nameof( mf.ReadOnly ) ) is XElement xReadOnly
-						&& Utility.TryConvert( xReadOnly.Value, TypeCode.Boolean ) is bool readOnly ) {
+					if (xMappedFolder.Element(nameof(mf.HostFolder)) is XElement xHostFolder
+						&& xMappedFolder.Element(nameof(mf.ReadOnly)) is XElement xReadOnly
+						&& Utility.TryConvert(xReadOnly.Value, TypeCode.Boolean) is bool readOnly)
+					{
 						mf.HostFolder = xHostFolder.Value;
 						mf.ReadOnly = readOnly;
 					}
-					wsbConfigModel.MappedFolders.Add( mf );
+					wsbConfigModel.MappedFolders.Add(mf);
 				}
 			}
 			// Logon Command
-			if( xElement.Element( nameof( LogonCommand ) )?.Element( nameof( wsbConfigModel.LogonCommand.Command ) ) is XElement xCommand ) {
+			if (xElement.Element(nameof(LogonCommand))?.Element(nameof(wsbConfigModel.LogonCommand.Command)) is XElement xCommand)
+			{
 				wsbConfigModel.LogonCommand.Command = xCommand.Value;
 			}
 
@@ -177,9 +194,11 @@ namespace WSBManager.Models {
 		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
-		public virtual TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
-			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
-				ToXElement( includeExtraMetada ).Save( xw );
+		public virtual TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
+		{
+			using (var xw = XmlWriter.Create(textWriter, xmlWriterSettings))
+			{
+				ToXElement(includeExtraMetada).Save(xw);
 				return textWriter;
 			}
 		}
@@ -189,33 +208,35 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>A <see cref="XElement"/> instance.</returns>
-		public virtual XElement ToXElement( bool includeExtraMetada = false ) =>
-			new XElement( RootNodeName,
+		public virtual XElement ToXElement(bool includeExtraMetada = false) =>
+			new XElement(RootNodeName,
 				//VGPU
-				new XElement( nameof( VGpu ), VGpu.ToString() ),
+				new XElement(nameof(VGpu), VGpu.ToString()),
 				// Networking
-				new XElement( nameof( Networking ), Networking.ToString() ),
+				new XElement(nameof(Networking), Networking.ToString()),
 				// Mapped Folders
-				new XElement( nameof( MappedFolders ),
-					MappedFolders.Select( mf =>
-						new XElement( nameof( MappedFolder ),
-							new XElement( nameof( mf.HostFolder ), mf.HostFolder ),
-							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString().ToLower() )
-						)
+				new XElement(nameof(MappedFolders),
+					MappedFolders.Select(mf =>
+					   new XElement(nameof(MappedFolder),
+						   new XElement(nameof(mf.HostFolder), mf.HostFolder),
+						   new XElement(nameof(mf.ReadOnly), mf.ReadOnly.ToString().ToLower())
+					   )
 					)
 				),
 				// Logon Command
-				new XElement( nameof( LogonCommand ),
-					new XElement( nameof( LogonCommand.Command ), LogonCommand.Command )
+				new XElement(nameof(LogonCommand),
+					new XElement(nameof(LogonCommand.Command), LogonCommand.Command)
 				)
 			);
 
 		/// <summary>
 		/// Converts to a xml string.
 		/// </summary>
-		public override string ToString() {
-			using( var sw = new StringWriter() ) {
-				return Export( sw ).ToString();
+		public override string ToString()
+		{
+			using (var sw = new StringWriter())
+			{
+				return Export(sw).ToString();
 			}
 		}
 	}

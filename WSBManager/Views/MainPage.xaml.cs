@@ -11,12 +11,13 @@ using Windows.UI.Xaml.Navigation;
 
 using WSBManager.Models;
 
-namespace WSBManager.Views {
+namespace WSBManager.Views
+{
 	/// <summary>
 	/// Main page
 	/// </summary>
-	public sealed partial class MainPage : Page {
-
+	public sealed partial class MainPage : Page
+	{
 		/// <summary>
 		/// Resource loader
 		/// </summary>
@@ -25,7 +26,8 @@ namespace WSBManager.Views {
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public MainPage() {
+		public MainPage()
+		{
 			this.InitializeComponent();
 			wsbManagerViewModel.LaunchSandboxCompleted += OnLaunchSandboxCompleted;
 			wsbManagerViewModel.ImportSandboxConfingAction += ImportSandboxConfing;
@@ -37,12 +39,15 @@ namespace WSBManager.Views {
 		/// Invoked when navigate to this page.
 		/// </summary>
 		/// <param name="e">Event argsment</param>
-		protected override async void OnNavigatedTo( NavigationEventArgs e ) {
-			base.OnNavigatedTo( e );
+		protected override async void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
 
-			if( e.NavigationMode == NavigationMode.New ) {
-				if( !await wsbManagerViewModel.InitializeModelAsync() ) {
-					var errorMessageDialog = new MessageDialog( resourceLoader.GetString( "FailedToLoadWSBConfigListDialog" ), resourceLoader.GetString( "DialogTitleError" ) );
+			if (e.NavigationMode == NavigationMode.New)
+			{
+				if (!await wsbManagerViewModel.InitializeModelAsync())
+				{
+					var errorMessageDialog = new MessageDialog(resourceLoader.GetString("FailedToLoadWSBConfigListDialog"), resourceLoader.GetString("DialogTitleError"));
 					await errorMessageDialog.ShowAsync();
 				}
 			}
@@ -57,9 +62,11 @@ namespace WSBManager.Views {
 		///		<para>success: A execution success flag ( true: Success / false: Failed )</para>
 		///		<para>name: A sandbox name</para>
 		/// </param>
-		private async void OnLaunchSandboxCompleted( object sender, ( bool success, string name ) e ) {
-			if( !e.success ) {
-				var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedLaunchSandboxDialog" ), e.name ), resourceLoader.GetString( "DialogTitleError" ) );
+		private async void OnLaunchSandboxCompleted(object sender, (bool success, string name) e)
+		{
+			if (!e.success)
+			{
+				var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedLaunchSandboxDialog"), e.name), resourceLoader.GetString("DialogTitleError"));
 				await errorMessageDialog.ShowAsync();
 			}
 		}
@@ -69,18 +76,21 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="fileSelectedCallback">Callback when selected a file</param>
 		/// <param name="canceledCallback">Callback when canceled</param>
-		private async void ImportSandboxConfing( Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null ) {
-			var importPicker = new FileOpenPicker {
+		private async void ImportSandboxConfing(Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null)
+		{
+			var importPicker = new FileOpenPicker
+			{
 				SuggestedStartLocation = PickerLocationId.DocumentsLibrary
 			};
-			importPicker.FileTypeFilter.Add( ".wsb" );
+			importPicker.FileTypeFilter.Add(".wsb");
 
-			if( ( await importPicker.PickSingleFileAsync() ) is StorageFile importFile ) {
+			if ((await importPicker.PickSingleFileAsync()) is StorageFile importFile)
+			{
 				fileSelectedCallback?.Invoke(
 					importFile,
 					// On failed to export
 					async () => {
-						var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedToImportDialog" ), importFile.Path ), resourceLoader.GetString( "DialogTitleError" ) );
+						var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedToImportDialog"), importFile.Path), resourceLoader.GetString("DialogTitleError"));
 						await errorMessageDialog.ShowAsync();
 					}
 				);
@@ -92,19 +102,22 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="fileSelectedCallback">Callback when selected a file</param>
 		/// <param name="canceledCallback">Callback when canceled</param>
-		private async void ExportSandboxConfing( string name, Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null ) {
-			var exportPicker = new FileSavePicker {
+		private async void ExportSandboxConfing(string name, Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null)
+		{
+			var exportPicker = new FileSavePicker
+			{
 				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
 				SuggestedFileName = name
 			};
-			exportPicker.FileTypeChoices.Add( resourceLoader.GetString( "WSBFileExtention" ), new List<string> { ".wsb" } );
+			exportPicker.FileTypeChoices.Add(resourceLoader.GetString("WSBFileExtention"), new List<string> { ".wsb" });
 
-			if( ( await exportPicker.PickSaveFileAsync() ) is StorageFile exportFile ) {
+			if ((await exportPicker.PickSaveFileAsync()) is StorageFile exportFile)
+			{
 				fileSelectedCallback?.Invoke(
 					exportFile,
 					// On failed to export
 					async () => {
-						var errorMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "FailedToExportDialog" ), exportFile.Path ), resourceLoader.GetString( "DialogTitleError" ) );
+						var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedToExportDialog"), exportFile.Path), resourceLoader.GetString("DialogTitleError"));
 						await errorMessageDialog.ShowAsync();
 					}
 				);
@@ -118,10 +131,11 @@ namespace WSBManager.Views {
 		/// <param name="name">Sandbox name</param>
 		/// <param name="confirmedCallback">Callback when confirmed</param>
 		/// <param name="canceledCallback">Callback when canceled</param>
-		private async void DeleteSandboxConfig(string name, Action confirmedCallback, Action canceledCallback = null ) {
-			var confirmMessageDialog = new MessageDialog( string.Format( resourceLoader.GetString( "DeleteSandboxConfigurationDialog" ), name ), resourceLoader.GetString( "DialogTitleConfirm" ) );
-			confirmMessageDialog.Commands.Add( new UICommand( resourceLoader.GetString( "DialogButtonYes" ), command => confirmedCallback?.Invoke() ) );
-			confirmMessageDialog.Commands.Add( new UICommand( resourceLoader.GetString( "DialogButtonNo" ) ) );
+		private async void DeleteSandboxConfig(string name, Action confirmedCallback, Action canceledCallback = null)
+		{
+			var confirmMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("DeleteSandboxConfigurationDialog"), name), resourceLoader.GetString("DialogTitleConfirm"));
+			confirmMessageDialog.Commands.Add(new UICommand(resourceLoader.GetString("DialogButtonYes"), command => confirmedCallback?.Invoke()));
+			confirmMessageDialog.Commands.Add(new UICommand(resourceLoader.GetString("DialogButtonNo")));
 			await confirmMessageDialog.ShowAsync();
 
 		}
@@ -131,8 +145,9 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void AddButton_Click( object sender, RoutedEventArgs e ) {
-			this.Frame.Navigate( typeof( SandboxConfigEditor ) );
+		private void AddButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(SandboxConfigEditor));
 		}
 
 		/// <summary>
@@ -140,9 +155,11 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void EditButton_Click( object sender, RoutedEventArgs e ) {
-			if( SandboxListView.SelectedIndex > -1 ) {
-				this.Frame.Navigate( typeof( SandboxConfigEditor ), SandboxListView.SelectedIndex );
+		private void EditButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (SandboxListView.SelectedIndex > -1)
+			{
+				this.Frame.Navigate(typeof(SandboxConfigEditor), SandboxListView.SelectedIndex);
 			}
 		}
 
@@ -151,9 +168,11 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		private void AutoSuggestBox_TextChanged( AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args ) {
-			if( args.Reason == AutoSuggestionBoxTextChangeReason.UserInput ) {
-				sender.ItemsSource = wsbManagerViewModel.Items.Where( item => item.Name.ToLower().StartsWith( sender.Text.ToLower() ) ).Take( 10 );
+		private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+		{
+			if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+			{
+				sender.ItemsSource = wsbManagerViewModel.Items.Where(item => item.Name.ToLower().StartsWith(sender.Text.ToLower())).Take(10);
 			}
 		}
 
@@ -162,8 +181,10 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		private void AutoSuggestBox_SuggestionChosen( AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args ) {
-			if( args.SelectedItem is WSBConfigManagerModel selected ) {
+		private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+		{
+			if (args.SelectedItem is WSBConfigManagerModel selected)
+			{
 				sender.Text = selected.Name;
 			}
 		}
@@ -173,11 +194,14 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		private void AutoSuggestBox_QuerySubmitted( AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args ) {
-			if( args.ChosenSuggestion is WSBConfigManagerModel selected ) {
+		private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+		{
+			if (args.ChosenSuggestion is WSBConfigManagerModel selected)
+			{
 				SandboxListView.SelectedItem = selected;
 			}
-			else if( wsbManagerViewModel.Items.FirstOrDefault( item => item.Name == sender.Text ) is WSBConfigManagerModel hit ) {
+			else if (wsbManagerViewModel.Items.FirstOrDefault(item => item.Name == sender.Text) is WSBConfigManagerModel hit)
+			{
 				SandboxListView.SelectedItem = hit;
 			}
 		}
@@ -187,8 +211,9 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void ToAboutMenuItem_Click( object sender, RoutedEventArgs e ) {
-			this.Frame.Navigate( typeof( About ) );
+		private void ToAboutMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(About));
 		}
 
 		/// <summary>
@@ -196,8 +221,9 @@ namespace WSBManager.Views {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void MenuFlyoutItem_Click( object sender, RoutedEventArgs e ) {
-			this.Frame.Navigate( typeof( UserGide ) );
+		private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(UserGide));
 		}
 	}
 }

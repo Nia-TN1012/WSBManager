@@ -9,9 +9,9 @@
   <Identity
     Name="30069NiaTomonaka.WSBManager"
     Publisher="CN=A5B1B624-0B64-44B9-9815-39BE22557436"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="4b475e97-6e9f-4401-9fa8-b54fad5dc11b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="db6e0b21-f9d4-40e4-aa50-fbae71767e14" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>WSB Manager</DisplayName>

@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace WSBManager.Common {
-
+namespace WSBManager.Common
+{
 	/// <summary>
 	/// Utility
 	/// </summary>
-	public static class Utility {
-
+	public static class Utility
+	{
 		/// <summary>
 		/// Tries to convert <see cref="object"/> to type specified by <see cref="TypeCode"/>.
 		/// </summary>
@@ -16,11 +16,14 @@ namespace WSBManager.Common {
 		///		<para>An object whose underlying type is <paramref name="typeCode"/> and whose value is equivalent to <paramref name="value"/>.</para>
 		///		<para>Or null if failed to convert.</para>
 		/// </returns>
-		public static object TryConvert( object value, TypeCode typeCode ) {
-			try {
-				return Convert.ChangeType( value, typeCode );
+		public static object TryConvert(object value, TypeCode typeCode)
+		{
+			try
+			{
+				return Convert.ChangeType(value, typeCode);
 			}
-			catch ( Exception ) {
+			catch (Exception)
+			{
 				return null;
 			}
 		}
@@ -34,11 +37,14 @@ namespace WSBManager.Common {
 		///		<para>An object of type <paramref name="enumType"/> whose value is represented by <paramref name="value"/>.</para>
 		///		<para>Or null if failed to convert.</para>
 		/// </returns>
-		public static object TryConvert( Type enumType, string value ) {
-			try {
-				return Enum.Parse( enumType, value );
+		public static object TryConvert(Type enumType, string value)
+		{
+			try
+			{
+				return Enum.Parse(enumType, value);
 			}
-			catch( Exception ) {
+			catch (Exception)
+			{
 				return null;
 			}
 		}

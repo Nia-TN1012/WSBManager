@@ -3,13 +3,13 @@ using Windows.UI.Xaml.Data;
 
 using WSBManager.Models;
 
-namespace WSBManager.Common {
-
+namespace WSBManager.Common
+{
 	/// <summary>
 	/// Provides the method that converts <see cref="VGpu"/> value to a selected index in list.
 	/// </summary>
-	public sealed class VGpuToListIndexConverter : IValueConverter {
-
+	public sealed class VGpuToListIndexConverter : IValueConverter
+	{
 		/// <summary>
 		/// Converts <see cref="VGpu"/> value to a selected index in list.
 		/// </summary>
@@ -18,8 +18,8 @@ namespace WSBManager.Common {
 		/// <param name="parameter">Parameter ( Not using )</param>
 		/// <param name="language">Language ( Not using )</param>
 		/// <returns></returns>
-		public object Convert( object value, Type targetType, object parameter, string language ) =>
-			value is VGpu ? ( int )value : ( int )VGpu.Default;
+		public object Convert(object value, Type targetType, object parameter, string language) =>
+			value is VGpu ? (int)value : (int)VGpu.Default;
 
 		/// <summary>
 		/// Converts a selected index in list to <see cref="VGpu"/> value.
@@ -29,15 +29,15 @@ namespace WSBManager.Common {
 		/// <param name="parameter">Parameter ( Not using )</param>
 		/// <param name="language">Language ( Not using )</param>
 		/// <returns><see cref="VGpu"/> value</returns>
-		public object ConvertBack( object value, Type targetType, object parameter, string language ) =>
-			value is int ? ( VGpu )value : VGpu.Default;
+		public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+			value is int ? (VGpu)value : VGpu.Default;
 	}
 
 	/// <summary>
 	/// Provides the method that converts <see cref="Networking"/> value to a selected index in list.
 	/// </summary>
-	public sealed class NetworkToListIndexConverter : IValueConverter {
-
+	public sealed class NetworkToListIndexConverter : IValueConverter
+	{
 		/// <summary>
 		/// Converts <see cref="Networking"/> value to a selected index in list.
 		/// </summary>
@@ -46,8 +46,8 @@ namespace WSBManager.Common {
 		/// <param name="parameter">Parameter ( Not using )</param>
 		/// <param name="language">Language ( Not using )</param>
 		/// <returns></returns>
-		public object Convert( object value, Type targetType, object parameter, string language ) =>
-			value is Networking ? ( int )value : ( int )Networking.Default;
+		public object Convert(object value, Type targetType, object parameter, string language) =>
+			value is Networking ? (int)value : (int)Networking.Default;
 
 		/// <summary>
 		/// Converts a selected index in list to <see cref="Networking"/> value.
@@ -57,7 +57,7 @@ namespace WSBManager.Common {
 		/// <param name="parameter">Parameter ( Not using )</param>
 		/// <param name="language">Language ( Not using )</param>
 		/// <returns><see cref="Networking"/> value</returns>
-		public object ConvertBack( object value, Type targetType, object parameter, string language ) =>
-			value is int ? ( Networking )value : Networking.Default;
+		public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+			value is int ? (Networking)value : Networking.Default;
 	}
 }

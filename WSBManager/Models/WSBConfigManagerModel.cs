@@ -8,17 +8,19 @@ using System.Xml;
 using System.Xml.Linq;
 using WSBManager.Common;
 
-namespace WSBManager.Models {
+namespace WSBManager.Models
+{
 
 	/// <summary>
 	/// Windows Sandbox configuration model for WSB Manager.
 	/// </summary>
-	public class WSBConfigManagerModel : WSBConfigModel {
+	public class WSBConfigManagerModel : WSBConfigModel
+	{
 
 		/// <summary>
 		/// UUID
 		/// </summary>
-		public string UUID { get; protected set; } = Guid.NewGuid().ToString( "B" );
+		public string UUID { get; protected set; } = Guid.NewGuid().ToString("B");
 
 		/// <summary>
 		/// Name
@@ -53,7 +55,7 @@ namespace WSBManager.Models {
 		/// <summary>
 		/// Enable or disable the Logon Command.
 		/// </summary>
-		public bool IsLogonCommandEnabled => !string.IsNullOrEmpty( LogonCommand?.Command );
+		public bool IsLogonCommandEnabled => !string.IsNullOrEmpty(LogonCommand?.Command);
 
 		/// <summary>
 		/// Constructor
@@ -64,7 +66,8 @@ namespace WSBManager.Models {
 		/// Creates a new instance of the <see cref="WSBConfigManagerModel"/> class from an existing instance.
 		/// </summary>
 		/// <param name="wSBConfigManagerModel">A existing instance of the <see cref="WSBConfigManagerModel"/> class</param>
-		public WSBConfigManagerModel( WSBConfigManagerModel wSBConfigManagerModel ) : base( wSBConfigManagerModel ) {
+		public WSBConfigManagerModel(WSBConfigManagerModel wSBConfigManagerModel) : base(wSBConfigManagerModel)
+		{
 			UUID = wSBConfigManagerModel.UUID;
 			Name = wSBConfigManagerModel.Name;
 			CreatedAt = wSBConfigManagerModel.CreatedAt;
@@ -80,9 +83,11 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="webConfig">A configuration xml text reader</param>
 		/// <returns>A <see cref="WSBConfigManagerModel"/> instance</returns>
-		public new static WSBConfigManagerModel Import( TextReader webConfig ) {
-			using( var xr = XmlReader.Create( webConfig ) ) {
-				return FromXElement( XElement.Load( xr ) );
+		public new static WSBConfigManagerModel Import(TextReader webConfig)
+		{
+			using (var xr = XmlReader.Create(webConfig))
+			{
+				return FromXElement(XElement.Load(xr));
 			}
 		}
 
@@ -91,50 +96,61 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="xElement">A <see cref="XElement"/> instance contains configuration</param>
 		/// <returns>A <see cref="WSBConfigManagerModel"/> instance</returns>
-		public new static WSBConfigManagerModel FromXElement( XElement xElement ) {
+		public new static WSBConfigManagerModel FromXElement(XElement xElement)
+		{
 			var wsbConfigManagerModel = new WSBConfigManagerModel();
 
 			// Metadata
-			if( xElement.Attribute( nameof( Name ) ) is XAttribute xName ) {
+			if (xElement.Attribute(nameof(Name)) is XAttribute xName)
+			{
 				wsbConfigManagerModel.Name = xName.Value;
 			}
-			if( xElement.Attribute( nameof( CreatedAt ) ) is XAttribute xCreatedAt
-				&& Utility.TryConvert( xCreatedAt.Value, TypeCode.DateTime ) is DateTime createdAt ) {
+			if (xElement.Attribute(nameof(CreatedAt)) is XAttribute xCreatedAt
+				&& Utility.TryConvert(xCreatedAt.Value, TypeCode.DateTime) is DateTime createdAt)
+			{
 				wsbConfigManagerModel.CreatedAt = createdAt;
 			}
-			if( xElement.Attribute( nameof( UUID ) ) is XAttribute xUUID ) {
+			if (xElement.Attribute(nameof(UUID)) is XAttribute xUUID)
+			{
 				wsbConfigManagerModel.UUID = xUUID.Value;
 			}
-			if( xElement.Attribute( nameof( LastLaunchedAt ) ) is XAttribute xLastLaunchedAt
-				&& Utility.TryConvert( xLastLaunchedAt.Value, TypeCode.DateTime ) is DateTime lastLaunchedAt ) {
+			if (xElement.Attribute(nameof(LastLaunchedAt)) is XAttribute xLastLaunchedAt
+				&& Utility.TryConvert(xLastLaunchedAt.Value, TypeCode.DateTime) is DateTime lastLaunchedAt)
+			{
 				wsbConfigManagerModel.LastLaunchedAt = lastLaunchedAt;
 			}
 
 			// VGPU
-			if( xElement.Element( nameof( VGpu ) ) is XElement xVGpu
-				&& Utility.TryConvert( typeof( VGpu ), xVGpu.Value ) is VGpu vGpu ) {
+			if (xElement.Element(nameof(VGpu)) is XElement xVGpu
+				&& Utility.TryConvert(typeof(VGpu), xVGpu.Value) is VGpu vGpu)
+			{
 				wsbConfigManagerModel.VGpu = vGpu;
 			}
 			// Networking
-			if( xElement.Element( nameof( Networking ) ) is XElement xNetworking
-				&& Utility.TryConvert( typeof( Networking ), xNetworking.Value ) is Networking networking ) {
+			if (xElement.Element(nameof(Networking)) is XElement xNetworking
+				&& Utility.TryConvert(typeof(Networking), xNetworking.Value) is Networking networking)
+			{
 				wsbConfigManagerModel.Networking = networking;
 			}
 			// Mapped Folders
-			if( xElement.Element( nameof( MappedFolders ) ) is XElement xMappedFolders ) {
-				foreach( var xMappedFolder in xMappedFolders.Elements( nameof( MappedFolder ) ) ) {
+			if (xElement.Element(nameof(MappedFolders)) is XElement xMappedFolders)
+			{
+				foreach (var xMappedFolder in xMappedFolders.Elements(nameof(MappedFolder)))
+				{
 					var mf = new MappedFolder();
-					if( xMappedFolder.Element( nameof( mf.HostFolder ) ) is XElement xHostFolder
-						&& xMappedFolder.Element( nameof( mf.ReadOnly ) ) is XElement xReadOnly
-						&& Utility.TryConvert( xReadOnly.Value, TypeCode.Boolean ) is bool readOnly ) {
+					if (xMappedFolder.Element(nameof(mf.HostFolder)) is XElement xHostFolder
+						&& xMappedFolder.Element(nameof(mf.ReadOnly)) is XElement xReadOnly
+						&& Utility.TryConvert(xReadOnly.Value, TypeCode.Boolean) is bool readOnly)
+					{
 						mf.HostFolder = xHostFolder.Value;
 						mf.ReadOnly = readOnly;
 					}
-					wsbConfigManagerModel.MappedFolders.Add( mf );
+					wsbConfigManagerModel.MappedFolders.Add(mf);
 				}
 			}
 			// Logon Command
-			if( xElement.Element( nameof( LogonCommand ) )?.Element( nameof( wsbConfigManagerModel.LogonCommand.Command ) ) is XElement xCommand ) {
+			if (xElement.Element(nameof(LogonCommand))?.Element(nameof(wsbConfigManagerModel.LogonCommand.Command)) is XElement xCommand)
+			{
 				wsbConfigManagerModel.LogonCommand.Command = xCommand.Value;
 			}
 
@@ -147,9 +163,11 @@ namespace WSBManager.Models {
 		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
-		public override TextWriter Export( TextWriter textWriter, bool includeExtraMetada = false ) {
-			using( var xw = XmlWriter.Create( textWriter, xmlWriterSettings ) ) {
-				ToXElement( includeExtraMetada ).Save( xw );
+		public override TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
+		{
+			using (var xw = XmlWriter.Create(textWriter, xmlWriterSettings))
+			{
+				ToXElement(includeExtraMetada).Save(xw);
 				return textWriter;
 			}
 		}
@@ -159,36 +177,38 @@ namespace WSBManager.Models {
 		/// </summary>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>A <see cref="XElement"/> instance.</returns>
-		public override XElement ToXElement( bool includeExtraMetada = false ) {
+		public override XElement ToXElement(bool includeExtraMetada = false)
+		{
 			// Metadata
 			List<XAttribute> metadatas = new List<XAttribute> {
 				new XAttribute( nameof( Name ), Name ),
 				new XAttribute( nameof( CreatedAt ), CreatedAt.ToString( "yyyy-MM-dd HH:mm:ss zzz" ) )
 			};
-			if( includeExtraMetada ) {
-				metadatas.Add( new XAttribute( nameof( UUID ), UUID ) );
-				metadatas.Add( new XAttribute( nameof( LastLaunchedAt ), LastLaunchedAt.ToString( "yyyy-MM-dd HH:mm:ss zzz" ) ) );
+			if (includeExtraMetada)
+			{
+				metadatas.Add(new XAttribute(nameof(UUID), UUID));
+				metadatas.Add(new XAttribute(nameof(LastLaunchedAt), LastLaunchedAt.ToString("yyyy-MM-dd HH:mm:ss zzz")));
 			}
 
-			return new XElement( RootNodeName,
+			return new XElement(RootNodeName,
 				// Metadata
 				metadatas.ToArray(),
 				//VGPU
-				new XElement( nameof( VGpu ), VGpu.ToString() ),
+				new XElement(nameof(VGpu), VGpu.ToString()),
 				// Networking
-				new XElement( nameof( Networking ), Networking.ToString() ),
+				new XElement(nameof(Networking), Networking.ToString()),
 				// Mapped Folders
-				new XElement( nameof( MappedFolders ),
-					MappedFolders.Select( mf =>
-						new XElement( nameof( MappedFolder ),
-							new XElement( nameof( mf.HostFolder ), mf.HostFolder ),
-							new XElement( nameof( mf.ReadOnly ), mf.ReadOnly.ToString().ToLower() )
-						)
+				new XElement(nameof(MappedFolders),
+					MappedFolders.Select(mf =>
+					   new XElement(nameof(MappedFolder),
+						   new XElement(nameof(mf.HostFolder), mf.HostFolder),
+						   new XElement(nameof(mf.ReadOnly), mf.ReadOnly.ToString().ToLower())
+					   )
 					)
 				),
 				// Logon Command
-				new XElement( nameof( LogonCommand ),
-					new XElement( nameof( LogonCommand.Command ), LogonCommand.Command )
+				new XElement(nameof(LogonCommand),
+					new XElement(nameof(LogonCommand.Command), LogonCommand.Command)
 				)
 			);
 		}
