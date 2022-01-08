@@ -40,12 +40,12 @@ namespace WSBManager.Models
 		/// <summary>
 		/// Enable or disable the vGPU.
 		/// </summary>
-		public bool IsVGpuEnabled => VGpu != VGpu.Disable;
+		public bool IsVGpuEnabled => VGpu == ThreeState.Enable;
 
 		/// <summary>
 		/// Enable or disable the Networking.
 		/// </summary>
-		public bool IsNetworkEnabled => Networking != Networking.Disable;
+		public bool IsNetworkEnabled => Networking != TwoState.Disable;
 
 		/// <summary>
 		/// Enable or disable the Mapped Folders.
@@ -60,27 +60,27 @@ namespace WSBManager.Models
 		/// <summary>
 		/// Enables or disables audio input in the sandbox.
 		/// </summary>
-		public bool IsAudioInputEnabled => AudioInput != AudioVideoInput.Disable;
+		public bool IsAudioInputEnabled => AudioInput != ThreeState.Disable;
 
 		/// <summary>
 		/// Enables or disables video input in the sandbox.
 		/// </summary>
-		public bool IsVideoInputEnabled => VideoInput != AudioVideoInput.Disable;
+		public bool IsVideoInputEnabled => VideoInput == ThreeState.Enable;
 
 		/// <summary>
 		/// Enables or disables additional security in the sandbox.
 		/// </summary>
-		public bool IsProtectedClientEnabled => ProtectedClient != ProtectedClient.Disable;
+		public bool IsProtectedClientEnabled => ProtectedClient == ThreeState.Enable;
 
 		/// <summary>
 		/// Enables or disables printer sharing in the sandbox.
 		/// </summary>
-		public bool IsPrinterRedirectionEnabled => PrinterRedirection != PrinterRedirection.Disable;
+		public bool IsPrinterRedirectionEnabled => PrinterRedirection == ThreeState.Enable;
 
 		/// <summary>
 		/// Enables or disables clipboard sharing in the sandbox.
 		/// </summary>
-		public bool IsClipboardRedirectionEnabled => ClipboardRedirection != ClipboardRedirection.Disable;
+		public bool IsClipboardRedirectionEnabled => ClipboardRedirection != TwoState.Disable;
 
 		/// <summary>
 		/// Enables or disables specification the amount of memory
@@ -91,6 +91,24 @@ namespace WSBManager.Models
 		/// Constructor
 		/// </summary>
 		public WSBConfigManagerModel() : base() { }
+
+		/// <summary>
+		/// Creates a new instance of the <see cref="WSBConfigManagerModel"/> class from a <see cref="WSBConfigModel"> existing instance.
+		/// </summary>
+		/// <param name="wSBConfigModel">A existing instance of the <see cref="WSBConfigModel"/> class</param>
+		public WSBConfigManagerModel(WSBConfigModel wSBConfigModel)
+		{
+			VGpu = wSBConfigModel.VGpu;
+			Networking = wSBConfigModel.Networking;
+			MappedFolders = new List<MappedFolder>(wSBConfigModel.MappedFolders);
+			LogonCommand = new LogonCommand(wSBConfigModel.LogonCommand);
+			AudioInput = wSBConfigModel.AudioInput;
+			VideoInput = wSBConfigModel.VideoInput;
+			ProtectedClient = wSBConfigModel.ProtectedClient;
+			PrinterRedirection = wSBConfigModel.PrinterRedirection;
+			ClipboardRedirection = wSBConfigModel.ClipboardRedirection;
+			MemoryInMB = wSBConfigModel.MemoryInMB;
+		}
 
 		/// <summary>
 		/// Creates a new instance of the <see cref="WSBConfigManagerModel"/> class from an existing instance.
@@ -152,13 +170,13 @@ namespace WSBManager.Models
 
 			// VGPU
 			if (xElement.Element(nameof(VGpu)) is XElement xVGpu
-				&& Utility.TryConvert(typeof(VGpu), xVGpu.Value) is VGpu vGpu)
+				&& Utility.TryConvert(typeof(ThreeState), xVGpu.Value) is ThreeState vGpu)
 			{
 				wsbConfigManagerModel.VGpu = vGpu;
 			}
 			// Networking
 			if (xElement.Element(nameof(Networking)) is XElement xNetworking
-				&& Utility.TryConvert(typeof(Networking), xNetworking.Value) is Networking networking)
+				&& Utility.TryConvert(typeof(TwoState), xNetworking.Value) is TwoState networking)
 			{
 				wsbConfigManagerModel.Networking = networking;
 			}
@@ -186,35 +204,35 @@ namespace WSBManager.Models
 
 			// Audio Input
 			if (xElement.Element(nameof(AudioInput)) is XElement xAudioInput
-				&& Utility.TryConvert(typeof(AudioVideoInput), xAudioInput.Value) is AudioVideoInput audioInput)
+				&& Utility.TryConvert(typeof(ThreeState), xAudioInput.Value) is ThreeState audioInput)
 			{
 				wsbConfigManagerModel.AudioInput = audioInput;
 			}
 
 			// Video Input
-			if (xElement.Element(nameof(AudioInput)) is XElement xVideoInput
-				&& Utility.TryConvert(typeof(AudioVideoInput), xVideoInput.Value) is AudioVideoInput videoInput)
+			if (xElement.Element(nameof(VideoInput)) is XElement xVideoInput
+				&& Utility.TryConvert(typeof(ThreeState), xVideoInput.Value) is ThreeState videoInput)
 			{
 				wsbConfigManagerModel.VideoInput = videoInput;
 			}
 
 			// Protected Client
 			if (xElement.Element(nameof(ProtectedClient)) is XElement xProtectedClient
-				&& Utility.TryConvert(typeof(ProtectedClient), xProtectedClient.Value) is ProtectedClient protectedClient)
+				&& Utility.TryConvert(typeof(ThreeState), xProtectedClient.Value) is ThreeState protectedClient)
 			{
 				wsbConfigManagerModel.ProtectedClient = protectedClient;
 			}
 
 			// Printer Redirection
 			if (xElement.Element(nameof(PrinterRedirection)) is XElement xPrinterRedirection
-				&& Utility.TryConvert(typeof(PrinterRedirection), xPrinterRedirection.Value) is PrinterRedirection printerRedirection)
+				&& Utility.TryConvert(typeof(ThreeState), xPrinterRedirection.Value) is ThreeState printerRedirection)
 			{
 				wsbConfigManagerModel.PrinterRedirection = printerRedirection;
 			}
 
 			// Clipboard Redirection
 			if (xElement.Element(nameof(ClipboardRedirection)) is XElement xClipboardRedirection
-				&& Utility.TryConvert(typeof(ClipboardRedirection), xClipboardRedirection.Value) is ClipboardRedirection clipboardRedirection)
+				&& Utility.TryConvert(typeof(TwoState), xClipboardRedirection.Value) is TwoState clipboardRedirection)
 			{
 				wsbConfigManagerModel.ClipboardRedirection = clipboardRedirection;
 			}
@@ -241,7 +259,7 @@ namespace WSBManager.Models
 		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
-		public override TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
+		public new TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
 		{
 			using (var xw = XmlWriter.Create(textWriter, xmlWriterSettings))
 			{
@@ -255,7 +273,7 @@ namespace WSBManager.Models
 		/// </summary>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>A <see cref="XElement"/> instance.</returns>
-		public override XElement ToXElement(bool includeExtraMetada = false)
+		public new XElement ToXElement(bool includeExtraMetada = false)
 		{
 			// Metadata
 			List<XAttribute> metadatas = new List<XAttribute> {

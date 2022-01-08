@@ -147,8 +147,14 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSB Manager</value>
   </data>
+  <data name="AudioInputLabel.Text" xml:space="preserve">
+    <value>Audio input</value>
+  </data>
   <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="ClipboardRedirectionLabel.Text" xml:space="preserve">
+    <value>Clipboard redirection</value>
   </data>
   <data name="CreateAtLabel.Text" xml:space="preserve">
     <value>Create at</value>
@@ -230,6 +236,12 @@
   </data>
   <data name="NewSandboxName" xml:space="preserve">
     <value>New Sandbox</value>
+  </data>
+  <data name="PrinterRedirectionLabel.Text" xml:space="preserve">
+    <value>Printer redirection</value>
+  </data>
+  <data name="ProtectedClientLabel.Text" xml:space="preserve">
+    <value>Protected client</value>
   </data>
   <data name="ReadOnlyLabel.Header" xml:space="preserve">
     <value>Read Only</value>
@@ -470,6 +482,9 @@
   </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>vGPU</value>
+  </data>
+  <data name="VideoInputLabel.Text" xml:space="preserve">
+    <value>Video input</value>
   </data>
   <data name="WSBFileExtension" xml:space="preserve">
     <value>wsb file</value>

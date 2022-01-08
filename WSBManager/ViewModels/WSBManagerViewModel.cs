@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Windows.Storage;
 using System.Runtime.CompilerServices;
-
-using WSBManager.Common;
 using WSBManager.Models;
 using System.IO;
 using System.Windows.Input;
 using Windows.Storage.Provider;
-using System.Diagnostics;
 using Windows.System;
 
 namespace WSBManager.ViewModels
@@ -191,7 +186,7 @@ namespace WSBManager.ViewModels
 					{
 						try
 						{
-							var tempFile = await tempFolder.CreateFileAsync($"{launchModel.Name}_{launchModel.UUID}.wsbx", CreationCollisionOption.ReplaceExisting);
+							var tempFile = await tempFolder.CreateFileAsync($"{launchModel.Name}_{launchModel.UUID}.wsb", CreationCollisionOption.ReplaceExisting);
 							CachedFileManager.DeferUpdates(tempFile);
 							using (var s = await tempFile.OpenStreamForWriteAsync())
 							using (var sw = new StreamWriter(s))
@@ -246,12 +241,12 @@ namespace WSBManager.ViewModels
 							using (var s = await file.OpenStreamForReadAsync())
 							using (var sr = new StreamReader(s))
 							{
-								var importModel = WSBConfigManagerModel.Import(sr);
-								if (string.IsNullOrEmpty(importModel.Name))
+								var importModel = WSBConfigModel.Import(sr);
+								var importModel2 = new WSBConfigManagerModel(importModel)
 								{
-									importModel.Name = Path.GetFileNameWithoutExtension(file.Name);
-								}
-								viewModel.model.WSBConfigCollection.Add(importModel);
+									Name = Path.GetFileNameWithoutExtension(file.Name)
+								};
+								viewModel.model.WSBConfigCollection.Add(importModel2);
 							}
 						}
 						catch (Exception e)
@@ -293,7 +288,7 @@ namespace WSBManager.ViewModels
 									using (var s = await file.OpenStreamForWriteAsync())
 									using (var sw = new StreamWriter(s))
 									{
-										exportModel.Export(sw);
+										((WSBConfigModel)exportModel).Export(sw);
 									}
 									var status = await CachedFileManager.CompleteUpdatesAsync(file);
 									if (status != FileUpdateStatus.Complete)

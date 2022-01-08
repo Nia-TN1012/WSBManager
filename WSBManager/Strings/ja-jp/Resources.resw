@@ -147,6 +147,9 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSBマネージャー</value>
   </data>
+  <data name="AudioLabel.Text" xml:space="preserve">
+    <value>オーディオ入力</value>
+  </data>
   <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
     <value>戻る</value>
   </data>
@@ -470,6 +473,9 @@
   </data>
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>仮想GPU</value>
+  </data>
+  <data name="VideoLabel.Text" xml:space="preserve">
+    <value>ビデオ入力</value>
   </data>
   <data name="WSBFileExtension" xml:space="preserve">
     <value>WSBファイル</value>

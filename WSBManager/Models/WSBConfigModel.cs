@@ -10,18 +10,19 @@ using WSBManager.Common;
 namespace WSBManager.Models
 {
 	/// <summary>
-	/// Enables or disables GPU sharing.
+	/// 3 state: Default, Enable and Disable
 	/// </summary>
-	public enum VGpu
+	public enum ThreeState
 	{
 		Default,
+		Enable,
 		Disable
 	}
 
 	/// <summary>
-	/// Enables or disables networking in the sandbox.
+	/// 2 state: Default and Disable
 	/// </summary>
-	public enum Networking
+	public enum TwoState
 	{
 		Default,
 		Disable
@@ -71,45 +72,6 @@ namespace WSBManager.Models
 	}
 
 	/// <summary>
-	/// Enables or disables audio / video input in the sandbox.
-	/// </summary>
-	public enum AudioVideoInput
-	{
-		Default,
-		Enable,
-		Disable
-	}
-
-	/// <summary>
-	/// Enables or disables additional security in the sandbox.
-	/// </summary>
-	public enum ProtectedClient
-	{
-		Default,
-		Enable,
-		Disable
-	}
-
-	/// <summary>
-	/// Enables or disables printer sharing in the sandbox.
-	/// </summary>
-	public enum PrinterRedirection
-	{
-		Default,
-		Enable,
-		Disable
-	}
-
-	/// <summary>
-	/// Enables or disables clipboard sharing in the sandbox.
-	/// </summary>
-	public enum ClipboardRedirection
-	{
-		Default,
-		Disable
-	}
-
-	/// <summary>
 	/// Amount of memory that the sandbox can use in megabytes (MB).
 	/// </summary>
 	public class MemoryInMB
@@ -141,12 +103,12 @@ namespace WSBManager.Models
 		/// <summary>
 		/// Enables or disables GPU sharing.
 		/// </summary>
-		public VGpu VGpu { get; set; } = VGpu.Default;
+		public ThreeState VGpu { get; set; } = ThreeState.Default;
 
 		/// <summary>
 		/// Enables or disables networking in the sandbox.
 		/// </summary>
-		public Networking Networking { get; set; } = Networking.Default;
+		public TwoState Networking { get; set; } = TwoState.Default;
 
 		/// <summary>
 		/// Folders on the host shared with the sandbox.
@@ -161,27 +123,27 @@ namespace WSBManager.Models
 		/// <summary>
 		/// Enables or disables audio input in the sandbox.
 		/// </summary>
-		public AudioVideoInput AudioInput { get; set; } = AudioVideoInput.Default;
+		public ThreeState AudioInput { get; set; } = ThreeState.Default;
 
 		/// <summary>
 		/// Enables or disables video input in the sandbox.
 		/// </summary>
-		public AudioVideoInput VideoInput { get; set; } = AudioVideoInput.Default;
+		public ThreeState VideoInput { get; set; } = ThreeState.Default;
 
 		/// <summary>
 		/// Enables or disables additional security in the sandbox.
 		/// </summary>
-		public ProtectedClient ProtectedClient { get; set; } = ProtectedClient.Default;
+		public ThreeState ProtectedClient { get; set; } = ThreeState.Default;
 
 		/// <summary>
 		/// Enables or disables printer sharing in the sandbox.
 		/// </summary>
-		public PrinterRedirection PrinterRedirection { get; set; } = PrinterRedirection.Default;
+		public ThreeState PrinterRedirection { get; set; } = ThreeState.Default;
 
 		/// <summary>
 		/// Enables or disables clipboard sharing in the sandbox.
 		/// </summary>
-		public ClipboardRedirection ClipboardRedirection { get; set; } = ClipboardRedirection.Default;
+		public TwoState ClipboardRedirection { get; set; } = TwoState.Default;
 
 		/// <summary>
 		/// Specifies the amount of memory that the sandbox can use in megabytes (MB).
@@ -210,6 +172,12 @@ namespace WSBManager.Models
 			Networking = wSBConfigModel.Networking;
 			MappedFolders = new List<MappedFolder>(wSBConfigModel.MappedFolders);
 			LogonCommand = new LogonCommand(wSBConfigModel.LogonCommand);
+			AudioInput = wSBConfigModel.AudioInput;
+			VideoInput = wSBConfigModel.VideoInput;
+			ProtectedClient = wSBConfigModel.ProtectedClient;
+			PrinterRedirection = wSBConfigModel.PrinterRedirection;
+			ClipboardRedirection = wSBConfigModel.ClipboardRedirection;
+			MemoryInMB = wSBConfigModel.MemoryInMB;
 		}
 
 		/// <summary>
@@ -221,7 +189,6 @@ namespace WSBManager.Models
 		{
 			using (var xr = XmlReader.Create(webConfig))
 			{
-				var xElement = XElement.Load(xr);
 				return FromXElement(XElement.Load(xr));
 			}
 		}
@@ -237,13 +204,13 @@ namespace WSBManager.Models
 
 			// VGPU
 			if (xElement.Element(nameof(VGpu)) is XElement xVGpu
-				&& Utility.TryConvert(typeof(VGpu), xVGpu.Value) is VGpu vGpu)
+				&& Utility.TryConvert(typeof(ThreeState), xVGpu.Value) is ThreeState vGpu)
 			{
 				wsbConfigModel.VGpu = vGpu;
 			}
 			// Networking
 			if (xElement.Element(nameof(Networking)) is XElement xNetworking
-				&& Utility.TryConvert(typeof(Networking), xNetworking.Value) is Networking networking)
+				&& Utility.TryConvert(typeof(TwoState), xNetworking.Value) is TwoState networking)
 			{
 				wsbConfigModel.Networking = networking;
 			}
@@ -271,35 +238,35 @@ namespace WSBManager.Models
 
 			// Audio Input
 			if (xElement.Element(nameof(AudioInput)) is XElement xAudioInput
-				&& Utility.TryConvert(typeof(AudioVideoInput), xAudioInput.Value) is AudioVideoInput audioInput)
+				&& Utility.TryConvert(typeof(ThreeState), xAudioInput.Value) is ThreeState audioInput)
 			{
 				wsbConfigModel.AudioInput = audioInput;
 			}
 
 			// Video Input
-			if (xElement.Element(nameof(AudioInput)) is XElement xVideoInput
-				&& Utility.TryConvert(typeof(AudioVideoInput), xVideoInput.Value) is AudioVideoInput videoInput)
+			if (xElement.Element(nameof(VideoInput)) is XElement xVideoInput
+				&& Utility.TryConvert(typeof(ThreeState), xVideoInput.Value) is ThreeState videoInput)
 			{
 				wsbConfigModel.VideoInput = videoInput;
 			}
 
 			// Protected Client
 			if (xElement.Element(nameof(ProtectedClient)) is XElement xProtectedClient
-				&& Utility.TryConvert(typeof(ProtectedClient), xProtectedClient.Value) is ProtectedClient protectedClient)
+				&& Utility.TryConvert(typeof(ThreeState), xProtectedClient.Value) is ThreeState protectedClient)
 			{
 				wsbConfigModel.ProtectedClient = protectedClient;
 			}
 
 			// Printer Redirection
 			if (xElement.Element(nameof(PrinterRedirection)) is XElement xPrinterRedirection
-				&& Utility.TryConvert(typeof(PrinterRedirection), xPrinterRedirection.Value) is PrinterRedirection printerRedirection)
+				&& Utility.TryConvert(typeof(ThreeState), xPrinterRedirection.Value) is ThreeState printerRedirection)
 			{
 				wsbConfigModel.PrinterRedirection = printerRedirection;
 			}
 
 			// Clipboard Redirection
 			if (xElement.Element(nameof(ClipboardRedirection)) is XElement xClipboardRedirection
-				&& Utility.TryConvert(typeof(ClipboardRedirection), xClipboardRedirection.Value) is ClipboardRedirection clipboardRedirection)
+				&& Utility.TryConvert(typeof(TwoState), xClipboardRedirection.Value) is TwoState clipboardRedirection)
 			{
 				wsbConfigModel.ClipboardRedirection = clipboardRedirection;
 			}
@@ -322,7 +289,7 @@ namespace WSBManager.Models
 		/// <param name="textWriter">A <see cref="TextWriter"/> instance</param>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>The <see cref="TextWriter"/> instance as same as <paramref name="textWriter"/>.</returns>
-		public virtual TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
+		public TextWriter Export(TextWriter textWriter, bool includeExtraMetada = false)
 		{
 			using (var xw = XmlWriter.Create(textWriter, xmlWriterSettings))
 			{
@@ -336,7 +303,7 @@ namespace WSBManager.Models
 		/// </summary>
 		/// <param name="includeExtraMetada">Include or not extra metadata.</param>
 		/// <returns>A <see cref="XElement"/> instance.</returns>
-		public virtual XElement ToXElement(bool includeExtraMetada = false)
+		public XElement ToXElement(bool includeExtraMetada = false)
 		{
 			List<XElement> nodes = new List<XElement>
 			{
