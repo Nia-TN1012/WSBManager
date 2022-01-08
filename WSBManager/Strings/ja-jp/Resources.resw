@@ -147,11 +147,14 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSBマネージャー</value>
   </data>
-  <data name="AudioLabel.Text" xml:space="preserve">
+  <data name="AudioInputLabel.Text" xml:space="preserve">
     <value>オーディオ入力</value>
   </data>
   <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
     <value>戻る</value>
+  </data>
+  <data name="ClipboardRedirectionLabel.Text" xml:space="preserve">
+    <value>クリップボードのリダイレクト</value>
   </data>
   <data name="CreateAtLabel.Text" xml:space="preserve">
     <value>作成日</value>
@@ -222,6 +225,15 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>マッピングフォルダーのバリデーションエラー</value>
   </data>
+  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="MemoryInMBLabel.Text" xml:space="preserve">
+    <value>メモリ使用量</value>
+  </data>
+  <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
+    <value>使用量</value>
+  </data>
   <data name="MoveDownMenuItem.Text" xml:space="preserve">
     <value>1つ下に移動</value>
   </data>
@@ -233,6 +245,12 @@
   </data>
   <data name="NewSandboxName" xml:space="preserve">
     <value>新しいサンドボックス</value>
+  </data>
+  <data name="PrinterRedirectionLabel.Text" xml:space="preserve">
+    <value>プリンターのリダイレクト</value>
+  </data>
+  <data name="ProtectedClientLabel.Text" xml:space="preserve">
+    <value>保護されたクライアント</value>
   </data>
   <data name="ReadOnlyLabel.Header" xml:space="preserve">
     <value>読み取り専用</value>
@@ -474,7 +492,7 @@
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>仮想GPU</value>
   </data>
-  <data name="VideoLabel.Text" xml:space="preserve">
+  <data name="VideoInputLabel.Text" xml:space="preserve">
     <value>ビデオ入力</value>
   </data>
   <data name="WSBFileExtension" xml:space="preserve">

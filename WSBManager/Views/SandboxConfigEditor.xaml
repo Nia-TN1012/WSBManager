@@ -294,6 +294,31 @@
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.LogonCommand.Command, Mode=TwoWay}"/>
                 </StackPanel>
+                <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+                
+                <!-- Memory in MB -->
+                <StackPanel Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE964;"/>
+                        <TextBlock Margin="5"
+                                   x:Uid="MemoryInMBLabel"/>
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" MinWidth="80"/>
+                            <ColumnDefinition Width="Auto" MinWidth="200"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Column="0" x:Uid="MemoryInMBCheckBox" IsChecked="{Binding EditingItem.MemoryInMB.Enabled, Mode=TwoWay}"/>
+                        <TextBlock Grid.Column="1" Margin="5" x:Uid="MemoryInMBUsageLabel"/>
+                        <TextBox Grid.Column="2" InputScope="Number" Text="{Binding  EditingItem.MemoryInMB.AmountInMB, Mode=TwoWay}"/>
+                        <TextBlock Grid.Column="3" Margin="5" Text="MB"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>

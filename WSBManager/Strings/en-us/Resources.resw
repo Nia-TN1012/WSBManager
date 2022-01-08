@@ -147,11 +147,14 @@
   <data name="AppName.Text" xml:space="preserve">
     <value>WSB Manager</value>
   </data>
-  <data name="AudioLabel.Text" xml:space="preserve">
+  <data name="AudioInputLabel.Text" xml:space="preserve">
     <value>Audio input</value>
   </data>
   <data name="BackToPage.ToolTipService.ToolTip" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="ClipboardRedirectionLabel.Text" xml:space="preserve">
+    <value>Clipboard redirection</value>
   </data>
   <data name="CreateAtLabel.Text" xml:space="preserve">
     <value>Create at</value>
@@ -222,6 +225,15 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>Mapped Folders Validation Error</value>
   </data>
+  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="MemoryInMBLabel.Text" xml:space="preserve">
+    <value>Memory usage</value>
+  </data>
+  <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
+    <value>Usage</value>
+  </data>
   <data name="MoveDownMenuItem.Text" xml:space="preserve">
     <value>Move down</value>
   </data>
@@ -233,6 +245,12 @@
   </data>
   <data name="NewSandboxName" xml:space="preserve">
     <value>New Sandbox</value>
+  </data>
+  <data name="PrinterRedirectionLabel.Text" xml:space="preserve">
+    <value>Printer redirection</value>
+  </data>
+  <data name="ProtectedClientLabel.Text" xml:space="preserve">
+    <value>Protected client</value>
   </data>
   <data name="ReadOnlyLabel.Header" xml:space="preserve">
     <value>Read Only</value>
@@ -474,7 +492,7 @@
   <data name="VGpuLabel.Text" xml:space="preserve">
     <value>vGPU</value>
   </data>
-  <data name="VideoLabel.Text" xml:space="preserve">
+  <data name="VideoInputLabel.Text" xml:space="preserve">
     <value>Video input</value>
   </data>
   <data name="WSBFileExtension" xml:space="preserve">

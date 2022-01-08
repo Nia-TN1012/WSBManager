@@ -225,6 +225,15 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>Mapped Folders Validation Error</value>
   </data>
+  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="MemoryInMBLabel.Text" xml:space="preserve">
+    <value>Memory usage</value>
+  </data>
+  <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
+    <value>Usage</value>
+  </data>
   <data name="MoveDownMenuItem.Text" xml:space="preserve">
     <value>Move down</value>
   </data>

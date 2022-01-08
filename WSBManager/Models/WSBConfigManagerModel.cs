@@ -238,12 +238,12 @@ namespace WSBManager.Models
 			}
 
 			// Memory in MB
-			if (xElement.Element(nameof(MemoryInMB))?.Element(nameof(MemoryInMB)) is XElement xMemoryInMB)
+			if (xElement.Element(nameof(MemoryInMB)) is XElement xMemoryInMB)
 			{
 				if (xMemoryInMB.Element(nameof(wsbConfigManagerModel.MemoryInMB.AmountInMB)) is XElement xAmountInMB
 					&& xMemoryInMB.Element(nameof(wsbConfigManagerModel.MemoryInMB.Enabled)) is XElement xEnabled
-					&& Utility.TryConvert(xAmountInMB, TypeCode.Int32) is int amountInMB
-					&& Utility.TryConvert(xEnabled, TypeCode.Boolean) is bool enabled)
+					&& Utility.TryConvert(xAmountInMB.Value, TypeCode.Int32) is int amountInMB
+					&& Utility.TryConvert(xEnabled.Value, TypeCode.Boolean) is bool enabled)
 				{
 					wsbConfigManagerModel.MemoryInMB.AmountInMB = amountInMB;
 					wsbConfigManagerModel.MemoryInMB.Enabled = enabled;

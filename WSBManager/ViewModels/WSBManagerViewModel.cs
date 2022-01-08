@@ -199,6 +199,7 @@ namespace WSBManager.ViewModels
 								var options = new LauncherOptions
 								{
 									DisplayApplicationPicker = true,
+									TreatAsUntrusted = true,
 								};
 								bool success = await Launcher.LaunchFileAsync(tempFile, options);
 								if (success)

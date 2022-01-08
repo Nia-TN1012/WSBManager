@@ -225,6 +225,15 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>マッピングフォルダーのバリデーションエラー</value>
   </data>
+  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="MemoryInMBLabel.Text" xml:space="preserve">
+    <value>メモリ使用量</value>
+  </data>
+  <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
+    <value>使用量</value>
+  </data>
   <data name="MoveDownMenuItem.Text" xml:space="preserve">
     <value>1つ下に移動</value>
   </data>

@@ -131,6 +131,12 @@
                                           Glyph="&#xE756;"
                                           Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
+                            <!-- Memory in MB -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"
+                                          Opacity="{Binding MemoryInMB.Enabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
                         </StackPanel>
                     </Grid>
 
@@ -256,6 +262,12 @@
                             <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                       Glyph="&#xE756;"
                                       Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Memory in MB -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE964;"
+                                      Opacity="{Binding MemoryInMB.Enabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -598,6 +610,40 @@
                                      IsReadOnly="True"
                                      HorizontalAlignment="Stretch"
                                      Text="{Binding SelectedItem.LogonCommand.Command, ElementName=SandboxListView}"/>
+                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+
+                            <!-- Memory in MB -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"/>
+                                <TextBlock Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="MemoryInMBLabel"/>
+                                <CheckBox Grid.Column="2"
+                                          Margin="5"
+                                          VerticalAlignment="Center"
+                                          x:Uid="MemoryInMBCheckBox"
+                                          IsChecked="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView}"
+                                          IsEnabled="False"/>
+                                <TextBlock Grid.Column="3"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.MemoryInMB.AmountInMB, ElementName=SandboxListView}"/>
+                                <TextBlock Grid.Column="4"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="MB"/>
+                            </Grid>
+
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
