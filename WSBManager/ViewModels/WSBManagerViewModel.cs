@@ -191,7 +191,7 @@ namespace WSBManager.ViewModels
 							using (var s = await tempFile.OpenStreamForWriteAsync())
 							using (var sw = new StreamWriter(s))
 							{
-								launchModel.Export(sw);
+								((WSBConfigModel)launchModel).Export(sw);
 							}
 							var status = await CachedFileManager.CompleteUpdatesAsync(tempFile);
 							if (status == FileUpdateStatus.Complete)
