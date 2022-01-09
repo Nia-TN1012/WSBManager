@@ -225,7 +225,7 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>マッピングフォルダーのバリデーションエラー</value>
   </data>
-  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
+  <data name="MemoryInMBToggleSwitch.OnContent" xml:space="preserve">
     <value>有効</value>
   </data>
   <data name="MemoryInMBLabel.Text" xml:space="preserve">
@@ -497,5 +497,14 @@
   </data>
   <data name="WSBFileExtension" xml:space="preserve">
     <value>WSBファイル</value>
+  </data>
+  <data name="MemoryInMBToggleSwitch.OffContent" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>無効</value>
   </data>
 </root>

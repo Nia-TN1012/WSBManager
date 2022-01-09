@@ -308,15 +308,16 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto" MinWidth="80"/>
                             <ColumnDefinition Width="Auto" MinWidth="200"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox Grid.Column="0" x:Uid="MemoryInMBCheckBox" IsChecked="{Binding EditingItem.MemoryInMB.Enabled, Mode=TwoWay}"/>
-                        <TextBlock Grid.Column="1" Margin="5" x:Uid="MemoryInMBUsageLabel"/>
-                        <TextBox Grid.Column="2" InputScope="Number" Text="{Binding  EditingItem.MemoryInMB.AmountInMB, Mode=TwoWay}"/>
-                        <TextBlock Grid.Column="3" Margin="5" Text="MB"/>
+                        <ToggleSwitch Grid.Column="0" x:Uid="MemoryInMBToggleSwitch" x:Name="MemoryInMBToggleSwitch"
+                                      IsOn="{Binding EditingItem.MemoryInMB.Enabled, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" InputScope="Number"
+                                 Text="{Binding  EditingItem.MemoryInMB.AmountInMB, Mode=TwoWay}"
+                                 IsEnabled="{Binding IsOn, ElementName=MemoryInMBToggleSwitch}"/>
+                        <TextBlock Grid.Column="2" Margin="5" Text="MB"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>

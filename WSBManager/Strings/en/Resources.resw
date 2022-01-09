@@ -225,8 +225,8 @@
   <data name="MappedFolderValidationFailedTitle" xml:space="preserve">
     <value>Mapped Folders Validation Error</value>
   </data>
-  <data name="MemoryInMBCheckBox.Content" xml:space="preserve">
-    <value>Enable</value>
+  <data name="MemoryInMBToggleSwitch.OnContent" xml:space="preserve">
+    <value>Enabled</value>
   </data>
   <data name="MemoryInMBLabel.Text" xml:space="preserve">
     <value>Memory usage</value>
@@ -497,5 +497,14 @@
   </data>
   <data name="WSBFileExtension" xml:space="preserve">
     <value>wsb file</value>
+  </data>
+  <data name="MemoryInMBToggleSwitch.OffContent" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
   </data>
 </root>

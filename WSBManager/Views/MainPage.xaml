@@ -17,12 +17,12 @@
 
         <!-- Converters -->
         <localcom:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
-        <localcom:ThreeStateToListIndexConverter x:Key="VGpuToListIndexConverter"/>
-        <localcom:TwoStateToListIndexConverter x:Key="NetworkToListIndexConverter"/>
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
+        <localcom:BoolToEnabledTextConverter x:Key="BoolToEnabledTextConverter"/>
 
         <x:String x:Key="DateFormat">{0:yyyy/MM/dd HH:mm:ss zzz}</x:String>
+        <x:String x:Key="MBFormat">({0} MB)</x:String>
 
         <ItemsPanelTemplate x:Key="SandboxListItemPanelTemplate">
             <ItemsStackPanel Orientation="Vertical"
@@ -619,7 +619,6 @@
                                     <ColumnDefinition Width="Auto" MinWidth="120"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <FontIcon Grid.Column="0"
                                           Style="{StaticResource SandboxConfigFontIcon}"
@@ -628,20 +627,15 @@
                                            Margin="5"
                                            VerticalAlignment="Center"
                                            x:Uid="MemoryInMBLabel"/>
-                                <CheckBox Grid.Column="2"
+                                <TextBlock Grid.Column="2"
                                           Margin="5"
                                           VerticalAlignment="Center"
-                                          x:Uid="MemoryInMBCheckBox"
-                                          IsChecked="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView}"
-                                          IsEnabled="False"/>
+                                          Text="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView, Converter={StaticResource BoolToEnabledTextConverter}}"/>
                                 <TextBlock Grid.Column="3"
                                            Margin="5"
                                            VerticalAlignment="Center"
-                                           Text="{Binding SelectedItem.MemoryInMB.AmountInMB, ElementName=SandboxListView}"/>
-                                <TextBlock Grid.Column="4"
-                                           Margin="5"
-                                           VerticalAlignment="Center"
-                                           Text="MB"/>
+                                           Opacity="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView, Converter={StaticResource BoolToOpacityConverter}}"
+                                           Text="{Binding SelectedItem.MemoryInMB.AmountInMB, ElementName=SandboxListView, Converter={StaticResource ValueToStringFormatConverter}, ConverterParameter={StaticResource MBFormat}}"/>
                             </Grid>
 
                         </StackPanel>
