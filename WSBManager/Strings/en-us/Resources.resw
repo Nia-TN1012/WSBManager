@@ -370,7 +370,7 @@
     <value>Networking</value>
   </data>
   <data name="UserGuideEditNetworkingDefaultDesc.Text" xml:space="preserve">
-    <value>Enables the networking and connects the sandbox to the network through a virtual NIC.</value>
+    <value>By default, Networking is enabled and connects the sandbox to the network through a virtual NIC.</value>
   </data>
   <data name="UserGuideEditNetworkingDesc.Text" xml:space="preserve">
     <value>Select whether to enable or disable the networking on the sandbox.</value>
@@ -400,7 +400,7 @@
     <value>vGPU</value>
   </data>
   <data name="UserGuideEditVGpuDefaultDesc.Text" xml:space="preserve">
-    <value>Enables the vGPU.</value>
+    <value>By default, vGPU is disabled.</value>
   </data>
   <data name="UserGuideEditVGpuDesc.Text" xml:space="preserve">
     <value>Select whether to enable or disable the vGPU on the sandbox.</value>
@@ -506,5 +506,122 @@
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
+  </data>
+  <data name="UserGuideAudioInputDisable.Text" xml:space="preserve">
+    <value>Audio input is disabled</value>
+  </data>
+  <data name="UserGuideAudioInputEnable.Text" xml:space="preserve">
+    <value>Audio input is enabled</value>
+  </data>
+  <data name="UserGuideVideoInputDisable.Text" xml:space="preserve">
+    <value>Video input is disabled</value>
+  </data>
+  <data name="UserGuideVideoInputEnable.Text" xml:space="preserve">
+    <value>Video input is enabled</value>
+  </data>
+  <data name="UserGuideProtectedClientDisable.Text" xml:space="preserve">
+    <value>Protected client mode is disabled</value>
+  </data>
+  <data name="UserGuideProtectedClientEnable.Text" xml:space="preserve">
+    <value>Protected client mode is enabled</value>
+  </data>
+  <data name="UserGuidePrinterRedirectionDisable.Text" xml:space="preserve">
+    <value>Printer redirection is disabled</value>
+  </data>
+  <data name="UserGuidePrinterRedirectionEnable.Text" xml:space="preserve">
+    <value>Printer redirection is enabled</value>
+  </data>
+  <data name="UserGuideClipboardRedirectionDisable.Text" xml:space="preserve">
+    <value>Clipboard redirection is disabled</value>
+  </data>
+  <data name="UserGuideClipboardRedirectionEnable.Text" xml:space="preserve">
+    <value>Clipboard redirection is enabled</value>
+  </data>
+  <data name="UserGuideMemoryInMBDisable.Text" xml:space="preserve">
+    <value>Memory usage specification is disabled</value>
+  </data>
+  <data name="UserGuideMemoryInMBEnable.Text" xml:space="preserve">
+    <value>Memory usage specification is enabled</value>
+  </data>
+  <data name="UserGuideEditVGpuEnableDesc.Text" xml:space="preserve">
+    <value>Enables the vGPU.</value>
+  </data>
+  <data name="UserGuideEditFunctions.Text" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="UserGuideEditFunctionsDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the functions on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditAudioInput.Text" xml:space="preserve">
+    <value>Audio input</value>
+  </data>
+  <data name="UserGuideEditAudioInputDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the audio input on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditAudioInputEnableDesc.Text" xml:space="preserve">
+    <value>Enables the audio input.</value>
+  </data>
+  <data name="UserGuideEditAudioInputDisableDesc.Text" xml:space="preserve">
+    <value>Disables the audio input.</value>
+  </data>
+  <data name="UserGuideEditAudioInputDefaultDesc.Text" xml:space="preserve">
+    <value>By default, Audio input is enabled.</value>
+  </data>
+  <data name="UserGuideEditVideoInput.Text" xml:space="preserve">
+    <value>Video input</value>
+  </data>
+  <data name="UserGuideEditVideoInputDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the video input on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditVideoInputEnableDesc.Text" xml:space="preserve">
+    <value>Enables the video input.</value>
+  </data>
+  <data name="UserGuideEditVideoInputDisableDesc.Text" xml:space="preserve">
+    <value>Disables the video input.</value>
+  </data>
+  <data name="UserGuideEditVideoInputDefaultDesc.Text" xml:space="preserve">
+    <value>By default, Video input is disabled.</value>
+  </data>
+  <data name="UserGuideEditProtectedClient.Text" xml:space="preserve">
+    <value>Protected client mode</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the protected client mode on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditProtectedClientEnableDesc.Text" xml:space="preserve">
+    <value>Enables the protected client mode.</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDisableDesc.Text" xml:space="preserve">
+    <value>Disables the protected client mode.</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDefaultDesc.Text" xml:space="preserve">
+    <value>By default, Protected client mode is disabled.</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirection.Text" xml:space="preserve">
+    <value>Printer redirection</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the printer redirection on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionEnableDesc.Text" xml:space="preserve">
+    <value>Enables the printer redirection.</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDisableDesc.Text" xml:space="preserve">
+    <value>Disables the printer redirection.</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDefaultDesc.Text" xml:space="preserve">
+    <value>By default, Printer redirection is disabled.</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirection.Text" xml:space="preserve">
+    <value>Clipboard redirection</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the clipboard redirection on the sandbox.</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDisableDesc.Text" xml:space="preserve">
+    <value>Disables the clipboard redirection.</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDefaultDesc.Text" xml:space="preserve">
+    <value>By default, Clipboard redirection is enabled.</value>
   </data>
 </root>

@@ -370,7 +370,7 @@
     <value>ネットワーク</value>
   </data>
   <data name="UserGuideEditNetworkingDefaultDesc.Text" xml:space="preserve">
-    <value>ネットワークを有効にし、仮想NICを介してサンドボックスをネットワークに接続します。</value>
+    <value>デフォルトでは、ネットワークは有効で、仮想NICを介してサンドボックスをネットワークに接続します。</value>
   </data>
   <data name="UserGuideEditNetworkingDesc.Text" xml:space="preserve">
     <value>サンドボックス上でのネットワークの有効・無効を選択します。</value>
@@ -400,7 +400,7 @@
     <value>仮想GPU</value>
   </data>
   <data name="UserGuideEditVGpuDefaultDesc.Text" xml:space="preserve">
-    <value>仮想GPUを有効にします。</value>
+    <value>デフォルトでは、仮想GPUは無効です。</value>
   </data>
   <data name="UserGuideEditVGpuDesc.Text" xml:space="preserve">
     <value>サンドボックス上での仮想GPUの有効・無効を選択します。</value>
@@ -506,5 +506,122 @@
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>無効</value>
+  </data>
+  <data name="UserGuideAudioInputDisable.Text" xml:space="preserve">
+    <value>オーディオ入力は 無効 です</value>
+  </data>
+  <data name="UserGuideAudioInputEnable.Text" xml:space="preserve">
+    <value>オーディオ入力は 有効 です</value>
+  </data>
+  <data name="UserGuideVideoInputDisable.Text" xml:space="preserve">
+    <value>ビデオ入力は 無効 です</value>
+  </data>
+  <data name="UserGuideVideoInputEnable.Text" xml:space="preserve">
+    <value>ビデオ入力は 有効 です</value>
+  </data>
+  <data name="UserGuideProtectedClientDisable.Text" xml:space="preserve">
+    <value>保護されたクライアントモードは 無効 です</value>
+  </data>
+  <data name="UserGuideProtectedClientEnable.Text" xml:space="preserve">
+    <value>保護されたクライアントモードは 有効 です</value>
+  </data>
+  <data name="UserGuidePrinterRedirectionDisable.Text" xml:space="preserve">
+    <value>プリンターのリダイレクトは 無効 です</value>
+  </data>
+  <data name="UserGuidePrinterRedirectionEnable.Text" xml:space="preserve">
+    <value>プリンターのリダイレクトは 有効 です</value>
+  </data>
+  <data name="UserGuideClipboardRedirectionDisable.Text" xml:space="preserve">
+    <value>クリップボードのリダイレクトは 無効 です</value>
+  </data>
+  <data name="UserGuideClipboardRedirectionEnable.Text" xml:space="preserve">
+    <value>クリップボードのリダイレクトは 有効 です</value>
+  </data>
+  <data name="UserGuideMemoryInMBDisable.Text" xml:space="preserve">
+    <value>メモリ使用量の指定は 無効 です</value>
+  </data>
+  <data name="UserGuideMemoryInMBEnable.Text" xml:space="preserve">
+    <value>メモリ使用量の指定は 有効 です</value>
+  </data>
+  <data name="UserGuideEditVGpuEnableDesc.Text" xml:space="preserve">
+    <value>仮想GPUを有効にします。</value>
+  </data>
+  <data name="UserGuideEditFunctions.Text" xml:space="preserve">
+    <value>機能</value>
+  </data>
+  <data name="UserGuideEditFunctionsDesc.Text" xml:space="preserve">
+    <value>サンドボックス上での機能の有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditAudioInput.Text" xml:space="preserve">
+    <value>オーディオ入力</value>
+  </data>
+  <data name="UserGuideEditAudioInputDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのオーディオ入力の有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditAudioInputEnableDesc.Text" xml:space="preserve">
+    <value>オーディオ入力を有効にします。</value>
+  </data>
+  <data name="UserGuideEditAudioInputDisableDesc.Text" xml:space="preserve">
+    <value>オーディオ入力を無効にします。</value>
+  </data>
+  <data name="UserGuideEditAudioInputDefaultDesc.Text" xml:space="preserve">
+    <value>デフォルトでは、オーディオ入力は有効です。</value>
+  </data>
+  <data name="UserGuideEditVideoInput.Text" xml:space="preserve">
+    <value>ビデオ入力</value>
+  </data>
+  <data name="UserGuideEditVideoInputDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのビデオ入力の有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditVideoInputEnableDesc.Text" xml:space="preserve">
+    <value>ビデオ入力を有効にします。</value>
+  </data>
+  <data name="UserGuideEditVideoInputDisableDesc.Text" xml:space="preserve">
+    <value>ビデオ入力を無効にします。</value>
+  </data>
+  <data name="UserGuideEditVideoInputDefaultDesc.Text" xml:space="preserve">
+    <value>デフォルトでは、ビデオ入力は無効です。</value>
+  </data>
+  <data name="UserGuideEditProtectedClient.Text" xml:space="preserve">
+    <value>保護されたクライアントモード</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDesc.Text" xml:space="preserve">
+    <value>サンドボックス上での保護されたクライアントモードの有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditProtectedClientEnableDesc.Text" xml:space="preserve">
+    <value>保護されたクライアントモードを有効にします。</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDisableDesc.Text" xml:space="preserve">
+    <value>保護されたクライアントモードを無効にします。</value>
+  </data>
+  <data name="UserGuideEditProtectedClientDefaultDesc.Text" xml:space="preserve">
+    <value>デフォルトでは、保護されたクライアントモードは無効です。</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirection.Text" xml:space="preserve">
+    <value>プリンターのリダイレクト</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのプリンターのリダイレクトの有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionEnableDesc.Text" xml:space="preserve">
+    <value>プリンターのリダイレクトを有効にします。</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDisableDesc.Text" xml:space="preserve">
+    <value>プリンターのリダイレクトを無効にします。</value>
+  </data>
+  <data name="UserGuideEditPrinterRedirectionDefaultDesc.Text" xml:space="preserve">
+    <value>デフォルトでは、プリンターのリダイレクトは無効です。</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirection.Text" xml:space="preserve">
+    <value>クリップボードのリダイレクト</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのクリップボードのリダイレクトの有効・無効を選択します。</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDisableDesc.Text" xml:space="preserve">
+    <value>クリップボードのリダイレクトを無効にします。</value>
+  </data>
+  <data name="UserGuideEditClipboardRedirectionDefaultDesc.Text" xml:space="preserve">
+    <value>デフォルトでは、クリップボードのリダイレクトは有効です。</value>
   </data>
 </root>
