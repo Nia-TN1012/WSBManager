@@ -184,7 +184,8 @@
     <value>ファイルへエクスポート</value>
   </data>
   <data name="FailedLaunchSandboxDialog" xml:space="preserve">
-    <value>サンドボックス '{0}' の起動に失敗しました。</value>
+    <value>サンドボックス '{0}' の起動に失敗しました。
+（サンドボックスの構成をファイルにエクスポートして、そこから起動することをお試しください。）</value>
   </data>
   <data name="FailedToExportDialog" xml:space="preserve">
     <value>'{0}' へのエクスポートに失敗しました。</value>
@@ -229,7 +230,7 @@
     <value>有効</value>
   </data>
   <data name="MemoryInMBLabel.Text" xml:space="preserve">
-    <value>メモリ使用量</value>
+    <value>メモリ使用量の指定</value>
   </data>
   <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
     <value>使用量</value>
@@ -623,5 +624,11 @@
   </data>
   <data name="UserGuideEditClipboardRedirectionDefaultDesc.Text" xml:space="preserve">
     <value>デフォルトでは、クリップボードのリダイレクトは有効です。</value>
+  </data>
+  <data name="UserGuideEditMemoryInMB.Text" xml:space="preserve">
+    <value>メモリ使用量の指定</value>
+  </data>
+  <data name="UserGuideEditMemoryInMBDesc.Text" xml:space="preserve">
+    <value>サンドボックス上でのメモリ使用量の指定の有効・無効を選択し、その量をMB単位で指定します。</value>
   </data>
 </root>

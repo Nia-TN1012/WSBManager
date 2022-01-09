@@ -71,7 +71,7 @@
             <TextBlock Padding="5,1,5,5" 
                        FontSize="{ThemeResource ContentControlFontSize}"
                        TextWrapping="Wrap">
-                &#x00A9; 2019 Chronoir.net<LineBreak/>
+                &#x00A9; 2019-2022 Chronoir.net<LineBreak/>
                 <Run x:Uid="AboutWebSite"/> :  
 					<Hyperlink NavigateUri="https://chronoir.net/">
 						<Run Text="Chronoir.net"/>

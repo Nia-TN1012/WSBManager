@@ -184,7 +184,8 @@
     <value>Export to file</value>
   </data>
   <data name="FailedLaunchSandboxDialog" xml:space="preserve">
-    <value>Failed to launch sandbox '{0}'.</value>
+    <value>Failed to launch sandbox '{0}'.
+(Try exporting the sandbox configuration to a file and booting from it.)</value>
   </data>
   <data name="FailedToExportDialog" xml:space="preserve">
     <value>Failed to export '{0}'.</value>
@@ -229,7 +230,7 @@
     <value>Enabled</value>
   </data>
   <data name="MemoryInMBLabel.Text" xml:space="preserve">
-    <value>Memory usage</value>
+    <value>Memory usage specification</value>
   </data>
   <data name="MemoryInMBUsageLabel.Text" xml:space="preserve">
     <value>Usage</value>
@@ -623,5 +624,11 @@
   </data>
   <data name="UserGuideEditClipboardRedirectionDefaultDesc.Text" xml:space="preserve">
     <value>By default, Clipboard redirection is enabled.</value>
+  </data>
+  <data name="UserGuideEditMemoryInMB.Text" xml:space="preserve">
+    <value>Memory usage specification</value>
+  </data>
+  <data name="UserGuideEditMemoryInMBDesc.Text" xml:space="preserve">
+    <value>Select whether to enable or disable the memory usage specification and specifies amount in MB on the sandbox.</value>
   </data>
 </root>
