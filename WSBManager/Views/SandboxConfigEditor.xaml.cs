@@ -21,27 +21,33 @@ using Windows.UI.Xaml.Navigation;
 using WSBManager.Models;
 using WSBManager.ViewModels;
 
-namespace WSBManager.Views {
+namespace WSBManager.Views
+{
 	/// <summary>
 	/// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
 	/// </summary>
-	public sealed partial class SandboxConfigEditor : Page {
+	public sealed partial class SandboxConfigEditor : Page
+	{
 
 		private readonly ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
 
 		private SandboxConfigEditorViewModel sandboxConfigEditorViewModel;
 
-		public SandboxConfigEditor() {
+		public SandboxConfigEditor()
+		{
 			this.InitializeComponent();
 		}
 
-		protected override void OnNavigatedTo( NavigationEventArgs e ) {
-			base.OnNavigatedTo( e );
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
 
-			if( e.Parameter is int selected ) {
-				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel( selected );
+			if (e.Parameter is int selected)
+			{
+				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel(selected);
 			}
-			else {
+			else
+			{
 				sandboxConfigEditorViewModel = new SandboxConfigEditorViewModel();
 			}
 			this.DataContext = sandboxConfigEditorViewModel;
@@ -49,33 +55,40 @@ namespace WSBManager.Views {
 			SystemNavigationManager.GetForCurrentView().BackRequested += SandboxConfigEditor_BackRequested; ;
 		}
 
-		private void SandboxConfigEditor_BackRequested( object sender, BackRequestedEventArgs e ) {
-			if( this.Frame.CanGoBack ) {
+		private void SandboxConfigEditor_BackRequested(object sender, BackRequestedEventArgs e)
+		{
+			if (this.Frame.CanGoBack)
+			{
 				this.Frame.GoBack();
 				e.Handled = true;
 			}
 		}
 
-		protected override void OnNavigatingFrom( NavigatingCancelEventArgs e ) {
-			base.OnNavigatingFrom( e );
+		protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+		{
+			base.OnNavigatingFrom(e);
 
 			this.DataContext = null;
 			SystemNavigationManager.GetForCurrentView().BackRequested -= SandboxConfigEditor_BackRequested;
 		}
 
-		private void BackButton_Click( object sender, RoutedEventArgs e ) {
-			if( this.Frame.CanGoBack ) {
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (this.Frame.CanGoBack)
+			{
 				this.Frame.GoBack();
 			}
 		}
 
-		private async void SaveButton_Click( object sender, RoutedEventArgs e ) {
+		private async void SaveButton_Click(object sender, RoutedEventArgs e)
+		{
 			var result = sandboxConfigEditorViewModel.Validate();
-			if( result.result != MappedFolderValidateResult.OK ) {
-				var message = resourceLoader.GetString( result.result.ToString() );
+			if (result.result != MappedFolderValidateResult.OK)
+			{
+				var message = resourceLoader.GetString(result.result.ToString());
 				var dialog = new MessageDialog(
-					string.Format( $"{message}:\r\n\r\n{string.Join( "\r\n", result.validateFailedHostFolders )}" ),
-					resourceLoader.GetString( "MappedFolderValidationFailedTitle" )
+					string.Format($"{message}:\r\n\r\n{string.Join("\r\n", result.validateFailedHostFolders)}"),
+					resourceLoader.GetString("MappedFolderValidationFailedTitle")
 				);
 				await dialog.ShowAsync();
 
@@ -83,18 +96,22 @@ namespace WSBManager.Views {
 			}
 
 			sandboxConfigEditorViewModel.Save();
-			if( this.Frame.CanGoBack ) {
+			if (this.Frame.CanGoBack)
+			{
 				this.Frame.GoBack();
 			}
 		}
 
-		private async void ReferenceButton_Click( object sender, RoutedEventArgs e ) {
-			var folderPicker = new FolderPicker {
+		private async void ReferenceButton_Click(object sender, RoutedEventArgs e)
+		{
+			var folderPicker = new FolderPicker
+			{
 				SuggestedStartLocation = PickerLocationId.Desktop
 			};
-			folderPicker.FileTypeFilter.Add( "*" );
-			if( ( await folderPicker.PickSingleFolderAsync() ) is StorageFolder folder ) {
-				var button = ( Button )sender;
+			folderPicker.FileTypeFilter.Add("*");
+			if ((await folderPicker.PickSingleFolderAsync()) is StorageFolder folder)
+			{
+				var button = (Button)sender;
 				button.Tag = folder.Path;
 			}
 

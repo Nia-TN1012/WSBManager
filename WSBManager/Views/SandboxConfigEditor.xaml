@@ -12,8 +12,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <localcom:VGpuToListIndexConverter x:Key="VGpuToListIndexConverter"/>
-        <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
+        <localcom:ThreeStateToListIndexConverter x:Key="ThreeStateToListIndexConverter"/>
+        <localcom:TwoStateToListIndexConverter x:Key="TwoStateToListIndexConverter"/>
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
@@ -110,25 +110,31 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto" MinWidth="120"/>
+                        <ColumnDefinition Width="Auto" MinWidth="200"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- vGPU -->
                     <FontIcon Grid.Row="0" Grid.Column="0"
-                                          Style="{StaticResource SandboxConfigFontIcon}"
-                                          Glyph="&#xE950;"/>
+                              Style="{StaticResource SandboxConfigFontIcon}"
+                              Glyph="&#xE950;"/>
                     <TextBlock Grid.Row="0" Grid.Column="1"
-                                           Margin="5"
-                                           VerticalAlignment="Center"
-                                           x:Uid="VGpuLabel"/>
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="VGpuLabel"/>
                     <ComboBox Grid.Row="0" Grid.Column="2"
                               Margin="5"
-                              SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource VGpuToListIndexConverter}, Mode=TwoWay}">
-                        <ComboBoxItem Content="Default" />
+                              SelectedIndex="{Binding EditingItem.VGpu, Converter={StaticResource ThreeStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Enable"/>
                         <ComboBoxItem Content="Disable"/>
                     </ComboBox>
 
@@ -142,8 +148,87 @@
                                x:Uid="NetworkingLabel"/>
                     <ComboBox Grid.Row="1" Grid.Column="2"
                               Margin="5"
-                              SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource NetworkToListIndexConverter}, Mode=TwoWay}">
-                        <ComboBoxItem Content="Default" />
+                              SelectedIndex="{Binding EditingItem.Networking, Converter={StaticResource TwoStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Disable"/>
+                    </ComboBox>
+
+                    <!-- Audio Input -->
+                    <FontIcon Grid.Row="2" Grid.Column="0"
+                               Style="{StaticResource SandboxConfigFontIcon}"
+                               Glyph="&#xE1D6;"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="AudioInputLabel"/>
+                    <ComboBox Grid.Row="2" Grid.Column="2"
+                              Margin="5"
+                              SelectedIndex="{Binding EditingItem.AudioInput, Converter={StaticResource ThreeStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Enable"/>
+                        <ComboBoxItem Content="Disable"/>
+                    </ComboBox>
+
+                    <!-- Video Input -->
+                    <FontIcon Grid.Row="3" Grid.Column="0"
+                               Style="{StaticResource SandboxConfigFontIcon}"
+                               Glyph="&#xE20A;"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="VideoInputLabel"/>
+                    <ComboBox Grid.Row="3" Grid.Column="2"
+                              Margin="5"
+                              SelectedIndex="{Binding EditingItem.VideoInput, Converter={StaticResource ThreeStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Enable"/>
+                        <ComboBoxItem Content="Disable"/>
+                    </ComboBox>
+
+                    <!-- Protected Client -->
+                    <FontIcon Grid.Row="4" Grid.Column="0"
+                               Style="{StaticResource SandboxConfigFontIcon}"
+                               Glyph="&#xE83D;"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="ProtectedClientLabel"/>
+                    <ComboBox Grid.Row="4" Grid.Column="2"
+                              Margin="5"
+                              SelectedIndex="{Binding EditingItem.ProtectedClient, Converter={StaticResource ThreeStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Enable"/>
+                        <ComboBoxItem Content="Disable"/>
+                    </ComboBox>
+
+                    <!-- Printer Redirection -->
+                    <FontIcon Grid.Row="5" Grid.Column="0"
+                               Style="{StaticResource SandboxConfigFontIcon}"
+                               Glyph="&#xE2F6;"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="PrinterRedirectionLabel"/>
+                    <ComboBox Grid.Row="5" Grid.Column="2"
+                              Margin="5"
+                              SelectedIndex="{Binding EditingItem.PrinterRedirection, Converter={StaticResource ThreeStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
+                        <ComboBoxItem Content="Enable"/>
+                        <ComboBoxItem Content="Disable"/>
+                    </ComboBox>
+
+                    <!-- Clipboard Redirection -->
+                    <FontIcon Grid.Row="6" Grid.Column="0"
+                               Style="{StaticResource SandboxConfigFontIcon}"
+                               Glyph="&#xE16D;"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               x:Uid="ClipboardRedirectionLabel"/>
+                    <ComboBox Grid.Row="6" Grid.Column="2"
+                              Margin="5"
+                              SelectedIndex="{Binding EditingItem.ClipboardRedirection, Converter={StaticResource TwoStateToListIndexConverter}, Mode=TwoWay}">
+                        <ComboBoxItem Content="Default"/>
                         <ComboBoxItem Content="Disable"/>
                     </ComboBox>
                 </Grid>
@@ -208,6 +293,32 @@
                     </StackPanel>
                     <TextBox Margin="5"
                              Text="{Binding EditingItem.LogonCommand.Command, Mode=TwoWay}"/>
+                </StackPanel>
+                <Border Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+                
+                <!-- Memory in MB -->
+                <StackPanel Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                  Glyph="&#xE964;"/>
+                        <TextBlock Margin="5"
+                                   x:Uid="MemoryInMBLabel"/>
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" MinWidth="200"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ToggleSwitch Grid.Column="0" x:Uid="MemoryInMBToggleSwitch" x:Name="MemoryInMBToggleSwitch"
+                                      IsOn="{Binding EditingItem.MemoryInMB.Enabled, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" InputScope="Number"
+                                 Text="{Binding  EditingItem.MemoryInMB.AmountInMB, Mode=TwoWay}"
+                                 IsEnabled="{Binding IsOn, ElementName=MemoryInMBToggleSwitch}"/>
+                        <TextBlock Grid.Column="2" Margin="5" Text="MB"/>
+                    </Grid>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

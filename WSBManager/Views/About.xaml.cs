@@ -15,38 +15,47 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace WSBManager.Views {
-	public sealed partial class About : Page {
+namespace WSBManager.Views
+{
+	public sealed partial class About : Page
+	{
 
 		private PackageId packageInfo = Package.Current.Id;
 
 		public string Version => $"{packageInfo.Version.Major}.{packageInfo.Version.Minor}.{packageInfo.Version.Build}";
 
-		public About() {
+		public About()
+		{
 			this.InitializeComponent();
 		}
 
-		protected override void OnNavigatedTo( NavigationEventArgs e ) {
-			base.OnNavigatedTo( e );
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
 
 			SystemNavigationManager.GetForCurrentView().BackRequested += About_BackRequested;
 		}
 
-		protected override void OnNavigatingFrom( NavigatingCancelEventArgs e ) {
-			base.OnNavigatingFrom( e );
+		protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+		{
+			base.OnNavigatingFrom(e);
 
 			SystemNavigationManager.GetForCurrentView().BackRequested -= About_BackRequested;
 		}
 
-		private void About_BackRequested( object sender, BackRequestedEventArgs e ) {
-			if( this.Frame.CanGoBack ) {
+		private void About_BackRequested(object sender, BackRequestedEventArgs e)
+		{
+			if (this.Frame.CanGoBack)
+			{
 				this.Frame.GoBack();
 				e.Handled = true;
 			}
 		}
 
-		private void BackButton_Click( object sender, RoutedEventArgs e ) {
-			if( this.Frame.CanGoBack ) {
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (this.Frame.CanGoBack)
+			{
 				this.Frame.GoBack();
 			}
 		}

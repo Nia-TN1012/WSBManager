@@ -8,7 +8,7 @@ WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 
 ![Top](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/MainPage_Light.en-us.PNG)
 
-> This application supports Windows 10 dark mode. The above image is in **Light** mode and the below image is in **Dark** mode.
+> This application supports Windows dark mode. The above image is in **Light** mode and the below image is in **Dark** mode.
 >
 > ![Top-dark](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/MainPage_Dark.en-us.PNG)
 
@@ -17,24 +17,23 @@ WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 |||
 |---|---|
 |Application name|WSB Manager|
-|Version|1.0.0|
+|Version|1.1.0|
 |Developer|Nia Tomonaka (@nia_tn1012)|
 |Released day|September 13, 2019|
-|Last updated day|-|
-|Available on|Windows 10 (Version 1803 or later)(*)|
+|Last updated day|January 12, 2022|
+|Available on|Windows 10 (Version 1803 or later)(*) / 11|
 |Using capabilities|Folder and file access|
 |Language supported|Japanese (ja, ja-JP), English (en, en-US)|
 |Licence|Apache-2.0 Licence|
-|Blog article|Coming soon|
 |GitHub|[https://github.com/Nia-TN1012/WSBManager](https://github.com/Nia-TN1012/WSBManager)|
 |Programing languages / Frameworks|C# 7.3 / XAML / .NET Core / Windows 10 SDK|
 |Using libraries|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit)|
-|Development environment|Visual Studio 2019|
+|Development environment|Visual Studio 2022|
 
 > ### **Note**
 >
-> * This application is compatible with **Windows 10 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
-> * To launch the Windows sandbox, it requires **Windows 10 Pro or Enterprise version 1903 or later and  hardware support**. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.
+> * This application is compatible with **Windows 10 / 11 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
+> * To launch the Windows sandbox, it requires **Windows 10 / 11 Pro or Enterprise version 1903 or later and hardware support**. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.
 
 The application can be downloaded from the Windows store.
 
@@ -78,12 +77,19 @@ Creates new or edits sandbox configuration items.
 |**1**|Back|Discards the changes and back to the main page.|
 |**2**|Save|Saves the changes and back to the main page.|
 |**3**|Name|Enter the name of the sandbox configuration item. This value is used only by this application.|
-|**4**|vGPU|Select whether to enable or disable the vGPU on the sandbox.|
-|**5**|Networking|Select whether to enable or disable the networking on the sandbox.|
-|**6**|Mapped Folders|Specify a folder on the host to share with the sandbox. The specified folder is mapped to the desktop on the sandbox.|
-|**7**|Host Folder|Enter the absolute path of the folder on the host. If you press the browse button on the right, the folder selection dialog will appear.|
-|**8**|Read Only|To be read-only the mapped folder on the sandbox select the check box.|
-|**9**|Logon Command|Enter the command to be executed when the sandbox starts.|
+|**4**|Functions|Select whether to enable or disable the functions on the sandbox.|
+|->|vGPU|Select whether to enable or disable the vGPU on the sandbox.|
+|->|Networking|Select whether to enable or disable the networking on the sandbox.|
+|->|Audio input|Select whether to enable or disable the audio input on the sandbox.|
+|->|Video input|Select whether to enable or disable the video input on the sandbox.|
+|->|Protected client|Select whether to enable or disable the protected client mode on the sandbox.|
+|->|Printer redirection|Select whether to enable or disable the printer redirection on the sandbox.|
+|->|Clipboard redirection|Select whether to enable or disable the clipboard redirection on the sandbox.|
+|**5**|Mapped Folders|Specify a folder on the host to share with the sandbox. The specified folder is mapped to the desktop on the sandbox.|
+|->|Host Folder|Enter the absolute path of the folder on the host. If you press the browse button on the right, the folder selection dialog will appear.|
+|->|Read Only|To be read-only the mapped folder on the sandbox select the check box.|
+|**6**|Logon Command|Enter the command to be executed when the sandbox starts.|
+|**7**|Memory usage specification|Select whether to enable or disable the memory usage specification and specifies amount in MB on the sandbox.|
 
 > ### **Note**
 >
@@ -95,7 +101,7 @@ Creates new or edits sandbox configuration items.
 The copyright of WSB Manager is possessed by Chronoir.net.
 
 ```
-(C)2019 Chronoir.net
+(C)2019-2022 Chronoir.net
 ```
 
 # Legal Disclaimer
@@ -104,4 +110,5 @@ The author and Chronoir.net accept no any responsibility for any obstacles or da
 
 # Release note
 
+* 2022/01/12 (Ver. 1.1.0): Customization items added to the app because new options have been added to the sandbox configuration file item.
 * 2019/09/13 (Ver. 1.0.0): First release

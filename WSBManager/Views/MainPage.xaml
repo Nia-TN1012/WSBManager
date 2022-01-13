@@ -17,12 +17,12 @@
 
         <!-- Converters -->
         <localcom:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
-        <localcom:VGpuToListIndexConverter x:Key="VGpuToListIndexConverter"/>
-        <localcom:NetworkToListIndexConverter x:Key="NetworkToListIndexConverter"/>
         <localcom:ValueToStringFormatConverter x:Key="ValueToStringFormatConverter"/>
         <localcom:SelectedIndexToVisibilityConverter x:Key="SelectedIndexToVisibilityConverter"/>
+        <localcom:BoolToEnabledTextConverter x:Key="BoolToEnabledTextConverter"/>
 
         <x:String x:Key="DateFormat">{0:yyyy/MM/dd HH:mm:ss zzz}</x:String>
+        <x:String x:Key="MBFormat">({0} MB)</x:String>
 
         <ItemsPanelTemplate x:Key="SandboxListItemPanelTemplate">
             <ItemsStackPanel Orientation="Vertical"
@@ -80,6 +80,36 @@
                                           Glyph="&#xEDA3;"
                                           Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
+                            <!-- Audio Input -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE1D6;"
+                                          Opacity="{Binding IsAudioInputEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
+                            <!-- Video Input -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE20A;"
+                                          Opacity="{Binding IsVideoInputEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
+                            <!-- Protected Client -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE83D;"
+                                          Opacity="{Binding IsProtectedClientEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
+                            <!-- Printer Redirection -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE2F6;"
+                                          Opacity="{Binding IsPrinterRedirectionEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
+                            <!-- Clipboard Redirection -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE16D;"
+                                          Opacity="{Binding IsClipboardRedirectionEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
                             <!-- Mapped folders -->
                             <Grid Style="{StaticResource SandboxConfigIconPanel}">
                                 <Grid.ColumnDefinitions>
@@ -100,6 +130,12 @@
                                 <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                           Glyph="&#xE756;"
                                           Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                            </Grid>
+                            <!-- Memory in MB -->
+                            <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                                <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"
+                                          Opacity="{Binding MemoryInMB.Enabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -176,6 +212,36 @@
                                       Glyph="&#xEDA3;"
                                       Opacity="{Binding IsNetworkEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                         </Grid>
+                        <!-- Audio Input -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE1D6;"
+                                      Opacity="{Binding IsAudioInputEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Video Input -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE20A;"
+                                      Opacity="{Binding IsVideoInputEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Protected Client -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE83D;"
+                                      Opacity="{Binding IsProtectedClientEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Printer Redirection -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE2F6;"
+                                      Opacity="{Binding IsPrinterRedirectionEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Clipboard Redirection -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE16D;"
+                                      Opacity="{Binding IsClipboardRedirectionEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
                         <!-- Mapped folders -->
                         <Grid Style="{StaticResource SandboxConfigIconPanel}">
                             <Grid.ColumnDefinitions>
@@ -196,6 +262,12 @@
                             <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
                                       Glyph="&#xE756;"
                                       Opacity="{Binding IsLogonCommandEnabled, Converter={StaticResource BoolToOpacityConverter}}"/>
+                        </Grid>
+                        <!-- Memory in MB -->
+                        <Grid Style="{StaticResource SandboxConfigIconPanel}">
+                            <FontIcon Style="{StaticResource SandboxConfigFontIcon}"
+                                      Glyph="&#xE964;"
+                                      Opacity="{Binding MemoryInMB.Enabled, Converter={StaticResource BoolToOpacityConverter}}"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -379,10 +451,15 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
@@ -411,6 +488,69 @@
                                            Margin="5"
                                            VerticalAlignment="Center"
                                            Text="{Binding SelectedItem.Networking, ElementName=SandboxListView}"/>
+
+                                <!-- Audio -->
+                                <FontIcon Grid.Row="2" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE1D6;"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="AudioInputLabel"/>
+                                <TextBlock Grid.Row="2" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.AudioInput, ElementName=SandboxListView}"/>
+                                <!-- Video -->
+                                <FontIcon Grid.Row="3" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE20A;"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="VideoInputLabel"/>
+                                <TextBlock Grid.Row="3" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.VideoInput, ElementName=SandboxListView}"/>
+
+                                <!-- Protected Client -->
+                                <FontIcon Grid.Row="4" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE83D;"/>
+                                <TextBlock Grid.Row="4" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="ProtectedClientLabel"/>
+                                <TextBlock Grid.Row="4" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.ProtectedClient, ElementName=SandboxListView}"/>
+
+                                <!-- Printer Redirection -->
+                                <FontIcon Grid.Row="5" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE2F6;"/>
+                                <TextBlock Grid.Row="5" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="PrinterRedirectionLabel"/>
+                                <TextBlock Grid.Row="5" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.PrinterRedirection, ElementName=SandboxListView}"/>
+                                <!-- Clipboard Redirection -->
+                                <FontIcon Grid.Row="6" Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE16D;"/>
+                                <TextBlock Grid.Row="6" Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="ClipboardRedirectionLabel"/>
+                                <TextBlock Grid.Row="6" Grid.Column="2"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding SelectedItem.ClipboardRedirection, ElementName=SandboxListView}"/>
                             </Grid>
                             <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
 
@@ -470,6 +610,34 @@
                                      IsReadOnly="True"
                                      HorizontalAlignment="Stretch"
                                      Text="{Binding SelectedItem.LogonCommand.Command, ElementName=SandboxListView}"/>
+                            <Border Margin="10" Height="1" Background="{ThemeResource SystemBaseMediumColor}"/>
+
+                            <!-- Memory in MB -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="200"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon Grid.Column="0"
+                                          Style="{StaticResource SandboxConfigFontIcon}"
+                                          Glyph="&#xE964;"/>
+                                <TextBlock Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           x:Uid="MemoryInMBLabel"/>
+                                <TextBlock Grid.Column="2"
+                                          Margin="5"
+                                          VerticalAlignment="Center"
+                                          Text="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView, Converter={StaticResource BoolToEnabledTextConverter}}"/>
+                                <TextBlock Grid.Column="3"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Opacity="{Binding SelectedItem.MemoryInMB.Enabled, ElementName=SandboxListView, Converter={StaticResource BoolToOpacityConverter}}"
+                                           Text="{Binding SelectedItem.MemoryInMB.AmountInMB, ElementName=SandboxListView, Converter={StaticResource ValueToStringFormatConverter}, ConverterParameter={StaticResource MBFormat}}"/>
+                            </Grid>
+
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
