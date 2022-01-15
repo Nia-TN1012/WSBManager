@@ -129,6 +129,77 @@ namespace WSBManager.Models
 		}
 
 		/// <summary>
+		/// Imports a sandbox configuration list.
+		/// </summary>
+		/// <returns>true: Success / false : Failed</returns>
+		public async Task<bool> ImportAsync(IStorageFile storageFile)
+		{
+			await semaphore.WaitAsync().ConfigureAwait(false);
+			try
+			{
+				var uuidSet = new HashSet<string>(WSBConfigCollection.Select(configItem => configItem.UUID));
+
+				using (var s = await storageFile.OpenStreamForReadAsync())
+				using (var sr = new StreamReader(s))
+				{
+					using (var xr = XmlReader.Create(sr))
+					{
+						var xElement = XElement.Load(xr);
+						foreach (var configItem in xElement.Elements(WSBConfigModel.RootNodeName))
+						{
+							var newConfigModel = WSBConfigManagerModel.FromXElement(configItem);
+							if (uuidSet.Contains(newConfigModel.UUID))
+							{
+								// If there is a UUID conflict, the newly added UUID will be regenerated.
+								newConfigModel.ResetUUID();
+							}
+							WSBConfigCollection.Add(newConfigModel);
+							uuidSet.Add(newConfigModel.UUID);
+						}
+
+						LoadCongiugurationListCompleted?.Invoke(this, null);
+					}
+				}
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			finally
+			{
+				semaphore.Release();
+			}
+		}
+
+		/// <summary>
+		/// Exports a sandbox configuration list.
+		/// </summary>
+		/// <returns>true: Success / false : Failed</returns>
+		public async Task<bool> ExportAsync(IStorageFile storageFile)
+		{
+			try
+			{
+				using (var s = await storageFile.OpenStreamForWriteAsync())
+				using (var sw = new StreamWriter(s))
+				{
+					using (var xw = XmlWriter.Create(sw, WSBConfigModel.xmlWriterSettings))
+					{
+						var xElement = new XElement(RootNodeName,
+							WSBConfigCollection.Select(configItem => configItem.ToXElement(includeExtraMetada: true))
+						);
+						xElement.Save(xw);
+					}
+				}
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Finds the element by specified a condition.
 		/// </summary>
 		/// <param name="predicate">A condition</param>

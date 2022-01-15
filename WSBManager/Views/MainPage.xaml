@@ -340,6 +340,15 @@
                             Content="&#xE712;">
                         <Button.Flyout>
                             <MenuFlyout>
+                                <MenuFlyoutItem x:Uid="ImportConfigList"
+                                                Command="{Binding ImportSandboxConfigList}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE8E5;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="ExportConfigList"
+                                                Command="{Binding ExportSandboxConfigList}"
+                                                Icon="Save"/>
                                 <MenuFlyoutItem x:Uid="UserGuideTitle"
                                                 Click="MenuFlyoutItem_Click">
                                     <MenuFlyoutItem.Icon>

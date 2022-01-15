@@ -98,6 +98,14 @@ namespace WSBManager.ViewModels
 		/// A event handler which fire when confirm delete item.
 		/// </summary>
 		public event DeleteConfirmAction DeleteSandboxConfigAction;
+		/// <summary>
+		/// A event handler which fire when pick a file to import.
+		/// </summary>
+		public event ImportFilePickerAction ImportSandboxConfingListAction;
+		/// <summary>
+		/// A event handler which fire when pick a file to export.
+		/// </summary>
+		public event ExportFilePickerAction ExportSandboxConfingListAction;
 
 		#region Commands
 
@@ -142,6 +150,20 @@ namespace WSBManager.ViewModels
 		/// </summary>
 		public ICommand DeleteSandboxConfig =>
 			deleteSandboxConfig ?? (deleteSandboxConfig = new DeleteSandboxConfigCommand(this));
+
+		private ICommand importSandboxConfigList;
+		/// <summary>
+		/// A command which import sandbox configration list.
+		/// </summary>
+		public ICommand ImportSandboxConfigList =>
+			importSandboxConfigList ?? (importSandboxConfigList = new ImportSandboxConfigListCommand(this));
+
+		private ICommand exportSandboxConfigList;
+		/// <summary>
+		/// A command which export sandbox configration list.
+		/// </summary>
+		public ICommand ExportSandboxConfigList =>
+			exportSandboxConfigList ?? (exportSandboxConfigList = new ExportSandboxConfigListCommand(this));
 
 		/// <summary>
 		/// Launch sandbox command.
@@ -382,6 +404,77 @@ namespace WSBManager.ViewModels
 						);
 					}
 				}
+			}
+		}
+
+		private class ImportSandboxConfigListCommand : ICommand
+		{
+
+			private readonly WSBManagerViewModel viewModel;
+
+			internal ImportSandboxConfigListCommand(WSBManagerViewModel _viewModel)
+			{
+				viewModel = _viewModel;
+				viewModel.PropertyChanged += (sender, e) => CanExecuteChanged?.Invoke(sender, e);
+			}
+
+			public bool CanExecute(object parameter) => true;
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute(object parameter)
+			{
+				viewModel.ImportSandboxConfingListAction?.Invoke(
+					async (file, exportErrorCallback) => {
+						try
+						{
+							await viewModel.model.ImportAsync(file);
+						}
+						catch (Exception e)
+						{
+							exportErrorCallback?.Invoke();
+						}
+					}
+				);
+			}
+		}
+
+		private class ExportSandboxConfigListCommand : ICommand
+		{
+
+			private readonly WSBManagerViewModel viewModel;
+
+			internal ExportSandboxConfigListCommand(WSBManagerViewModel _viewModel)
+			{
+				viewModel = _viewModel;
+				viewModel.PropertyChanged += (sender, e) => CanExecuteChanged?.Invoke(sender, e);
+			}
+
+			public bool CanExecute(object parameter) => true;
+
+			public event EventHandler CanExecuteChanged;
+
+			public void Execute(object parameter)
+			{
+				viewModel.ExportSandboxConfingListAction?.Invoke(
+					"WSBManager",
+					async (file, exportErrorCallback) => {
+						try
+						{
+							CachedFileManager.DeferUpdates(file);
+							await viewModel.model.ExportAsync(file);
+							var status = await CachedFileManager.CompleteUpdatesAsync(file);
+							if (status != FileUpdateStatus.Complete)
+							{
+								exportErrorCallback?.Invoke();
+							}
+						}
+						catch (Exception)
+						{
+							exportErrorCallback?.Invoke();
+						}
+					}
+				);
 			}
 		}
 

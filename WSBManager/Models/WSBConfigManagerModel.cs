@@ -122,6 +122,11 @@ namespace WSBManager.Models
 		}
 
 		/// <summary>
+		/// Resets the uuid.
+		/// </summary>
+		public void ResetUUID() => UUID = Guid.NewGuid().ToString("B");
+
+		/// <summary>
 		/// Updates the datetime when the sandbox was last launched.
 		/// </summary>
 		public void UpdateLastLaunchedAt() => LastLaunchedAt = DateTime.Now;

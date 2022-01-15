@@ -634,4 +634,25 @@
   <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
     <value>When launching the sandbox from here, the console window will be displayed for a moment, but it is due to the helper app included in the package of this app.</value>
   </data>
+  <data name="ExportConfigList.Text" xml:space="preserve">
+    <value>Export sandbox configuration list</value>
+  </data>
+  <data name="ImportConfigList.Text" xml:space="preserve">
+    <value>Import sandbox configuration list</value>
+  </data>
+  <data name="UserGuideContextMenuExportSandboxConfigList.Text" xml:space="preserve">
+    <value>Export sandbox configuration list</value>
+  </data>
+  <data name="UserGuideContextMenuExportSandboxConfigListDesc.Text" xml:space="preserve">
+    <value>Exports the sandbox configuration list to a file.</value>
+  </data>
+  <data name="UserGuideContextMenuImportSandboxConfigList.Text" xml:space="preserve">
+    <value>Import sandbox configuration list</value>
+  </data>
+  <data name="UserGuideContextMenuImportSandboxConfigListDesc.Text" xml:space="preserve">
+    <value>Selects the sandbox configuration list file from the dialog and imports it.</value>
+  </data>
+  <data name="XMLFileExtention" xml:space="preserve">
+    <value>XML file</value>
+  </data>
 </root>

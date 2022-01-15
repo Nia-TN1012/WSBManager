@@ -33,6 +33,8 @@ namespace WSBManager.Views
 			wsbManagerViewModel.ImportSandboxConfingAction += ImportSandboxConfing;
 			wsbManagerViewModel.ExportSandboxConfingAction += ExportSandboxConfing;
 			wsbManagerViewModel.DeleteSandboxConfigAction += DeleteSandboxConfig;
+			wsbManagerViewModel.ImportSandboxConfingListAction += ImportSandboxConfingList;
+			wsbManagerViewModel.ExportSandboxConfingListAction += ExportSandboxConfingList;
 		}
 
 		/// <summary>
@@ -88,7 +90,7 @@ namespace WSBManager.Views
 			{
 				fileSelectedCallback?.Invoke(
 					importFile,
-					// On failed to export
+					// On failed to import
 					async () => {
 						var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedToImportDialog"), importFile.Path), resourceLoader.GetString("DialogTitleError"));
 						await errorMessageDialog.ShowAsync();
@@ -137,6 +139,60 @@ namespace WSBManager.Views
 			confirmMessageDialog.Commands.Add(new UICommand(resourceLoader.GetString("DialogButtonYes"), command => confirmedCallback?.Invoke()));
 			confirmMessageDialog.Commands.Add(new UICommand(resourceLoader.GetString("DialogButtonNo")));
 			await confirmMessageDialog.ShowAsync();
+
+		}
+
+		/// <summary>
+		/// Selects the sandbox configuration file list to import.
+		/// </summary>
+		/// <param name="fileSelectedCallback">Callback when selected a file</param>
+		/// <param name="canceledCallback">Callback when canceled</param>
+		private async void ImportSandboxConfingList(Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null)
+		{
+			var importPicker = new FileOpenPicker
+			{
+				SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+			};
+			importPicker.FileTypeFilter.Add(".xml");
+
+			if ((await importPicker.PickSingleFileAsync()) is StorageFile importFile)
+			{
+				fileSelectedCallback?.Invoke(
+					importFile,
+					// On failed to import
+					async () => {
+						var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedToImportDialog"), importFile.Path), resourceLoader.GetString("DialogTitleError"));
+						await errorMessageDialog.ShowAsync();
+					}
+				);
+			}
+		}
+
+		/// <summary>
+		/// Selects the sandbox configuration file list to export.
+		/// </summary>
+		/// <param name="fileSelectedCallback">Callback when selected a file</param>
+		/// <param name="canceledCallback">Callback when canceled</param>
+		private async void ExportSandboxConfingList(string name, Action<StorageFile, Action> fileSelectedCallback, Action canceledCallback = null)
+		{
+			var exportPicker = new FileSavePicker
+			{
+				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+				SuggestedFileName = name
+			};
+			exportPicker.FileTypeChoices.Add(resourceLoader.GetString("XMLFileExtention"), new List<string> { ".xml" });
+
+			if ((await exportPicker.PickSaveFileAsync()) is StorageFile exportFile)
+			{
+				fileSelectedCallback?.Invoke(
+					exportFile,
+					// On failed to export
+					async () => {
+						var errorMessageDialog = new MessageDialog(string.Format(resourceLoader.GetString("FailedToExportDialog"), exportFile.Path), resourceLoader.GetString("DialogTitleError"));
+						await errorMessageDialog.ShowAsync();
+					}
+				);
+			}
 
 		}
 

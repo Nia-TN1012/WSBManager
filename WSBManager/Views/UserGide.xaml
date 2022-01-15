@@ -210,6 +210,8 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -220,30 +222,62 @@
                                     <Grid Grid.Row="0" Grid.Column="0"
 										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
                                         <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
-												   Text="&#xE897;"/>
+												   Text="&#xE8E5;"/>
                                     </Grid>
                                     <Grid Grid.Row="0" Grid.Column="1"
 										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
-                                        <TextBlock x:Uid="UserGuideContextMenuUserGuide"
+                                        <TextBlock x:Uid="UserGuideContextMenuImportSandboxConfigList"
 												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
                                     </Grid>
                                     <Grid Grid.Row="0" Grid.Column="2"
 										  Style="{StaticResource TableCellLikeGridStyle}">
-                                        <TextBlock x:Uid="UserGuideContextMenuUserGuideDesc"
+                                        <TextBlock x:Uid="UserGuideContextMenuImportSandboxConfigListDesc"
 												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
                                     </Grid>
 
                                     <Grid Grid.Row="1" Grid.Column="0"
 										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
                                         <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
-												   Text="&#xE946;"/>
+												   Text="&#xE105;"/>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuExportSandboxConfigList"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuExportSandboxConfigListDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE897;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Grid.Column="1"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuUserGuide"
+												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Grid.Column="2"
+										  Style="{StaticResource TableCellLikeGridStyle}">
+                                        <TextBlock x:Uid="UserGuideContextMenuUserGuideDesc"
+												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" Grid.Column="0"
+										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
+                                        <TextBlock Style="{StaticResource TableHeaderCellLikeIconTextBlockStyle}"
+												   Text="&#xE946;"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3" Grid.Column="1"
 										  Style="{StaticResource TableHeaderCellLikeGridStyle}">
                                         <TextBlock x:Uid="UserGuideContextMenuAbout"
 												   Style="{StaticResource TableHeaderCellLikeTextBlockStyle}"/>
                                     </Grid>
-                                    <Grid Grid.Row="1" Grid.Column="2"
+                                    <Grid Grid.Row="3" Grid.Column="2"
 										  Style="{StaticResource TableCellLikeGridStyle}">
                                         <TextBlock x:Uid="UserGuideContextMenuAboutDesc"
 												   Style="{StaticResource TableCellLikeTextBlockStyle}"/>

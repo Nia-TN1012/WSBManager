@@ -634,4 +634,25 @@
   <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
     <value>ここからサンドボックスを起動する時、一瞬コンソールウィンドウが表示されますが、このアプリのパッケージ含まれるヘルパーアプリによるものです。</value>
   </data>
+  <data name="ExportConfigList.Text" xml:space="preserve">
+    <value>サンドボックス構成リストをエクスポート</value>
+  </data>
+  <data name="ImportConfigList.Text" xml:space="preserve">
+    <value>サンドボックス構成リストをインポート</value>
+  </data>
+  <data name="UserGuideContextMenuExportSandboxConfigList.Text" xml:space="preserve">
+    <value>サンドボックス構成リストをエクスポート</value>
+  </data>
+  <data name="UserGuideContextMenuExportSandboxConfigListDesc.Text" xml:space="preserve">
+    <value>サンドボックス構成リストをファイルにエクスポートします。</value>
+  </data>
+  <data name="UserGuideContextMenuImportSandboxConfigList.Text" xml:space="preserve">
+    <value>サンドボックス構成リストをインポート</value>
+  </data>
+  <data name="UserGuideContextMenuImportSandboxConfigListDesc.Text" xml:space="preserve">
+    <value>ダイアログからサンドボックス構成リストファイルを選択し、インポートします。</value>
+  </data>
+  <data name="XMLFileExtention" xml:space="preserve">
+    <value>XMLファイル</value>
+  </data>
 </root>
