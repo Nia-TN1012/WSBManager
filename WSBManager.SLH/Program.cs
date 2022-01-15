@@ -12,6 +12,7 @@ namespace WSBManager
 		{
 			Console.Title = "WSB Manager Sandbox Launch Helper";
 
+			// Checks Windows Sandbox installation and the wsb file created by WSB Manger.
 			var wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"];
 			if (!File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\\{windowsSandboxExe}"))
 			{
