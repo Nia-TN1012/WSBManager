@@ -10,6 +10,8 @@ using System.IO;
 using System.Windows.Input;
 using Windows.Storage.Provider;
 using Windows.System;
+using Windows.Foundation.Metadata;
+using Windows.ApplicationModel;
 
 namespace WSBManager.ViewModels
 {
@@ -201,10 +203,11 @@ namespace WSBManager.ViewModels
 									DisplayApplicationPicker = true,
 									TreatAsUntrusted = true,
 								};
-								bool success = await Launcher.LaunchFileAsync(tempFile, options);
+								var success = ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0);
 								if (success)
 								{
-									launchModel.UpdateLastLaunchedAt();
+									ApplicationData.Current.LocalSettings.Values["wsbpath"] = tempFile.Path;
+									await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
 								}
 								viewModel.LaunchSandboxCompleted?.Invoke(this, (success, launchModel.Name));
 							}
