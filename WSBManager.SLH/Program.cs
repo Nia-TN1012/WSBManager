@@ -18,7 +18,7 @@ namespace WSBManager
 				Process.Start(@$"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\WindowsSandbox.exe", wsbPath);
 			} catch (Exception e)
 			{
-				Console.Error.WriteLine($"Failed to launch sandbox.: ${wsbPath}");
+				Console.Error.WriteLine($"Failed to launch sandbox.: {wsbPath}");
 				Console.Error.WriteLine(e);
 				Console.WriteLine("Press any key to exit ...");
 				Console.ReadLine();
