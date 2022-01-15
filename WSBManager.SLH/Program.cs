@@ -10,14 +10,15 @@ namespace WSBManager
 		static void Main(string[] args)
 		{
 			Console.Title = "WSB Manager Sandbox Launch Helper";
+			string wsbPath = "";
 			try
 			{
-				var wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"];
-				Console.WriteLine($"Launching sandbox ...: {Path.GetFileName(wsbPath?.ToString())}");
-				Process.Start(@"WindowsSandbox.exe", wsbPath?.ToString());
+				wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"]?.ToString();
+				Console.WriteLine($"Launching sandbox ...: {Path.GetFileName(wsbPath)}");
+				Process.Start(@$"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\WindowsSandbox.exe", wsbPath);
 			} catch (Exception e)
 			{
-				Console.Error.WriteLine("Failed to launch sandbox.");
+				Console.Error.WriteLine($"Failed to launch sandbox.: ${wsbPath}");
 				Console.Error.WriteLine(e);
 				Console.WriteLine("Press any key to exit ...");
 				Console.ReadLine();

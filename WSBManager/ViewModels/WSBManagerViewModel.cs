@@ -307,6 +307,7 @@ namespace WSBManager.ViewModels
 								try
 								{
 									CachedFileManager.DeferUpdates(file);
+									await FileIO.WriteTextAsync(file, "");
 									using (var s = await file.OpenStreamForWriteAsync())
 									using (var sw = new StreamWriter(s))
 									{
@@ -462,6 +463,7 @@ namespace WSBManager.ViewModels
 						try
 						{
 							CachedFileManager.DeferUpdates(file);
+							await FileIO.WriteTextAsync(file, "");
 							await viewModel.model.ExportAsync(file);
 							var status = await CachedFileManager.CompleteUpdatesAsync(file);
 							if (status != FileUpdateStatus.Complete)

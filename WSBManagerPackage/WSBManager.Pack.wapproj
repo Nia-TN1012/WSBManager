@@ -172,9 +172,6 @@
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" PrivateAssets="all" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WSBManager.SLH\WSBManager.SLH.csproj" />
     <ProjectReference Include="..\WSBManager\WSBManager.csproj" />
   </ItemGroup>
