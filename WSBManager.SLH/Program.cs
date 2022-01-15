@@ -7,26 +7,21 @@ namespace WSBManager
 {
 	internal class Program
 	{
-		const string windowsSandboxExe = @"WindowsSandbox.exe";
 		static void Main(string[] args)
 		{
 			Console.Title = "WSB Manager Sandbox Launch Helper";
-
-			// Checks Windows Sandbox installation and the wsb file created by WSB Manger.
-			var wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"];
-			if (!File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\\{windowsSandboxExe}"))
+			try
 			{
-				Console.Error.WriteLine("Failed to launch sandbox: Windows Sandbox is not enabled or not supported.");
-				return;
-			}
-			if (wsbPath == null || !File.Exists(wsbPath.ToString()))
+				var wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"];
+				Console.WriteLine($"Launching sandbox ...: {Path.GetFileName(wsbPath?.ToString())}");
+				Process.Start(@"WindowsSandbox.exe", wsbPath?.ToString());
+			} catch (Exception e)
 			{
-				Console.Error.WriteLine("Failed to launch sandbox: The temporary wsb file when booting from WSB Manager is missing or invalid.");
-				return;
+				Console.Error.WriteLine("Failed to launch sandbox.");
+				Console.Error.WriteLine(e);
+				Console.WriteLine("Press any key to exit ...");
+				Console.ReadLine();
 			}
-
-			Console.WriteLine($"Launching sandbox ...: {Path.GetFileName(wsbPath.ToString())}");
-			Process.Start(windowsSandboxExe, wsbPath.ToString());
 		}
 	}
 }

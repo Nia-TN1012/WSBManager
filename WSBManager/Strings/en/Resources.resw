@@ -428,7 +428,7 @@
     <value>Launches the Windows sandbox from the specified sandbox configuration item.</value>
   </data>
   <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
-    <value>To launch Windows Sandbox, it requires Windows 10 Pro or Enterprise version 1903 or later and hardware support. Also, enable Windows Sandbox in advance from “Turn Windows features on or off”.</value>
+    <value>To launch Windows Sandbox, it requires Windows 10 / 11 Pro or Enterprise version 1903 or later and hardware support. Also, enable Windows Sandbox in advance from “Turn Windows features on or off”.</value>
   </data>
   <data name="UserGuideLogonCommandDisable.Text" xml:space="preserve">
     <value>Logon Command is disabled</value>
@@ -630,5 +630,8 @@
   </data>
   <data name="UserGuideEditMemoryInMBDesc.Text" xml:space="preserve">
     <value>Select whether to enable or disable the memory usage specification and specifies amount in MB on the sandbox.</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
+    <value>When launching the sandbox from here, the console window will be displayed for a moment, but it is due to the helper app included in the package of this app.</value>
   </data>
 </root>

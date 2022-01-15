@@ -553,6 +553,20 @@
                                                            x:Uid="UserGuideLaunchSandboxButtonNote"/>
                                             </Grid>
                                         </Border>
+                                        <Border Margin="5" Padding="5"
+                                                Style="{StaticResource NoteBorderStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <FontIcon Grid.Column="0" Margin="5" 
+                                                          Glyph="&#xE946;"/>
+                                                <TextBlock Grid.Column="1" Margin="5"
+                                                           x:Uid="UserGuideLaunchSandboxButtonNote2"/>
+                                            </Grid>
+                                        </Border>
                                     </StackPanel>
                                 </Grid>
 
@@ -1151,7 +1165,7 @@
                                             <Grid Grid.Row="5" Grid.Column="2"
 									              Style="{StaticResource TableCellLikeGridStyle}">
                                                 <StackPanel>
-                                                    <TextBlock x:Uid="UserGuideEditPrinterRedirection"
+                                                    <TextBlock x:Uid="UserGuideEditPrinterRedirectionDesc"
                                                                Style="{StaticResource TableCellLikeTextBlockStyle}"/>
                                                     <Grid>
                                                         <Grid.RowDefinitions>

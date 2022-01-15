@@ -428,7 +428,7 @@
     <value>指定したサンドボックス構成アイテムからWindowsサンドボックスを起動します。</value>
   </data>
   <data name="UserGuideLaunchSandboxButtonNote.Text" xml:space="preserve">
-    <value>Windowsサンドボックスを起動するには、Windows 10 ProまたはEnterpriseのバージョン1903以降かつ、ハードウェアが対応している必要があります。また、あらかじめ「Windowsの機能の有効化または無効化」より、Windowsサンドボックスを有効にしておきます。</value>
+    <value>Windowsサンドボックスを起動するには、Windows 10 / 11 ProまたはEnterpriseのバージョン1903以降かつ、ハードウェアが対応している必要があります。また、あらかじめ「Windowsの機能の有効化または無効化」より、Windowsサンドボックスを有効にしておきます。</value>
   </data>
   <data name="UserGuideLogonCommandDisable.Text" xml:space="preserve">
     <value>ログオンコマンドは 無効 です</value>
@@ -630,5 +630,8 @@
   </data>
   <data name="UserGuideEditMemoryInMBDesc.Text" xml:space="preserve">
     <value>サンドボックス上でのメモリ使用量の指定の有効・無効を選択し、その量をMB単位で指定します。</value>
+  </data>
+  <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
+    <value>ここからサンドボックスを起動する時、一瞬コンソールウィンドウが表示されますが、このアプリのパッケージ含まれるヘルパーアプリによるものです。</value>
   </data>
 </root>
