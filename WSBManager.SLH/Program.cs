@@ -15,7 +15,7 @@ namespace WSBManager
 			{
 				wsbPath = ApplicationData.Current.LocalSettings.Values["wsbpath"]?.ToString();
 				Console.WriteLine($"Launching sandbox ...: {Path.GetFileName(wsbPath)}");
-				Process.Start(@$"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\WindowsSandbox.exe", wsbPath);
+				Process.Start(new ProcessStartInfo(wsbPath) { UseShellExecute = true });
 			} catch (Exception e)
 			{
 				Console.Error.WriteLine($"Failed to launch sandbox.: {wsbPath}");
