@@ -198,16 +198,12 @@ namespace WSBManager.ViewModels
 							var status = await CachedFileManager.CompleteUpdatesAsync(tempFile);
 							if (status == FileUpdateStatus.Complete)
 							{
-								var options = new LauncherOptions
-								{
-									DisplayApplicationPicker = true,
-									TreatAsUntrusted = true,
-								};
 								var success = ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0);
 								if (success)
 								{
 									ApplicationData.Current.LocalSettings.Values["wsbpath"] = tempFile.Path;
 									await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
+									launchModel.UpdateLastLaunchedAt();
 								}
 								viewModel.LaunchSandboxCompleted?.Invoke(this, (success, launchModel.Name));
 							}
