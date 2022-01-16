@@ -210,7 +210,7 @@ namespace WSBManager.ViewModels
 					{
 						try
 						{
-							var tempFile = await tempFolder.CreateFileAsync($"{launchModel.Name}_{launchModel.UUID}.wsb", CreationCollisionOption.ReplaceExisting);
+							var tempFile = await tempFolder.CreateFileAsync($"wsb-tmp.wsb", CreationCollisionOption.ReplaceExisting);
 							CachedFileManager.DeferUpdates(tempFile);
 							using (var s = await tempFile.OpenStreamForWriteAsync())
 							using (var sw = new StreamWriter(s))
@@ -223,7 +223,6 @@ namespace WSBManager.ViewModels
 								var success = ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0);
 								if (success)
 								{
-									ApplicationData.Current.LocalSettings.Values["wsbpath"] = tempFile.Path;
 									await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
 									launchModel.UpdateLastLaunchedAt();
 								}
