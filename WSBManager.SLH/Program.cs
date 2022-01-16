@@ -19,7 +19,7 @@ namespace WSBManager
 		static void Main(string[] args)
 		{
 			Console.Title = "WSB Manager Sandbox Launch Helper";
-			string winSbPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.System)}\WindowsSandbox.exe";
+			string winSbPath = @"WindowsSandbox.exe";
 			string wsbPath = "";
 			try
 			{
@@ -38,22 +38,17 @@ namespace WSBManager
 				}
 
 				bool launched = false;
-				if (File.Exists(winSbPath))
+				try
 				{
 					// Try to launch sandbox via WindowsSandbox.exe
-					try
-					{
-						Process.Start(winSbPath, wsbPath);
-						launched = true;
-					}
-					catch (Exception e)
-					{
-						Console.Error.WriteLine("[WARN] Failed to launch sandbox with WindowsSandbox. Trying launch with cmd.");
-					}
-				} else
-				{
-					Console.WriteLine("[WARN] WindowsSandbox.exe existence could not be confirmed. Trying launch with cmd.");
+					Process.Start(winSbPath, wsbPath);
+					launched = true;
 				}
+				catch (Exception)
+				{
+					Console.Error.WriteLine("[WARN] Failed to launch sandbox with WindowsSandbox. Trying launch with cmd.");
+				}
+
 				if (!launched)
 				{
 					// Try to launch sandbox via cmd.exe

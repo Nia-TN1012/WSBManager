@@ -632,7 +632,7 @@
     <value>サンドボックス上でのメモリ使用量の指定の有効・無効を選択し、その量をMB単位で指定します。</value>
   </data>
   <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
-    <value>ここからサンドボックスを起動する時、一瞬コンソールウィンドウが表示されますが、このアプリのパッケージ含まれるヘルパーアプリによるものです。</value>
+    <value>ここからサンドボックスを起動する時、一時的にコンソールウィンドウが表示されますが、このアプリのパッケージ含まれるヘルパーアプリによるものです。</value>
   </data>
   <data name="ExportConfigList.Text" xml:space="preserve">
     <value>サンドボックス構成リストをエクスポート</value>

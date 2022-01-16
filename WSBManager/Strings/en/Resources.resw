@@ -632,7 +632,7 @@
     <value>Select whether to enable or disable the memory usage specification and specifies amount in MB on the sandbox.</value>
   </data>
   <data name="UserGuideLaunchSandboxButtonNote2.Text" xml:space="preserve">
-    <value>When launching the sandbox from here, the console window will be displayed for a moment, but it is due to the helper app included in the package of this app.</value>
+    <value>When launching the sandbox from here, a console window will be displayed temporarily, which is due to the helper app included in this app's package.</value>
   </data>
   <data name="ExportConfigList.Text" xml:space="preserve">
     <value>Export sandbox configuration list</value>
