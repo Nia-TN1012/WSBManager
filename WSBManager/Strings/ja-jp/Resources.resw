@@ -636,22 +636,22 @@
 「プログラムから開く」ダイアログが表示された場合は、そこから「Windowsサンドボックス」を選択して起動します。</value>
   </data>
   <data name="ExportConfigList.Text" xml:space="preserve">
-    <value>サンドボックス構成リストをエクスポート</value>
+    <value>サンドボックス構成リストをバックアップ</value>
   </data>
   <data name="ImportConfigList.Text" xml:space="preserve">
-    <value>サンドボックス構成リストをインポート</value>
+    <value>サンドボックス構成リストをリストア</value>
   </data>
   <data name="UserGuideContextMenuExportSandboxConfigList.Text" xml:space="preserve">
-    <value>サンドボックス構成リストをエクスポート</value>
+    <value>サンドボックス構成リストをバックアップ</value>
   </data>
   <data name="UserGuideContextMenuExportSandboxConfigListDesc.Text" xml:space="preserve">
-    <value>サンドボックス構成リストをファイルにエクスポートします。</value>
+    <value>サンドボックス構成リストをXMLファイルにバックアップします。</value>
   </data>
   <data name="UserGuideContextMenuImportSandboxConfigList.Text" xml:space="preserve">
-    <value>サンドボックス構成リストをインポート</value>
+    <value>サンドボックス構成リストをリストア</value>
   </data>
   <data name="UserGuideContextMenuImportSandboxConfigListDesc.Text" xml:space="preserve">
-    <value>ダイアログからサンドボックス構成リストファイルを選択し、インポートします。</value>
+    <value>ダイアログからサンドボックス構成リストのXMLファイルを選択し、リストアします。</value>
   </data>
   <data name="XMLFileExtention" xml:space="preserve">
     <value>XMLファイル</value>

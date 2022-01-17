@@ -636,22 +636,22 @@
 If the "Open With" dialog is displayed, select "Windows Sandbox" from there to start it.</value>
   </data>
   <data name="ExportConfigList.Text" xml:space="preserve">
-    <value>Export sandbox configuration list</value>
+    <value>Back up sandbox configuration list</value>
   </data>
   <data name="ImportConfigList.Text" xml:space="preserve">
-    <value>Import sandbox configuration list</value>
+    <value>Restore sandbox configuration list</value>
   </data>
   <data name="UserGuideContextMenuExportSandboxConfigList.Text" xml:space="preserve">
-    <value>Export sandbox configuration list</value>
+    <value>Back up sandbox configuration list</value>
   </data>
   <data name="UserGuideContextMenuExportSandboxConfigListDesc.Text" xml:space="preserve">
-    <value>Exports the sandbox configuration list to a file.</value>
+    <value>Backs up the sandbox configuration list to a xml file.</value>
   </data>
   <data name="UserGuideContextMenuImportSandboxConfigList.Text" xml:space="preserve">
-    <value>Import sandbox configuration list</value>
+    <value>Restore sandbox configuration list</value>
   </data>
   <data name="UserGuideContextMenuImportSandboxConfigListDesc.Text" xml:space="preserve">
-    <value>Selects the sandbox configuration list file from the dialog and imports it.</value>
+    <value>Selects the sandbox configuration list xml file from the dialog and restores it.</value>
   </data>
   <data name="XMLFileExtention" xml:space="preserve">
     <value>XML file</value>

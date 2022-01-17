@@ -10,7 +10,7 @@
   <Identity
     Name="30069NiaTomonaka.WSBManager"
     Publisher="CN=A5B1B624-0B64-44B9-9815-39BE22557436"
-    Version="1.2.15.0" />
+    Version="1.2.16.0" />
 
   <Properties>
     <DisplayName>WSB Manager</DisplayName>
