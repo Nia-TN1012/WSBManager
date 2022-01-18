@@ -9,7 +9,7 @@ WSBマネージャー（以下、本アプリ）は、以下の目的でデバ�
 3. サンドボックスの構成アイテム編集ページにて、フォルダー選択ダイアログを使ってマッピングフォルダーのホストフォルダーを参照する
 4. サンドボックスの構成リストをファイルにバックアップ、リストアする（Ver. 1.2.16～）
 
-本アプリからWindowsサンドボックスを起動する場合、本アプリのパッケージに含まれるコンソールアプリを経由して起動します。（Ver. 1.2.16～）
+サンドボックスの構成アイテムを指定して、本アプリからWindowsサンドボックスを起動する場合、本アプリのパッケージに含まれるコンソールアプリを経由して起動します。（Ver. 1.2.16～）
 （そのため、コンソールウィンドウが一時的に表示されることがあります）
 （webファイルを開くアプリの選択のポップアップが表示された場合、Windowsサンドボックスを選択します）
 
@@ -23,7 +23,8 @@ WSB Manager (this app) accesses device folders and files for the following purpo
    on the sandbox configuration item edit page.
 4. Back up and restore the sandbox configuration list to a file. (Ver. 1.2.16~)
 
-When starting the Windows Sandbox from this app, it starts via the console application included in the package of this app. (Ver. 1.2.16~)
+When starting the Windows Sandbox from this app by specifying the sandbox configuration item,
+it starts via the console application included in the package of this app. (Ver. 1.2.16~)
 (Therefore, the console window may be displayed temporarily)
 (If a pop-up for choose an app to open a web file appears, select the Windows Sandbox.)
 
