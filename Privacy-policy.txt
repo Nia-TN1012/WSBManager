@@ -3,24 +3,35 @@ WSBマネージャー　プライバシーポリシー
 WSB Manager Privacy policy
 ************************************
 
-WSBマネージャーは、以下の目的でデバイスのフォルダーとファイルにアクセスします。
+WSBマネージャー（以下、本アプリ）は、以下の目的でデバイスのフォルダーとファイルにアクセスします。
 1. サンドボックスの構成ファイル（wsbファイル）のインポートする
 2. サンドボックスの構成アイテムをファイルにエクスポートする
 3. サンドボックスの構成アイテム編集ページにて、フォルダー選択ダイアログを使ってマッピングフォルダーのホストフォルダーを参照する
+4. サンドボックスの構成リストをファイルにバックアップ、リストアする（Ver. 1.2.16～）
+
+本アプリからWindowsサンドボックスを起動する場合、本アプリのパッケージに含まれるコンソールアプリを経由して起動します。（Ver. 1.2.16～）
+（そのため、コンソールウィンドウが一時的に表示されることがあります）
+（webファイルを開くアプリの選択のポップアップが表示された場合、Windowsサンドボックスを選択します）
 
 なお、ユーザーの個人情報およびプライバシーに関する情報を収集することはございません。
 
 
-WSB Manager accesses device folders and files for the following purposes:
+WSB Manager (this app) accesses device folders and files for the following purposes:
 1. Importing sandbox configuration files (wsb file) 
 2. Exporting sandbox configuration items to files
 3. Referring to the host folder of the mapping folder using the folder picker 
    on the sandbox configuration item edit page.
+4. Back up and restore the sandbox configuration list to a file. (Ver. 1.2.16~)
 
-WSB Manager does not collect your personal information and privacy information.
+When starting the Windows Sandbox from this app, it starts via the console application included in the package of this app. (Ver. 1.2.16~)
+(Therefore, the console window may be displayed temporarily)
+(If a pop-up for choose an app to open a web file appears, select the Windows Sandbox.)
+
+This app does not collect your personal information and privacy information.
 
 
 ---------------------------------
 制定日 Enactment date : 2019/09/12
+改定日 Revision date  : 2022/01/19
 Chronoir.net
 ---------------------------------
