@@ -17,22 +17,22 @@ WSB Manager can create and edit Windows Sandbox configuration files on the GUI.
 |||
 |---|---|
 |Application name|WSB Manager|
-|Version|1.1.0|
+|Version|1.2.16|
 |Developer|Nia Tomonaka (@nia_tn1012)|
 |Released day|September 13, 2019|
-|Last updated day|January 12, 2022|
+|Last updated day|January 22, 2022|
 |Available on|Windows 10 (Version 1803 or later)(*) / 11|
 |Using capabilities|Folder and file access|
 |Language supported|Japanese (ja, ja-JP), English (en, en-US)|
 |Licence|Apache-2.0 Licence|
 |GitHub|[https://github.com/Nia-TN1012/WSBManager](https://github.com/Nia-TN1012/WSBManager)|
-|Programing languages / Frameworks|C# 7.3 / XAML / .NET Core / Windows 10 SDK|
+|Programing languages / Frameworks|C# 7.3 / XAML / .NET Core / .NET Framework 4.7.2 / Windows 10 SDK|
 |Using libraries|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit)|
 |Development environment|Visual Studio 2022|
 
 > ### **Note**
 >
-> * This application is compatible with **Windows 10 / 11 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
+> * This app is compatible with **Windows 10 / 11 desktop with x86 or x64 architecture**. Not supported for ARM architecture or Windows 10 Mobile etc.
 > * To launch the Windows sandbox, it requires **Windows 10 / 11 Pro or Enterprise version 1903 or later and hardware support**. Also, enable the Windows sandbox in advance from “Turn Windows features on or off”.
 
 The application can be downloaded from the Windows store.
@@ -44,7 +44,7 @@ The application can be downloaded from the Windows store.
 
 ## Main page
 
-When you start the application, the main page is displayed. The left half of the page is displayed a list of created and imported sandbox configuration items, and the right half of the page is displayed the properties of the item selected in the list.
+When you start the app, the main page is displayed. The left half of the page is displayed a list of created and imported sandbox configuration items, and the right half of the page is displayed the properties of the item selected in the list.
 
 ![Mainpage](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/WSBManager/Assets/UserGuide/en-us/MainPageGuide_Light.png)
 
@@ -65,6 +65,11 @@ When you start the application, the main page is displayed. The left half of the
 |->|Delete|Deletes the specified sandbox configuration item from the list.|
 |**8**|Sandbox configuration item properties|Displays the properties of the sandbox configuration item selected from the list.|
 |**9**|Edit Sandbox Configuration|Navigates to the edit page of the sandbox configuration item.|
+
+> ### **Note**
+>
+> * When launching the sandbox from this app, a console window will be displayed temporarily, because the console app included in this app's package is in the process of launching the Windows Sandbox.
+> * If the "Open With" dialog is displayed, select "Windows Sandbox" from there to start it.
 
 ## New creation / edit page for configuration items
 
@@ -110,5 +115,9 @@ The author and Chronoir.net accept no any responsibility for any obstacles or da
 
 # Release note
 
+* 2022/01/22 (Ver. 1.2.16):
+  * Changed the processing method when starting the sandbox from this app and fixed the problem that Windows Sandbox fails to launch from this app.
+  * Fixed a bug when overwriting a file with a sandbox configuration.
+  * Added backup and restore functions for sandbox configuration list.
 * 2022/01/12 (Ver. 1.1.0): Customization items added to the app because new options have been added to the sandbox configuration file item.
 * 2019/09/13 (Ver. 1.0.0): First release
