@@ -118,7 +118,7 @@ The copyright of WSB Manager is possessed by Nia T.N. Tech Lab (former: Chronoir
 
 # Legal Disclaimer
 
-The author and Chronoir.net accept no any responsibility for any obstacles or damages caused by using this application. Please be understanding of this beforehand.
+The author and Nia T.N. Tech Lab accept no any responsibility for any obstacles or damages caused by using this application. Please be understanding of this beforehand.
 
 # Release note
 
