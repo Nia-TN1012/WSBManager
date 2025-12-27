@@ -1,3 +1,10 @@
+# 重要なお知らせ
+
+**誠に勝手ながら、WSBマネージャーは、2026年1月もってストアでの公開を終了いたします。**  
+**長らくご愛顧いただきありがとうございました。**
+
+---
+
 # WSBマネージャー
 
 ![Logo](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/AppLogo.png)
