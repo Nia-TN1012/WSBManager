@@ -1,3 +1,10 @@
+# IMPORTANT NOTICE
+
+**We regret to inform you that WSB Manager will no longer be available in the store after January 2026.**
+**Thank you so much.**
+
+---
+
 # WSBManager
 
 ![Logo](https://raw.githubusercontent.com/Nia-TN1012/WSBManager/master/Assets/AppLogo.png)
