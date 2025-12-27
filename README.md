@@ -110,10 +110,10 @@ Creates new or edits sandbox configuration items.
 
 # About WSB Manager
 
-The copyright of WSB Manager is possessed by Chronoir.net.
+The copyright of WSB Manager is possessed by Nia T.N. Tech Lab (former: Chronoir.net).
 
 ```
-(C)2019-2022 Chronoir.net
+(C)2019-2022 Nia T.N. Tech Lab / Chronoir.net
 ```
 
 # Legal Disclaimer
@@ -122,6 +122,7 @@ The author and Chronoir.net accept no any responsibility for any obstacles or da
 
 # Release note
 
+* 2025/12/27: Add an important notice. Update due to blog site name and URL change.
 * 2022/01/22 (Ver. 1.2.16):
   * Changed the processing method when starting the sandbox from this app and fixed the problem that Windows Sandbox fails to launch from this app.
   * Fixed a bug when overwriting a file with a sandbox configuration.
